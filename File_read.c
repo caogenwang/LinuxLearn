@@ -25,6 +25,7 @@ int main(int argc,char**argv)
     }
     int len = 0;
     int ret = 0;
+    int pos = 0;
     while (1)
     {
         len = read(sfd,buf,1024);
@@ -39,11 +40,16 @@ int main(int argc,char**argv)
         }
         else
         {
-            ret = write(dfd,buf,len);
-            if (ret < 0)
+            while (len > 0)
             {
-                break;
-            }   
+                ret = write(dfd,buf+pos,len);
+                if (ret < 0)
+                {
+                    exit(1);
+                } 
+                pos += ret;
+                len -= ret;
+            }
         }
     }
     
