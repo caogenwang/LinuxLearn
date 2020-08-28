@@ -15,7 +15,7 @@ int main(int argc,char**argv)
     int n = 0;
     while ((n=fread(buf,1,5,fs))>0)
     {
-        fprintf("%s\n",buf);
+        fprintf("%d\n",n);
     }
     fclose(fs);
     return 0;
