@@ -17,6 +17,9 @@ int main(int argc,char**argv)
     {
         printf("%d\n",n);
     }
+    fseek(fs,0,SEEK_END);
+    long m = ftell(fs);
+    printf("%d\n",m);
     fclose(fs);
     return 0;
 }
