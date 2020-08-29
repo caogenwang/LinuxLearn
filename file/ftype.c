@@ -13,8 +13,15 @@ static int ftype(const char*fname)
         perror("stat()");
         exit(1);    
     }   
-    if(S_ISREG(statres.))   
-    return statres.st_size;
+    if(S_ISREG(statres.st_mode))   
+        return '-';
+    else if(S_ISDIR(statres.st_mode))
+        return 'd';
+    else if(S_ISBLK(statres.st_mode))
+        return 'b';
+    else
+        return 'x';
+        
 }
 
 int main(int argc,char**argv)
@@ -25,7 +32,7 @@ int main(int argc,char**argv)
         exit(1);
     }
 
-   int n =  flen(argv[1]);
+   int n =  ftype(argv[1]);
    printf("%d\n",n);
     return 0;
 }
