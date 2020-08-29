@@ -31,7 +31,7 @@ int main()
     {
         time(&stamp);
         tm = localtime(&stamp);
-        fprintf(fp,"%-4d%d-%d-%d %d::%d::%d\n",++count,tm->tm_year,tm->tm_mon,tm->tm_mday,
+        fprintf(fp,"%-4d%d-%d-%d %d::%d::%d\n",++count,tm->tm_year+1900,tm->tm_mon+1,tm->tm_mday,
                                                 tm->tm_hour,tm->tm_min,tm->tm_sec);
         fflush(fp);
         sleep(1);
