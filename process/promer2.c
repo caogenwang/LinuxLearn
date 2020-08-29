@@ -1,34 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 
 #define LEFT 3000000
 #define RIGHT 3000200
+#define N 3
 int main()
 {
     int mark = 0;
     pid_t pid;
-    for(int i=LEFT;i < RIGHT; i++)
-    {
-	pid = fork();
-	if(pid < 0)
+	for (int n = 0; n < N; n++)
 	{
-	    exit(1);
+		pid = fork();
+		if(pid < 0)
+		{
+			perror("fork()");
+			exit(1);
+		}
+		if (pid == 0)
+		{
+			for(int i=LEFT;i < RIGHT; i+=N)
+			{
+				mark = 1;
+				for(int j=2;j<i/2;j++)
+				{
+				if(i % j == 0)
+					{
+					mark = 0;
+					break;	
+					}
+				}
+				if(mark)
+					printf("[%d]%d is a primerd.pid:%d\n",n,i,getpid());
+			}
+			exit(0);
+		}
+		
 	}
-	if(pid == 0)
+	
+	for (int i = 0; i < N; i++)
 	{
-	    mark = 1;
-	    for(int j=2;j<i/2;j++)
-	    {
-	   	 if(i % j == 0)
-	    	{
-			mark = 0;
-			break;	
-	    	}
-	    }
-	    if(mark)
-	        printf("%d is a primerd.pid:%d\n",i,getpid());
-	    exit(0);
+		wait(NULL);
 	}
-    }
+	return 0;
 }
