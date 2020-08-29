@@ -33,6 +33,8 @@ static int b()
 static int c()
 {
     printf("%s():Begin.\n",__FUNCTION__);
+    printf("%s():jump now.\n",__FUNCTION__);
+    longjump();
     printf("%s():End.\n",__FUNCTION__);
     return 0;
 }
