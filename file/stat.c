@@ -25,6 +25,7 @@ int main(int argc,char**argv)
         exit(1);
     }
 
-    flen(argv[1]);
+   int n =  flen(argv[1]);
+   printf("%d\n",n);
     return 0;
 }
