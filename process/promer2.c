@@ -5,7 +5,7 @@
 #include <sys/types.h>
 
 #define LEFT 3000000
-#define RIGHT 3000200
+#define RIGHT 3000400
 #define N 3
 int main()
 {
@@ -26,22 +26,22 @@ int main()
 				mark = 1;
 				for(int j=2;j<i/2;j++)
 				{
-				if(i % j == 0)
-					{
-					mark = 0;
-					break;	
+					if(i % j == 0)
+					{	
+						mark = 0;
+						break;	
 					}
 				}
-				if(mark)
-					printf("[%d]%d is a primerd.pid:%d\n",n,i,getpid());
+				printf("[%d]%d is a primerd.pid:%d\n",n,i,getpid());
 			}
 			exit(0);
 		}
 		
 	}
-	
+
 	for (int i = 0; i < N; i++)
 	{
+		printf("wait....\n");
 		wait(NULL);
 	}
 	return 0;

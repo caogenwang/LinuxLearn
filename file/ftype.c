@@ -33,6 +33,6 @@ int main(int argc,char**argv)
     }
 
    int n =  ftype(argv[1]);
-   printf("%d\n",n);
+   printf("%c\n",n);
     return 0;
 }

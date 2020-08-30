@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <setjmp.h>
 static jmp_buf save;
+static int b();
+static int c();
 static int a()
 {
     int ret;
     printf("%s():Begin.\n",__FUNCTION__);
    
-    ret = setjum(save);
+    ret = setjmp(save);
     if (ret == 0)
     {
          printf("call b().\n");
@@ -16,7 +18,7 @@ static int a()
     }
     else
     {
-        printf("%s():jump back here.\n",__FUNCTION__);
+        printf("%s():jump back here.%d\n",__FUNCTION__,ret);
     }
     
     
@@ -35,7 +37,7 @@ static int c()
 {
     printf("%s():Begin.\n",__FUNCTION__);
     printf("%s():jump now.\n",__FUNCTION__);
-    longjump(save,6);
+    longjmp(save,6);
     printf("%s():End.\n",__FUNCTION__);
     return 0;
 }
