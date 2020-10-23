@@ -24,5 +24,5 @@ int main()
 	printf("parent process is working.%d\n",getpid());
     }
     getchar();
-     exit(0);   
+    exit(0);   
 }

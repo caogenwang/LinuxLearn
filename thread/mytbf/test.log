@@ -1,0 +1,1602 @@
+2020-02-21 18:12:16.905 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:16.905 634-26257/? W/res_mkquery: res_nmkquery: (QUERY, IN, A)
+2020-02-21 18:12:16.905 634-26257/? W/res_send: res_nsend
+2020-02-21 18:12:16.905 634-26257/? W/res_cache: _resolv_cache_lookup: lookup
+2020-02-21 18:12:16.905 634-26257/? E/ResolverController: No valid NAT64 prefix (820, <unspecified>/0)
+2020-02-21 18:12:17.283 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:17.404 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:17.782 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:17.905 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:17.998 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:18.000 9354-9354/? W/adbd: timeout expired while flushing socket, closing
+2020-02-21 18:12:18.057 1417-1844/system_process I/TrafficMonitor: update:rxPkts:14,txPkts:18,rxBytes:4137,txBytes:4275
+2020-02-21 18:12:18.057 1417-1844/system_process I/TrafficMonitor: start expired. level:-1
+2020-02-21 18:12:18.058 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:18.119 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:18.282 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:18.403 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:18.531 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:18.549 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:18.549 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:18.553 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:18.597 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:18.599 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:18.605 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 3
+2020-02-21 18:12:18.605 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:18.604 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480599): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-3.docin" dev="sdcardfs" ino=323762 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:18.604 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480600): avc: granted { read open } for pid=24731 comm=4173796E635461736B202335 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-3.docin" dev="sdcardfs" ino=323762 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:18.608 47-47/? W/migration/6: type=1400 audit(0.0:32480601): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:18.612 53-53/? W/migration/7: type=1400 audit(0.0:32480602): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:18.645 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:18.645 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 1
+2020-02-21 18:12:18.645 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: count: 1
+2020-02-21 18:12:18.665 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=3, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:18.666 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:18.670 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:18.670 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:18.670 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:18.670 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:18.670 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:18.670 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(3)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:18.670 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=2, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:18.671 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:18.741 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:18.742 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:18.742 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:18.742 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...4
+2020-02-21 18:12:18.742 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:18.742 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:18.742 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:18.742 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(2)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:18.807 13118-26265/? I/HWBR-O-0111|AdBlockImpl: onUrlRequested ...
+2020-02-21 18:12:18.821 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:18.821 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 1
+2020-02-21 18:12:18.824 24731-24731/com.docin.zlibrary.ui.android I/HwViewRootImpl: removeInvalidNode all the node in jank list is out of time
+2020-02-21 18:12:18.825 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 4...
+2020-02-21 18:12:18.825 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 4
+2020-02-21 18:12:18.824 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480603): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-4.docin" dev="sdcardfs" ino=318367 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:18.824 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480604): avc: granted { read open } for pid=24731 comm=4173796E635461736B202335 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-4.docin" dev="sdcardfs" ino=318367 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:18.831 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:18.833 2355-2355/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.836 1417-3003/system_process E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: unknown reason
+2020-02-21 18:12:18.837 1417-1417/system_process I/MQoS: onSignal: mSubId=0,currDataSubID=0
+2020-02-21 18:12:18.837 7744-7744/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.837 1417-1417/system_process E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: unknown reason
+2020-02-21 18:12:18.837 1417-1417/system_process I/MQoS: received cell-signal:3
+2020-02-21 18:12:18.837 1989-2135/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.837 1989-2135/? I/chatty: uid=10032(com.huawei.desktop.systemui) SysUiBg identical 1 line
+2020-02-21 18:12:18.838 1989-2135/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.838 2339-3579/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.838 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.838 2270-2270/? I/chatty: uid=1000(system) com.huawei.hiview identical 2 lines
+2020-02-21 18:12:18.839 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.839 2270-2629/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.839 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.840 2270-2270/? I/chatty: uid=1000(system) com.huawei.hiview identical 8 lines
+2020-02-21 18:12:18.840 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.840 2302-3053/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.840 2302-3053/? D/DaemonMessageAdapter: onMobileSignalStrengthChanged, slotId: 0, signalStrength: SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0 mLevelHw=0 phoneId=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0 mLevelHw = 0 phoneId=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0 levelHw=0 ecio=2147483647 mPhoneId=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0 mPhoneId=0,mLte=CellSignalStrengthLte: rssi=13 rsrp=-111 rsrq=-9 rssnr=1 cqi=2147483647 ta=2147483647 level=1 levelHw=2 mIsCdma=false mPhoneId=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiSinr = 2147483647 ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 levelHw =0 },primary=CellSignalStrengthLte}
+2020-02-21 18:12:18.840 2302-3053/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.840 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.840 2302-3053/? D/DaemonMessageAdapter: SignalStrength update result, ss: SignalStrengthInfo: 169426846 mGsmSignalStrength: 2147483647 mWcdmaRscp: 2147483647 mWcdmaEcio: 2147483647 mLteRsrp: -111 mLteRsrq: -9 mCdmaDbm: 2147483647 mCdmaEcio: 2147483647 mEvdoDbm: 2147483647 mEvdoEcio: 2147483647 mLteRssnr: 1
+2020-02-21 18:12:18.840 2302-3053/? D/Hicom_PolicyCenterService: policencenterservice receive handleMessage: 101
+2020-02-21 18:12:18.841 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.841 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.841 2302-2302/? I/OllieUtils: getNetworkTypeBySubId, nsaState is 1, isDataInService is true
+2020-02-21 18:12:18.841 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.841 1417-10287/system_process D/HwConnectivityServiceEx: set cache by key is 1000 interfaceName iswlan0 value is false
+2020-02-21 18:12:18.843 2270-2270/? I/chatty: uid=1000(system) com.huawei.hiview identical 11 lines
+2020-02-21 18:12:18.843 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.843 2302-2302/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.843 2302-2302/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.844 2302-3053/? D/Hicom_SmartNetStateUtils: isSmartNetEnabled total_switch:1
+2020-02-21 18:12:18.844 2302-2549/? I/HidataAppQoeP: handleStateChanged reason=6
+2020-02-21 18:12:18.846 1989-2118/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.847 1989-1989/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.848 2302-3053/? D/Hicom_SmartNetStateUtils: isAppUserEnabled com.huawei.appmarketswitch:0
+2020-02-21 18:12:18.848 2302-3053/? D/Hicom_SmartNetStateUtils: isAppUserEnabled com.huawei.appmarketswitch:0
+2020-02-21 18:12:18.848 2302-3053/? D/Hicom_MpFlowDecisionSystem: com.huawei.appmarket is not enabled by user
+2020-02-21 18:12:18.848 2302-3053/? W/Hicom_MpFlowDecisionSystem: startMpFlow: current app is not allowed to use MPFlow
+2020-02-21 18:12:18.849 2302-2549/? I/PreDnsQuery: handleStateChanged reason=6
+2020-02-21 18:12:18.851 2302-2549/? I/BrowserChrP: handleStateChanged
+2020-02-21 18:12:18.851 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.854 2270-2270/? I/chatty: uid=1000(system) com.huawei.hiview identical 16 lines
+2020-02-21 18:12:18.854 2270-2270/? E/HwModemCapability: isCapabilitySupport java.lang.StringIndexOutOfBoundsException: length=7; index=7
+2020-02-21 18:12:18.858 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:18.858 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:18.859 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=4, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:18.859 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:18.862 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:18.862 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:18.862 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:18.862 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:18.862 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:18.862 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(4)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:18.886 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:18.942 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:19.048 53-53/? W/migration/7: type=1400 audit(0.0:32480605): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:19.084 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:19.175 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:19.197 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:19.364 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:19.397 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:19.414 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:19.415 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:19.417 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:19.455 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:19.457 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:19.459 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 4
+2020-02-21 18:12:19.459 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:19.466 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:19.475 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -78, Chload: 127
+2020-02-21 18:12:19.476 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:19.480 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:19.480 2355-3779/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:19.480 2355-3779/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:19.484 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:19.497 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:19.497 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:19.497 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:19.497 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 5
+2020-02-21 18:12:19.497 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:19.533 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:19.533 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 3
+2020-02-21 18:12:19.533 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: count: 3
+2020-02-21 18:12:19.550 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...5
+2020-02-21 18:12:19.551 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 2
+2020-02-21 18:12:19.551 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=4, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:19.552 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:19.552 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 5...
+2020-02-21 18:12:19.552 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 5
+2020-02-21 18:12:19.584 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:19.584 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:19.585 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:19.585 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:19.585 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:19.585 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:19.585 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:19.586 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(4)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:19.586 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...6
+2020-02-21 18:12:19.601 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=5, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:19.602 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:19.614 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:19.638 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:19.638 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 3
+2020-02-21 18:12:19.639 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 6...
+2020-02-21 18:12:19.639 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 6
+2020-02-21 18:12:19.636 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480615): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-6.docin" dev="sdcardfs" ino=273685 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:19.673 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:19.673 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:19.673 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:19.673 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:19.673 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:19.673 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:19.673 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:19.673 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(5)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:19.749 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:19.762 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:19.764 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=6, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:19.765 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:19.768 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:19.768 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:19.768 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:19.768 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:19.768 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:19.768 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(6)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:19.780 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:19.821 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:19.870 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:19.988 53-53/? W/migration/7: type=1400 audit(0.0:32480617): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:19.988 47-47/? W/migration/6: type=1400 audit(0.0:32480618): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:20.017 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:20.032 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:20.060 1417-1844/system_process I/TrafficMonitor: update:rxPkts:4,txPkts:5,rxBytes:1063,txBytes:343
+2020-02-21 18:12:20.060 1417-1844/system_process I/TrafficMonitor: start expired. level:-1
+2020-02-21 18:12:20.060 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:20.063 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:20.263 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:20.280 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:20.281 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:20.285 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:20.321 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:20.323 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:20.328 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 6
+2020-02-21 18:12:20.328 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:20.324 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480619): avc: granted { read } for pid=24731 comm=4173796E635461736B202332 name="page-6.docin" dev="sdcardfs" ino=273685 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:20.363 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:20.378 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:20.378 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 9
+2020-02-21 18:12:20.378 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 9
+2020-02-21 18:12:20.399 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=6, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:20.399 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 6
+2020-02-21 18:12:20.400 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:20.400 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:20.400 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:20.442 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:20.444 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 6...
+2020-02-21 18:12:20.444 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 6
+2020-02-21 18:12:20.484 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:20.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:20.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:20.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:20.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:20.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:20.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(6)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:20.486 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=5, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:20.487 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:20.606 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:20.609 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:20.609 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:20.609 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:20.609 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:20.609 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:20.609 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(5)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:20.609 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...7
+2020-02-21 18:12:20.711 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:20.711 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 4
+2020-02-21 18:12:20.714 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 7...
+2020-02-21 18:12:20.714 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 7
+2020-02-21 18:12:20.712 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480627): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-7.docin" dev="sdcardfs" ino=273008 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:20.712 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480628): avc: granted { read open } for pid=24731 comm=4173796E635461736B202331 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-7.docin" dev="sdcardfs" ino=273008 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:20.746 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:20.758 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:20.758 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:20.759 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=7, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:20.759 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:20.763 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:20.763 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:20.763 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:20.763 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:20.763 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:20.763 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(7)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:20.783 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:20.800 13118-26266/? I/HWBR-O-0111|AdBlockImpl: onUrlRequested ...
+2020-02-21 18:12:20.881 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:20.897 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:20.912 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:20.988 53-53/? W/migration/7: type=1400 audit(0.0:32480629): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:21.015 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -74, Chload: 127
+2020-02-21 18:12:21.017 634-3651/? I/netd: trafficSwapActiveStatsMap() <13.56ms>
+2020-02-21 18:12:21.018 1417-26267/system_process I/HwUidTcpMonitor: TcpStatisticsRun run
+2020-02-21 18:12:21.018 1417-1844/system_process D/WiFi_PRO: MSG_RETURN_AP_CURRY_RSSI rssi = -41
+2020-02-21 18:12:21.018 1417-26267/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 79
+2020-02-21 18:12:21.018 1417-1953/system_process I/HuaweiWifiWatchdogStateMachine: POta txb txg rxg:0, 31, 0. Lr =0% Totpkt=31
+2020-02-21 18:12:21.018 1417-1844/system_process I/QosMonitor: queryRtt: rttType = 3
+2020-02-21 18:12:21.018 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:21.019 1417-26268/system_process I/HwWifiProServiceProxy: TcpStatisticsRun run
+2020-02-21 18:12:21.020 1417-26268/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10112 mPacketName = com.docin.zlibrary.ui.android mSendSegs = 80 mResendSegs = 0 mRcvSegs = 74 ]
+2020-02-21 18:12:21.020 1417-26268/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10145 mPacketName = com.alibaba.android.rimet mSendSegs = 689 mResendSegs = 24 mRcvSegs = 458 ]
+2020-02-21 18:12:21.020 1417-26268/system_process D/HwWifiConnectivityMonitor: ENTER: notifyTopUidTcpInfo, tx = 11, rx = 7, reTx = 0, uid = 10221, tr = 0.0
+2020-02-21 18:12:21.020 1417-1844/system_process I/QosMonitor: postEventFromNative: msg=100,arg1=4,arg2=10
+2020-02-21 18:12:21.020 1417-26268/system_process D/HwWifiConnectivityMonitor: ENTER: notifyTopUidTcpInfo, rtt = 432, rttPkts = 5, aveRtt = 86.4, app = com.docin.zlibrary.ui.android
+2020-02-21 18:12:21.020 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:21.020 1417-26268/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10221 mPacketName = com.docin.zlibrary.ui.android mSendSegs = 67682 mResendSegs = 38 mRcvSegs = 112966 ]
+2020-02-21 18:12:21.020 1417-26268/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10103 mPacketName = com.huawei.browser mSendSegs = 44456 mResendSegs = 20 mRcvSegs = 58468 ]
+2020-02-21 18:12:21.020 1417-1948/system_process D/HwWifiConnectivityMonitor: handleTopUidInternetStatusChanged, uid = 10221, status = 0
+2020-02-21 18:12:21.020 1417-1844/system_process I/QosMonitor: postEventFromNative: msg=100,arg1=0,arg2=10
+2020-02-21 18:12:21.020 1417-1844/system_process I/MQoS: rtt=280,tcpTxPkts=39409241,tcpRxPkts=60554589
+2020-02-21 18:12:21.020 1417-1953/system_process I/HuaweiWifiWatchdogStateMachine: PTcp RTT:280, rtt pkt=10, tcp_rx=16, tcp_tx=30, tcp_reTran=0, rtRate=0
+2020-02-21 18:12:21.020 1417-1844/system_process I/QosMonitor: resetRtt: rttType = 3
+2020-02-21 18:12:21.020 1417-1953/system_process D/HuaweiWifiWatchdogStateMachine: rssi bad, mrssi=-41 < TargetRssi=-30
+2020-02-21 18:12:21.020 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:21.021 1417-5909/system_process D/HwConnectivityServiceEx: set cache by key is 1000 interfaceName iswlan0 value is false
+2020-02-21 18:12:21.024 1417-1948/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 9
+2020-02-21 18:12:21.028 1417-5909/system_process I/MQoS: QOS_level:3(3),wifi-link;use signalLvl:3;RAT:4G
+2020-02-21 18:12:21.042 2339-6596/? E/AppInfoMgr: not find pkgs by uid: 0
+2020-02-21 18:12:21.043 2339-6596/? I/DownloadState: singleUid: 10221 [com.docin.zlibrary.ui.android] speed: 1143 real speed: 1130 (rxB:3530 txB:2188 rxP:9 txP:16) scroff: false
+2020-02-21 18:12:21.043 2339-6596/? I/DownloadState: singleUid: 10103 [com.huawei.browser] speed: 768 real speed: 760 (rxB:1454 txB:2390 rxP:5 txP:6) scroff: false
+2020-02-21 18:12:21.052 2339-6596/? I/DownloadState: shareUid: 0 default_socket transmitting data speed : 54 bytes/s (rxB:111 txB:160 rxP:2 txP:4 iface:1) scroff: false
+2020-02-21 18:12:21.052 2339-6596/? I/DownloadState: shareUid: 0 /system/bin/init transmitting data speed : 8 bytes/s (rxB:0 txB:40 rxP:0 txP:1 iface:1) scroff: false
+2020-02-21 18:12:21.052 2339-6596/? I/DownloadState: shareUid: 0 default_sk transmitting data speed : 56 bytes/s (rxB:284 txB:0 rxP:5 txP:0 iface:1) scroff: false
+2020-02-21 18:12:21.053 1417-1844/system_process I/TrafficMonitor: expired arrive. level:-1
+2020-02-21 18:12:21.053 1417-1844/system_process I/TrafficMonitor: during_ms:2003,period_ms:2000
+2020-02-21 18:12:21.053 1417-1844/system_process I/TrafficMonitor: count:46,rx_sum:4,tx_sum:5,rxBytes:1063,during_ms:2003,rx_speed:530.7039440838741,tx_speed:171.2431352970544,rto:0.8
+2020-02-21 18:12:21.119 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:21.146 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:21.163 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:21.163 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:21.166 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:21.196 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:21.198 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:21.203 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 7
+2020-02-21 18:12:21.203 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:21.200 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480631): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-7.docin" dev="sdcardfs" ino=273008 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:21.254 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:21.254 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 11
+2020-02-21 18:12:21.254 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 11
+2020-02-21 18:12:21.265 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=7, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:21.266 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:21.269 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:21.269 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:21.270 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:21.270 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:21.270 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:21.270 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(7)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:21.270 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=6, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:21.270 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:21.360 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:21.361 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:21.361 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:21.361 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:21.361 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...8
+2020-02-21 18:12:21.361 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:21.361 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:21.361 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(6)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:21.463 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:21.463 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Drop page 5
+2020-02-21 18:12:21.465 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Goto page 8...
+2020-02-21 18:12:21.465 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Load page 8
+2020-02-21 18:12:21.503 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:21.503 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:21.506 24731-24731/com.docin.zlibrary.ui.android I/HwViewRootImpl: removeInvalidNode jank list is null
+2020-02-21 18:12:21.511 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=8, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:21.512 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:21.513 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:21.515 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:21.515 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:21.515 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:21.515 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:21.515 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:21.515 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(8)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:21.565 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:21.639 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:21.748 53-53/? W/migration/7: type=1400 audit(0.0:32480637): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:21.773 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:21.784 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:21.795 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:21.996 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:22.015 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:22.017 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:22.018 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:22.046 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:22.062 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:22.062 1417-1844/system_process I/TrafficMonitor: update:rxPkts:1,txPkts:1,rxBytes:68,txBytes:40
+2020-02-21 18:12:22.062 1417-1844/system_process I/TrafficMonitor: start expired. level:-1
+2020-02-21 18:12:22.062 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:22.064 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:22.066 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 8
+2020-02-21 18:12:22.066 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:22.064 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480639): avc: granted { read } for pid=24731 comm=4173796E635461736B202332 name="page-8.docin" dev="sdcardfs" ino=267811 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:22.068 47-47/? W/migration/6: type=1400 audit(0.0:32480641): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:22.120 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:22.120 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 13
+2020-02-21 18:12:22.120 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 13
+2020-02-21 18:12:22.131 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=8, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:22.131 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 8
+2020-02-21 18:12:22.132 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:22.133 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:22.133 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:22.166 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:22.174 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:22.176 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 8...
+2020-02-21 18:12:22.176 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 8
+2020-02-21 18:12:22.220 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:22.220 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:22.220 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:22.220 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:22.220 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:22.221 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(8)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:22.221 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=7, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:22.222 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:22.351 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:22.353 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:22.353 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:22.353 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:22.353 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:22.353 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:22.353 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(7)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:22.354 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...9
+2020-02-21 18:12:22.482 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:22.483 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 6
+2020-02-21 18:12:22.484 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 9...
+2020-02-21 18:12:22.484 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 9
+2020-02-21 18:12:22.487 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:22.498 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -74, Chload: 127
+2020-02-21 18:12:22.501 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:22.507 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:22.507 2355-3779/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:22.508 2355-3779/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:22.514 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:22.529 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:22.529 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:22.529 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=9, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:22.531 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:22.539 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:22.539 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:22.540 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:22.540 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:22.540 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:22.540 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(9)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:22.553 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:22.639 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:22.662 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:22.685 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:22.701 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:22.729 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:22.808 53-53/? W/migration/7: type=1400 audit(0.0:32480649): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:22.851 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:22.945 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:22.963 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:22.964 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:22.967 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:23.012 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:23.014 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:23.019 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 9
+2020-02-21 18:12:23.019 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:23.016 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480651): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-9.docin" dev="sdcardfs" ino=264481 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:23.024 47-47/? W/migration/6: type=1400 audit(0.0:32480653): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:23.046 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:23.070 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:23.070 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 15
+2020-02-21 18:12:23.070 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 15
+2020-02-21 18:12:23.086 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=9, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:23.087 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 9
+2020-02-21 18:12:23.088 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:23.090 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:23.090 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:23.163 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:23.166 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 9...
+2020-02-21 18:12:23.166 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 9
+2020-02-21 18:12:23.168 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:23.211 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:23.211 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:23.211 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:23.211 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:23.211 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:23.211 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(9)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:23.212 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=8, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:23.215 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:23.331 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:23.333 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:23.333 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:23.333 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:23.333 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:23.333 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:23.333 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(8)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:23.335 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...10
+2020-02-21 18:12:23.335 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:23.343 634-1140/? W//system/bin/netd: A binder object at 0x79bc293b00 is being transacted on, however, this object is in the same process as its proxy. Transacting with this binder is expensive compared to just calling the corresponding functionality in the same process.
+2020-02-21 18:12:23.343 634-1140/? I/PreDnsController: canPreDnsQuery,persist.sys.predns is false!
+2020-02-21 18:12:23.344 634-26271/? W/DnsProxyListener: GetAddrInfoHandler::run: {820 262964 820 983860 10221 0}
+2020-02-21 18:12:23.344 634-26271/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=10 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:23.344 634-26271/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=2 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:23.346 634-26271/? W/res_mkquery: res_nmkquery: (QUERY, IN, A)
+2020-02-21 18:12:23.346 634-26271/? W/res_send: res_nsend
+2020-02-21 18:12:23.346 634-26271/? W/res_cache: _resolv_cache_lookup: lookup
+2020-02-21 18:12:23.346 634-26271/? E/ResolverController: No valid NAT64 prefix (820, <unspecified>/0)
+2020-02-21 18:12:23.424 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:23.437 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 7
+2020-02-21 18:12:23.439 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 10...
+2020-02-21 18:12:23.439 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 10
+2020-02-21 18:12:23.446 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:23.475 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:23.475 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:23.476 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=10, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:23.478 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:23.485 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:23.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:23.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:23.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:23.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:23.486 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(10)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:23.488 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:23.585 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:23.588 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:23.611 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:23.734 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:23.806 13118-26270/? I/HWBR-O-0111|AdBlockImpl: onUrlRequested ...
+2020-02-21 18:12:23.879 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:23.892 47-47/? W/migration/6: type=1400 audit(0.0:32480671): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:23.896 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:23.897 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:23.901 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:23.928 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:23.930 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:23.934 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 10
+2020-02-21 18:12:23.934 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:23.932 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480673): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-10.docin" dev="sdcardfs" ino=203139 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:23.980 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:23.980 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 6
+2020-02-21 18:12:23.980 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 6
+2020-02-21 18:12:23.995 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:23.997 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=10, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:23.998 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:24.001 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=9, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:24.002 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:24.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:24.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:24.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:24.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:24.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:24.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(10)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:24.034 24731-24746/com.docin.zlibrary.ui.android W/System: A resource failed to call close. 
+2020-02-21 18:12:24.038 24731-24746/com.docin.zlibrary.ui.android I/chatty: uid=10221(com.docin.zlibrary.ui.android) FinalizerDaemon identical 19 lines
+2020-02-21 18:12:24.038 24731-24746/com.docin.zlibrary.ui.android W/System: A resource failed to call close. 
+2020-02-21 18:12:24.062 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: generateCompressList procsGroups error!
+2020-02-21 18:12:24.065 1417-1844/system_process I/TrafficMonitor: update:rxPkts:35,txPkts:31,rxBytes:17360,txBytes:38317
+2020-02-21 18:12:24.065 1417-1844/system_process I/TrafficMonitor: no expired. level:2
+2020-02-21 18:12:24.065 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:24.066 1417-1844/system_process I/TrafficMonitor: during_ms:2003,period_ms:2000
+2020-02-21 18:12:24.066 1417-1844/system_process I/TrafficMonitor: count:48,rx_sum:35,tx_sum:31,rxBytes:17360,during_ms:2003,rx_speed:8666.999500748876,tx_speed:19129.805292061905,rto:1.1290322580645162
+2020-02-21 18:12:24.070 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: getPssForPid error skip! procName=com.hpbr.bosszhipin
+2020-02-21 18:12:24.070 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: getPssForPid error skip! procName=com.huawei.hiai.engineservice
+2020-02-21 18:12:24.082 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:24.083 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...11
+2020-02-21 18:12:24.083 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:24.083 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:24.083 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:24.084 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:24.084 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:24.084 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:24.084 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(9)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:24.109 2339-6400/? I/PGServer: getTopFrontApp. calling pkg: android
+2020-02-21 18:12:24.114 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:24.116 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480675): avc: granted { write } for pid=24731 comm=4173796E635461736B202333 name="1722027697" dev="sdcardfs" ino=277574 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=dir
+2020-02-21 18:12:24.162 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:24.165 24731-24731/com.docin.zlibrary.ui.android I/HwViewRootImpl: removeInvalidNode jank list is null
+2020-02-21 18:12:24.169 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 8
+2020-02-21 18:12:24.170 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 11...
+2020-02-21 18:12:24.170 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 11
+2020-02-21 18:12:24.177 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:24.183 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:24.183 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:24.183 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=11, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:24.184 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:24.186 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:24.186 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:24.186 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:24.186 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:24.186 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:24.186 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(11)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:24.225 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:24.229 2339-6400/? I/PGServer: getTopFrontApp. calling pkg: android
+2020-02-21 18:12:24.234 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:24.380 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:24.427 2339-6400/? I/PGServer: getTopFrontApp. calling pkg: android
+2020-02-21 18:12:24.504 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:24.527 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:24.695 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:24.728 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:24.745 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:24.746 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:24.747 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:24.777 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:24.780 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:24.782 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 11
+2020-02-21 18:12:24.782 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:24.800 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:24.800 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 1
+2020-02-21 18:12:24.800 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 1
+2020-02-21 18:12:24.813 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=11, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:24.814 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:24.816 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:24.818 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:24.818 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:24.818 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=10, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:24.818 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:24.818 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:24.818 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:24.818 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(11)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:24.818 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:24.833 634-3651/? I/netd: trafficSwapActiveStatsMap() <19.78ms>
+2020-02-21 18:12:24.867 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:24.868 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:24.868 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:24.869 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:24.869 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:24.869 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:24.869 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(10)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:24.869 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...12
+2020-02-21 18:12:24.869 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:24.924 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480687): avc: granted { write } for pid=24731 comm=4173796E635461736B202333 name="1722027697" dev="sdcardfs" ino=277574 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=dir
+2020-02-21 18:12:24.924 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480688): avc: granted { add_name } for pid=24731 comm=4173796E635461736B202333 name="page-12.docin" scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=dir
+2020-02-21 18:12:24.924 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480689): avc: granted { create } for pid=24731 comm=4173796E635461736B202333 name="page-12.docin" scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0:c512,c768 tclass=file
+2020-02-21 18:12:24.928 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480690): avc: granted { write open } for pid=24731 comm=4173796E635461736B202333 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-12.docin" dev="sdcardfs" ino=311334 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:24.945 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:24.962 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:24.962 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 9
+2020-02-21 18:12:24.965 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 12...
+2020-02-21 18:12:24.965 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 12
+2020-02-21 18:12:24.964 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480691): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-12.docin" dev="sdcardfs" ino=311334 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:25.013 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:25.029 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:25.029 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:25.029 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=12, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:25.031 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:25.041 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:25.041 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:25.041 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:25.041 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:25.041 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:25.041 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(12)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:25.184 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:25.191 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:25.195 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:25.349 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:25.354 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:25.377 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:25.410 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:25.428 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:25.429 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:25.432 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:25.468 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:25.471 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:25.476 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 12
+2020-02-21 18:12:25.476 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:25.519 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:25.529 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -69, Chload: 127
+2020-02-21 18:12:25.531 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:25.536 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:25.536 2355-3779/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:25.537 2355-3779/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:25.545 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:25.545 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 3
+2020-02-21 18:12:25.545 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 4
+2020-02-21 18:12:25.567 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=12, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:25.567 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Drop page 12
+2020-02-21 18:12:25.569 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:25.574 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:25.574 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:25.643 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:25.646 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Goto page 12...
+2020-02-21 18:12:25.646 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Load page 12
+2020-02-21 18:12:25.691 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:25.691 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:25.691 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:25.691 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:25.691 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:25.691 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(12)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:25.693 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=11, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:25.695 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:25.797 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:25.799 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:25.799 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:25.799 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:25.799 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:25.799 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:25.799 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(11)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:25.801 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...13
+2020-02-21 18:12:25.801 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:25.809 634-1140/? W//system/bin/netd: A binder object at 0x79bc293b00 is being transacted on, however, this object is in the same process as its proxy. Transacting with this binder is expensive compared to just calling the corresponding functionality in the same process.
+2020-02-21 18:12:25.809 634-1140/? I/PreDnsController: canPreDnsQuery,persist.sys.predns is false!
+2020-02-21 18:12:25.809 634-26272/? W/DnsProxyListener: GetAddrInfoHandler::run: {820 262964 820 983860 10221 0}
+2020-02-21 18:12:25.809 634-26272/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=10 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:25.809 634-26272/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=2 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:25.810 634-26272/? W/res_mkquery: res_nmkquery: (QUERY, IN, A)
+2020-02-21 18:12:25.810 634-26272/? W/res_send: res_nsend
+2020-02-21 18:12:25.810 634-26272/? W/res_cache: _resolv_cache_lookup: lookup
+2020-02-21 18:12:25.811 634-26272/? E/ResolverController: No valid NAT64 prefix (820, <unspecified>/0)
+2020-02-21 18:12:25.837 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:25.861 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:25.904 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:25.937 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 10
+2020-02-21 18:12:25.939 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 13...
+2020-02-21 18:12:25.939 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 13
+2020-02-21 18:12:25.936 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480711): avc: granted { read } for pid=24731 comm=4173796E635461736B202334 name="page-13.docin" dev="sdcardfs" ino=280926 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:25.948 53-53/? W/migration/7: type=1400 audit(0.0:32480713): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:25.952 53-53/? W/migration/7: type=1400 audit(0.0:32480714): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:25.975 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:25.975 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:25.975 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=13, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:25.978 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:25.988 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:25.988 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:25.988 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:25.988 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:25.988 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:25.988 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(13)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:26.046 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:26.069 634-3651/? I/netd: trafficSwapActiveStatsMap() <15.51ms>
+2020-02-21 18:12:26.071 1417-1844/system_process I/TrafficMonitor: update:rxPkts:64,txPkts:64,rxBytes:65762,txBytes:19650
+2020-02-21 18:12:26.071 1417-1844/system_process I/TrafficMonitor: no expired. level:4
+2020-02-21 18:12:26.071 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:26.071 1417-1844/system_process I/TrafficMonitor: during_ms:2006,period_ms:2000
+2020-02-21 18:12:26.071 1417-1844/system_process I/TrafficMonitor: count:49,rx_sum:64,tx_sum:64,rxBytes:65762,during_ms:2006,rx_speed:32782.6520438684,tx_speed:9795.613160518446,rto:1.0
+2020-02-21 18:12:26.076 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:26.077 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:26.097 2339-6596/? I/DownloadState: singleUid: 10221 [com.docin.zlibrary.ui.android] speed: 27667 real speed: 27393 (rxB:82420 txB:55919 rxP:93 txP:94) scroff: false
+2020-02-21 18:12:26.097 2339-6596/? I/DownloadState: singleUid: 10103 [com.huawei.browser] speed: 517 real speed: 512 (rxB:498 txB:2088 rxP:3 txP:2) scroff: false
+2020-02-21 18:12:26.106 2339-6596/? I/DownloadState: shareUid: 0 default_socket transmitting data speed : 56 bytes/s (rxB:160 txB:120 rxP:4 txP:3 iface:1) scroff: false
+2020-02-21 18:12:26.106 2339-6596/? I/DownloadState: shareUid: 0 default_sk transmitting data speed : 40 bytes/s (rxB:204 txB:0 rxP:3 txP:0 iface:1) scroff: false
+2020-02-21 18:12:26.110 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:26.127 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:26.128 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:26.131 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:26.185 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:26.186 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:26.188 53-53/? W/migration/7: type=1400 audit(0.0:32480715): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:26.192 24731-25458/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 13
+2020-02-21 18:12:26.192 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:26.233 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:26.241 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:26.241 24731-25458/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 1
+2020-02-21 18:12:26.241 24731-25458/com.docin.zlibrary.ui.android D/testPdfOpen: count: 1
+2020-02-21 18:12:26.263 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=13, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:26.264 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:26.268 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:26.268 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:26.268 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:26.268 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:26.268 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:26.268 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(13)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:26.268 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=12, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:26.269 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:26.334 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:26.335 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:26.335 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:26.335 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:26.335 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:26.335 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:26.335 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(12)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:26.336 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...14
+2020-02-21 18:12:26.336 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:26.411 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:26.414 24731-24731/com.docin.zlibrary.ui.android I/HwViewRootImpl: removeInvalidNode jank list is null
+2020-02-21 18:12:26.427 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:26.442 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 11
+2020-02-21 18:12:26.443 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 14...
+2020-02-21 18:12:26.443 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 14
+2020-02-21 18:12:26.472 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:26.487 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:26.487 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:26.487 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=14, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:26.488 1417-3003/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:26.491 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:26.491 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:26.491 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:26.491 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:26.491 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:26.491 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(14)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:26.596 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:26.748 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:26.762 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:26.793 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:26.826 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:26.844 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:26.844 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:26.845 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:26.901 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:26.903 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:26.907 24731-25458/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 14
+2020-02-21 18:12:26.907 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:26.944 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:26.955 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:26.955 24731-25458/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 1
+2020-02-21 18:12:26.956 24731-25458/com.docin.zlibrary.ui.android D/testPdfOpen: count: 1
+2020-02-21 18:12:26.962 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=14, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:26.962 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 14
+2020-02-21 18:12:26.963 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:26.964 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:26.964 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:26.960 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480733): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-0.docin" dev="sdcardfs" ino=270161 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:26.960 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480734): avc: granted { read open } for pid=24731 comm=4173796E635461736B202335 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-0.docin" dev="sdcardfs" ino=270161 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:27.002 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:27.004 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 14...
+2020-02-21 18:12:27.004 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 14
+2020-02-21 18:12:27.000 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480735): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-14.docin" dev="sdcardfs" ino=255225 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:27.000 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480736): avc: granted { read open } for pid=24731 comm=4173796E635461736B202335 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-14.docin" dev="sdcardfs" ino=255225 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:27.039 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.039 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.039 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:27.039 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:27.039 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:27.039 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(14)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:27.039 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=13, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:27.040 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:27.114 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:27.126 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:27.127 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.127 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.127 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:27.127 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:27.127 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:27.127 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(13)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:27.127 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...15
+2020-02-21 18:12:27.177 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:27.177 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Drop page 12
+2020-02-21 18:12:27.179 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Goto page 15...
+2020-02-21 18:12:27.179 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Load page 15
+2020-02-21 18:12:27.176 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480737): avc: granted { read } for pid=24731 comm=4173796E635461736B202332 name="page-15.docin" dev="sdcardfs" ino=223303 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:27.194 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:27.209 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.209 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.209 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=15, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:27.211 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:27.215 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.216 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.216 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:27.216 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:27.216 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:27.216 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(15)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:27.245 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:27.298 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:27.479 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:27.509 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:27.543 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:27.560 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:27.561 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:27.565 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:27.567 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:27.610 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:27.611 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:27.616 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 15
+2020-02-21 18:12:27.616 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:27.667 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:27.667 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:27.667 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:27.667 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 16
+2020-02-21 18:12:27.667 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:27.704 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:27.705 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:27.705 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:27.705 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 17
+2020-02-21 18:12:27.705 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:27.737 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:27.737 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 3
+2020-02-21 18:12:27.737 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 3
+2020-02-21 18:12:27.754 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...17
+2020-02-21 18:12:27.755 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Drop page 13
+2020-02-21 18:12:27.756 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...16
+2020-02-21 18:12:27.757 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Goto page 17...
+2020-02-21 18:12:27.757 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Load page 17
+2020-02-21 18:12:27.759 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...18
+2020-02-21 18:12:27.759 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:27.794 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.794 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.794 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Drop page 14
+2020-02-21 18:12:27.794 677-803/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:27.794 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=17, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:27.796 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:27.797 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Goto page 16...
+2020-02-21 18:12:27.797 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Load page 16
+2020-02-21 18:12:27.831 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.831 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.832 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.832 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.832 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:27.832 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:27.832 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:27.832 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(17)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:27.932 677-803/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:27.940 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:27.943 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=16, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:27.944 1417-10287/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:27.949 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:27.949 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:27.949 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:27.949 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:27.949 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:27.949 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(16)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:27.960 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:28.004 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:28.075 1417-1844/system_process I/TrafficMonitor: update:rxPkts:48,txPkts:47,rxBytes:53933,txBytes:4373
+2020-02-21 18:12:28.075 1417-1844/system_process I/TrafficMonitor: no expired. level:3
+2020-02-21 18:12:28.075 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:28.075 1417-1844/system_process I/TrafficMonitor: during_ms:2004,period_ms:2000
+2020-02-21 18:12:28.075 1417-1844/system_process I/TrafficMonitor: count:50,rx_sum:48,tx_sum:47,rxBytes:53933,during_ms:2004,rx_speed:26912.674650698602,tx_speed:2182.135728542914,rto:1.0212765957446808
+2020-02-21 18:12:28.076 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:28.076 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Drop page 15
+2020-02-21 18:12:28.079 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Goto page 18...
+2020-02-21 18:12:28.079 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Load page 18
+2020-02-21 18:12:28.076 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480757): avc: granted { read } for pid=24731 comm=4173796E635461736B202332 name="page-18.docin" dev="sdcardfs" ino=201505 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:28.099 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:28.110 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:28.113 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.113 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.114 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=18, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:28.116 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:28.118 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:28.118 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:28.122 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:28.128 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.128 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.128 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:28.128 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:28.128 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:28.128 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(18)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:28.184 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:28.186 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:28.197 850-941/? I/storaged: storaged_t::event: storage_info refreshed.
+2020-02-21 18:12:28.222 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:28.222 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 18
+2020-02-21 18:12:28.222 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.220 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480759): avc: granted { read } for pid=24731 comm=4173796E635461736B202332 name="page-18.docin" dev="sdcardfs" ino=201505 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:28.220 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480760): avc: granted { read open } for pid=24731 comm=4173796E635461736B202332 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-18.docin" dev="sdcardfs" ino=201505 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:28.251 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.251 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.251 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.251 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 19
+2020-02-21 18:12:28.251 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.255 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.255 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.255 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.255 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 20
+2020-02-21 18:12:28.255 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.256 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.257 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.257 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.257 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 21
+2020-02-21 18:12:28.257 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.258 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.258 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.258 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.258 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 22
+2020-02-21 18:12:28.258 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.259 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.259 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.259 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.259 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 23
+2020-02-21 18:12:28.259 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.256 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480761): avc: granted { read } for pid=24731 comm=4173796E635461736B202332 name="page-23.docin" dev="sdcardfs" ino=187349 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:28.272 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.272 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.272 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.272 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 24
+2020-02-21 18:12:28.272 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.307 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.307 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.307 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.307 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 25
+2020-02-21 18:12:28.307 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.337 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.338 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.338 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.338 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 26
+2020-02-21 18:12:28.338 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.339 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.339 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.339 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.339 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 27
+2020-02-21 18:12:28.339 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.340 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.340 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.340 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.340 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 28
+2020-02-21 18:12:28.340 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.341 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.341 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.341 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.341 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 29
+2020-02-21 18:12:28.341 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.342 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.342 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.342 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.342 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 30
+2020-02-21 18:12:28.342 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.343 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.343 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:28.343 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:28.343 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 31
+2020-02-21 18:12:28.343 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:28.363 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:28.373 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:28.373 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 4
+2020-02-21 18:12:28.373 24731-25456/com.docin.zlibrary.ui.android D/testPdfOpen: count: 4
+2020-02-21 18:12:28.383 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...31
+2020-02-21 18:12:28.385 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 16
+2020-02-21 18:12:28.385 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...30
+2020-02-21 18:12:28.385 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:28.386 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...32
+2020-02-21 18:12:28.387 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 31...
+2020-02-21 18:12:28.387 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 31
+2020-02-21 18:12:28.389 634-1140/? W//system/bin/netd: A binder object at 0x79bc293b00 is being transacted on, however, this object is in the same process as its proxy. Transacting with this binder is expensive compared to just calling the corresponding functionality in the same process.
+2020-02-21 18:12:28.389 634-1140/? I/PreDnsController: canPreDnsQuery,persist.sys.predns is false!
+2020-02-21 18:12:28.389 634-26275/? W/DnsProxyListener: GetAddrInfoHandler::run: {820 262964 820 983860 10221 0}
+2020-02-21 18:12:28.389 634-26275/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=10 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:28.389 634-26275/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=2 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:28.390 634-26275/? W/res_mkquery: res_nmkquery: (QUERY, IN, A)
+2020-02-21 18:12:28.390 634-26275/? W/res_send: res_nsend
+2020-02-21 18:12:28.390 634-26275/? W/res_cache: _resolv_cache_lookup: lookup
+2020-02-21 18:12:28.390 634-26275/? E/ResolverController: No valid NAT64 prefix (820, <unspecified>/0)
+2020-02-21 18:12:28.409 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:28.435 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.435 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.435 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 17
+2020-02-21 18:12:28.435 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=31, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:28.437 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 32...
+2020-02-21 18:12:28.438 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 32
+2020-02-21 18:12:28.438 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:28.475 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.475 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.475 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.475 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.475 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:28.475 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:28.475 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:28.475 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(31)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:28.542 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:28.546 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -77, Chload: 127
+2020-02-21 18:12:28.548 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:28.549 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:28.555 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:28.556 2355-3779/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:28.556 2355-3779/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:28.591 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:28.595 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 18
+2020-02-21 18:12:28.595 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=32, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:28.596 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:28.602 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 30...
+2020-02-21 18:12:28.602 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 30
+2020-02-21 18:12:28.610 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:28.654 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:28.655 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.655 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.655 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.655 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.656 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:28.656 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:28.656 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:28.656 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(32)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:28.660 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=30, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:28.662 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:28.762 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:28.768 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:28.768 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:28.768 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:28.768 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:28.768 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:28.768 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:28.768 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(30)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:28.792 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:28.811 13118-26274/? I/HWBR-O-0111|AdBlockImpl: onUrlRequested ...
+2020-02-21 18:12:28.840 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:28.879 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:29.014 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -77, Chload: 127
+2020-02-21 18:12:29.018 1417-1953/system_process I/HuaweiWifiWatchdogStateMachine: POta txb txg rxg:0, 189, 0. Lr =0% Totpkt=189
+2020-02-21 18:12:29.018 1417-1844/system_process D/WiFi_PRO: MSG_RETURN_AP_CURRY_RSSI rssi = -38
+2020-02-21 18:12:29.018 1417-1844/system_process I/QosMonitor: queryRtt: rttType = 3
+2020-02-21 18:12:29.018 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:29.018 1417-26277/system_process I/HwUidTcpMonitor: TcpStatisticsRun run
+2020-02-21 18:12:29.020 1417-1844/system_process I/QosMonitor: postEventFromNative: msg=100,arg1=4,arg2=10
+2020-02-21 18:12:29.021 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:29.021 1417-1844/system_process I/QosMonitor: postEventFromNative: msg=100,arg1=0,arg2=10
+2020-02-21 18:12:29.021 1417-26277/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 79
+2020-02-21 18:12:29.022 1417-1844/system_process I/MQoS: rtt=192,tcpTxPkts=39409402,tcpRxPkts=60554750
+2020-02-21 18:12:29.022 1417-1844/system_process I/QosMonitor: resetRtt: rttType = 3
+2020-02-21 18:12:29.022 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:29.023 1417-5909/system_process D/HwConnectivityServiceEx: set cache by key is 1000 interfaceName iswlan0 value is false
+2020-02-21 18:12:29.023 1417-26278/system_process I/HwWifiProServiceProxy: TcpStatisticsRun run
+2020-02-21 18:12:29.023 1417-1953/system_process I/HuaweiWifiWatchdogStateMachine: PTcp RTT:192, rtt pkt=45, tcp_rx=161, tcp_tx=161, tcp_reTran=0, rtRate=0
+2020-02-21 18:12:29.023 1417-1953/system_process D/HuaweiWifiWatchdogStateMachine: rssi bad, mrssi=-38 < TargetRssi=-30
+2020-02-21 18:12:29.024 1417-26278/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10103 mPacketName = com.huawei.browser mSendSegs = 44460 mResendSegs = 20 mRcvSegs = 58474 ]
+2020-02-21 18:12:29.024 1417-26278/system_process D/HwWifiConnectivityMonitor: ENTER: notifyTopUidTcpInfo, tx = 145, rx = 148, reTx = 0, uid = 10221, tr = 0.0
+2020-02-21 18:12:29.024 1417-26278/system_process D/HwWifiConnectivityMonitor: ENTER: notifyTopUidTcpInfo, rtt = 1720, rttPkts = 35, aveRtt = 49.142857, app = com.docin.zlibrary.ui.android
+2020-02-21 18:12:29.025 1417-26278/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10221 mPacketName = com.docin.zlibrary.ui.android mSendSegs = 67827 mResendSegs = 38 mRcvSegs = 113114 ]
+2020-02-21 18:12:29.025 1417-1948/system_process D/HwWifiConnectivityMonitor: handleTopUidInternetStatusChanged, uid = 10221, status = 0
+2020-02-21 18:12:29.028 1417-1948/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 9
+2020-02-21 18:12:29.031 1417-5909/system_process I/MQoS: QOS_level:3(3),wifi-link;use signalLvl:3;RAT:4G
+2020-02-21 18:12:29.032 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:29.126 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:29.247 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:29.292 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:29.309 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:29.310 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:29.314 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:29.359 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:29.361 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:29.366 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 32
+2020-02-21 18:12:29.366 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:29.364 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480781): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-32.docin" dev="sdcardfs" ino=277376 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:29.364 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480782): avc: granted { read open } for pid=24731 comm=4173796E635461736B202331 path="/storage/emulated/0/DocIn/BookShelf/Books/1722027697/page-32.docin" dev="sdcardfs" ino=277376 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:29.368 47-47/? W/migration/6: type=1400 audit(0.0:32480783): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:29.388 53-53/? W/migration/7: type=1400 audit(0.0:32480784): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:29.412 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:29.412 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 2
+2020-02-21 18:12:29.412 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 2
+2020-02-21 18:12:29.428 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=32, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:29.429 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:29.433 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:29.433 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:29.433 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:29.433 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:29.433 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:29.433 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=31, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:29.433 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(32)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:29.434 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:29.524 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:29.525 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:29.525 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:29.526 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 存在直接加载...33
+2020-02-21 18:12:29.526 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:29.526 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:29.526 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:29.526 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(31)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:29.625 24731-25456/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:29.626 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 30
+2020-02-21 18:12:29.627 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 33...
+2020-02-21 18:12:29.627 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 33
+2020-02-21 18:12:29.624 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480785): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-33.docin" dev="sdcardfs" ino=277514 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:29.665 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:29.665 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:29.679 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=33, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:29.679 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:29.682 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:29.682 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:29.682 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:29.682 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:29.682 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:29.682 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(33)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:29.692 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:29.733 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:29.800 24731-25457/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:29.935 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:29.947 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:29.958 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:29.993 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:30.079 1417-1844/system_process I/TrafficMonitor: update:rxPkts:21,txPkts:21,rxBytes:20648,txBytes:1083
+2020-02-21 18:12:30.079 1417-1844/system_process I/TrafficMonitor: no expired. level:2
+2020-02-21 18:12:30.079 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:30.079 1417-1844/system_process I/TrafficMonitor: during_ms:2003,period_ms:2000
+2020-02-21 18:12:30.079 1417-1844/system_process I/TrafficMonitor: count:51,rx_sum:21,tx_sum:21,rxBytes:20648,during_ms:2003,rx_speed:10308.537194208686,tx_speed:540.6889665501747,rto:1.0
+2020-02-21 18:12:30.114 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:30.209 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:30.329 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:30.392 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:30.406 1417-1782/system_process D/HwConnectivityServiceEx: set cache by key is 10144 interfaceName iswlan0 value is false
+2020-02-21 18:12:30.409 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:30.410 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:30.413 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:30.449 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:30.452 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:30.457 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 33
+2020-02-21 18:12:30.457 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:30.456 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480789): avc: granted { read } for pid=24731 comm=4173796E635461736B202331 name="page-33.docin" dev="sdcardfs" ino=277514 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:30.460 47-47/? W/migration/6: type=1400 audit(0.0:32480791): avc: granted { setsched } for pid=47 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:30.492 53-53/? W/migration/7: type=1400 audit(0.0:32480792): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:30.514 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:30.514 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 1
+2020-02-21 18:12:30.514 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 1
+2020-02-21 18:12:30.532 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 33
+2020-02-21 18:12:30.532 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=33, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:30.534 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:30.534 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:30.534 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:30.532 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480793): avc: granted { read } for pid=24731 comm=4173796E635461736B202334 name="page-0.docin" dev="sdcardfs" ino=270161 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:30.572 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:30.574 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Goto page 33...
+2020-02-21 18:12:30.574 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Load page 33
+2020-02-21 18:12:30.574 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=32, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:30.576 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:30.613 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:30.613 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:30.613 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:30.613 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:30.613 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:30.613 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(33)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:30.616 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...34
+2020-02-21 18:12:30.616 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:30.621 634-1140/? W//system/bin/netd: A binder object at 0x79bc293b00 is being transacted on, however, this object is in the same process as its proxy. Transacting with this binder is expensive compared to just calling the corresponding functionality in the same process.
+2020-02-21 18:12:30.622 634-1140/? I/PreDnsController: canPreDnsQuery,persist.sys.predns is false!
+2020-02-21 18:12:30.622 634-26279/? W/DnsProxyListener: GetAddrInfoHandler::run: {820 262964 820 983860 10221 0}
+2020-02-21 18:12:30.622 634-26279/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=10 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:30.622 634-26279/? W/getaddrinfo: android_getaddrinfofornetcontext: explore_numeric: ai_family=2 ai_socktype=1 ai_protocol=6
+2020-02-21 18:12:30.624 634-26279/? W/res_mkquery: res_nmkquery: (QUERY, IN, A)
+2020-02-21 18:12:30.624 634-26279/? W/res_send: res_nsend
+2020-02-21 18:12:30.624 634-26279/? W/res_cache: _resolv_cache_lookup: lookup
+2020-02-21 18:12:30.624 634-26279/? E/ResolverController: No valid NAT64 prefix (820, <unspecified>/0)
+2020-02-21 18:12:30.718 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:30.718 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:30.718 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:30.718 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:30.718 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:30.718 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:30.718 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(32)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:30.742 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:30.784 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:30.811 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:30.812 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Drop page 31
+2020-02-21 18:12:30.813 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Goto page 34...
+2020-02-21 18:12:30.813 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Load page 34
+2020-02-21 18:12:30.834 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:30.834 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:30.834 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=34, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:30.836 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:30.845 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:30.845 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:30.845 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:30.845 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:30.845 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:30.845 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(34)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:30.915 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:31.027 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:31.058 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:31.064 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:31.091 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:31.109 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:31.110 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:31.113 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:31.121 634-3651/? I/netd: trafficSwapActiveStatsMap() <13.25ms>
+2020-02-21 18:12:31.141 2339-6596/? I/DownloadState: singleUid: 10221 [com.docin.zlibrary.ui.android] speed: 18037 real speed: 17841 (rxB:86057 txB:4132 rxP:75 txP:79) scroff: false
+2020-02-21 18:12:31.141 2339-6596/? I/DownloadState: singleUid: 10103 [com.huawei.browser] speed: 517 real speed: 511 (rxB:499 txB:2087 rxP:3 txP:2) scroff: false
+2020-02-21 18:12:31.141 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:31.144 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:31.148 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 34
+2020-02-21 18:12:31.148 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:31.150 2339-6596/? I/DownloadState: shareUid: 0 default_socket transmitting data speed : 64 bytes/s (rxB:160 txB:160 rxP:4 txP:4 iface:1) scroff: false
+2020-02-21 18:12:31.150 2339-6596/? I/DownloadState: shareUid: 0 default_sk transmitting data speed : 54 bytes/s (rxB:272 txB:0 rxP:4 txP:0 iface:1) scroff: false
+2020-02-21 18:12:31.191 24731-25454/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:31.191 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 2
+2020-02-21 18:12:31.191 24731-25454/com.docin.zlibrary.ui.android D/testPdfOpen: count: 2
+2020-02-21 18:12:31.198 24731-24746/com.docin.zlibrary.ui.android W/System: A resource failed to call close. 
+2020-02-21 18:12:31.200 24731-24746/com.docin.zlibrary.ui.android I/chatty: uid=10221(com.docin.zlibrary.ui.android) FinalizerDaemon identical 25 lines
+2020-02-21 18:12:31.200 24731-24746/com.docin.zlibrary.ui.android W/System: A resource failed to call close. 
+2020-02-21 18:12:31.215 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=34, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:31.215 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 34
+2020-02-21 18:12:31.216 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:31.218 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 0...
+2020-02-21 18:12:31.218 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 0
+2020-02-21 18:12:31.287 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 0
+2020-02-21 18:12:31.289 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=33, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:31.290 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 34...
+2020-02-21 18:12:31.290 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 34
+2020-02-21 18:12:31.292 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:31.317 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:31.317 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:31.317 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:31.317 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:31.317 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:31.317 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(34)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:31.325 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: 文件1722027697 不存在，需先下载再加载...35
+2020-02-21 18:12:31.325 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: documentSid: YvSe1izbGUSuPGuPk9PG7WJP4SZgGRO4*UpTdLCZS4TpFjOrDPnCMH87M3OX3rPe
+2020-02-21 18:12:31.392 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:31.392 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:31.392 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:31.393 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:31.393 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:31.393 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:31.393 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(33)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:31.425 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:31.460 867-1002/? W/ScreemCommon: processEntry, not beta version or commercial log off
+2020-02-21 18:12:31.463 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:31.464 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Drop page 32
+2020-02-21 18:12:31.465 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Goto page 35...
+2020-02-21 18:12:31.465 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Load page 35
+2020-02-21 18:12:31.464 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480817): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-35.docin" dev="sdcardfs" ino=274122 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:31.470 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:31.470 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:31.474 24731-24731/com.docin.zlibrary.ui.android D/testPdfOpen: PageView->setPage=35, size=PointF(1191.0, 1684.0)
+2020-02-21 18:12:31.475 1417-1782/system_process E/WifiService: enforceCanAccessScanResults: hiding ssid and bssidUID 10221 has no location permission
+2020-02-21 18:12:31.483 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageWidth=1191
+2020-02-21 18:12:31.483 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: PageHeight=1684
+2020-02-21 18:12:31.483 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: In native method
+2020-02-21 18:12:31.483 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Checking format
+2020-02-21 18:12:31.483 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: locking pixels
+2020-02-21 18:12:31.483 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendering page(35)=1080x1527 patch=[0,0,1080,1527]
+2020-02-21 18:12:31.514 24731-25458/com.docin.zlibrary.ui.android I/libmupdf: Rendered
+2020-02-21 18:12:31.566 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:31.569 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -75, Chload: 127
+2020-02-21 18:12:31.573 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:31.579 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:31.580 2355-2820/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:31.580 2355-2820/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:31.608 53-53/? W/migration/7: type=1400 audit(0.0:32480819): avc: granted { setsched } for pid=53 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=process
+2020-02-21 18:12:31.664 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:31.718 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:31.741 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:31.791 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:31.808 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:31.809 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:31.812 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:31.858 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:31.859 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:31.865 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 35
+2020-02-21 18:12:31.865 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:31.864 24731-24731/com.docin.zlibrary.ui.android W/com.huawei.fastapp: type=1400 audit(0.0:32480821): avc: granted { read } for pid=24731 comm=4173796E635461736B202335 name="page-35.docin" dev="sdcardfs" ino=274122 scontext=u:r:untrusted_app_27:s0:c512,c768 tcontext=u:object_r:sdcardfs:s0 tclass=file
+2020-02-21 18:12:31.877 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:31.877 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:31.877 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:31.877 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 36
+2020-02-21 18:12:31.877 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:31.888 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:31.888 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:31.888 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:31.888 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: text: 苏州, page: 37
+2020-02-21 18:12:31.888 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun hksearch
+2020-02-21 18:12:31.894 24731-25459/com.docin.zlibrary.ui.android I/libmupdf: Native fun finish
+2020-02-21 18:12:31.894 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: searchRects: 0
+2020-02-21 18:12:31.894 24731-25459/com.docin.zlibrary.ui.android D/testPdfOpen: count: 0
+2020-02-21 18:12:31.938 1417-1782/system_process D/ZrHung.AppEyeTransparentWindow: TransparentWindow mHungConfigStatus = 0,mHungConfigEnable = 1
+2020-02-21 18:12:31.938 1417-1782/system_process V/WindowManager: addWindow: Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity}
+2020-02-21 18:12:31.940 24731-24912/com.docin.zlibrary.ui.android D/OpenGLRenderer: disableOutlineDraw is true
+2020-02-21 18:12:31.940 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:31.944 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:31.944 24731-26280/com.docin.zlibrary.ui.android D/HiTouch_PressGestureDetector: onAttached, package=com.docin.zlibrary.ui.android, windowType=2, mHiTouchRestricted=false
+2020-02-21 18:12:31.952 24731-24912/com.docin.zlibrary.ui.android D/mali_winsys: EGLint new_window_surface(egl_winsys_display *, void *, EGLSurface, EGLConfig, egl_winsys_surface **, EGLBoolean) returns 0x3000
+2020-02-21 18:12:31.955 675-789/? I/GRALLOC: getCallingPid=719, shrFd=11,fmt=0x1,intFmt=0x1,btStrd=4352,size=1863680,pid=675 
+    	 yuv=2,w=1048,h=428,Stride u=0 v=0,offset u=0 v=0 
+    	 iova_size=1863680,conUsg=0xb00,proUsg=0xb00,	 strd=1088,[afbc]HdrStrd=0 PyldStrd=0 Scrmbl=0,ionhnd = 0 
+2020-02-21 18:12:31.957 675-789/? I/GRALLOC: getCallingPid=719, shrFd=11,fmt=0x1,intFmt=0x1,btStrd=4352,size=1863680,pid=675 
+    	 yuv=2,w=1048,h=428,Stride u=0 v=0,offset u=0 v=0 
+    	 iova_size=1863680,conUsg=0xb00,proUsg=0xb00,	 strd=1088,[afbc]HdrStrd=0 PyldStrd=0 Scrmbl=0,ionhnd = 0 
+2020-02-21 18:12:31.957 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:31.959 675-675/? I/GRALLOC: getCallingPid=719, shrFd=13,fmt=0x1,intFmt=0x1,btStrd=4352,size=1863680,pid=675 
+    	 yuv=2,w=1048,h=428,Stride u=0 v=0,offset u=0 v=0 
+    	 iova_size=1863680,conUsg=0xb00,proUsg=0xb00,	 strd=1088,[afbc]HdrStrd=0 PyldStrd=0 Scrmbl=0,ionhnd = 0 
+2020-02-21 18:12:31.974 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:31.975 1417-1656/system_process I/StatusBarDisable: setFlags what=0 which=1 pkg=Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity}
+2020-02-21 18:12:32.057 1417-1782/system_process I/chatty: uid=1000(system) Binder:1417_3 identical 5 lines
+2020-02-21 18:12:32.073 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:32.082 1417-1844/system_process I/TrafficMonitor: update:rxPkts:26,txPkts:26,rxBytes:23731,txBytes:1526
+2020-02-21 18:12:32.082 1417-1844/system_process I/TrafficMonitor: start expired. level:2
+2020-02-21 18:12:32.082 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:32.090 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:32.241 1417-1782/system_process I/chatty: uid=1000(system) Binder:1417_3 identical 9 lines
+2020-02-21 18:12:32.257 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:32.325 851-851/? E/Thermal-daemon: [ap] temp_new :33  temp_old :32
+2020-02-21 18:12:32.326 851-851/? E/Thermal-daemon: Report temperature: [ap] temp :33  report_threshold:1
+2020-02-21 18:12:32.434 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:32.457 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:32.628 1417-1435/system_process W/System: A resource failed to call release. 
+2020-02-21 18:12:32.641 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:33.807 13118-26281/? I/HWBR-O-0111|AdBlockImpl: onUrlRequested ...
+2020-02-21 18:12:33.828 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:33.829 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:33.829 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:33.829 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:33.829 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:33.829 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:33.830 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:33.830 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:33.830 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:33.830 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:33.830 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:33.830 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:33.898 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:33.898 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:33.898 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:33.898 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:33.899 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: 0
+2020-02-21 18:12:33.899 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:33.899 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:33.899 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:0
+2020-02-21 18:12:33.899 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:-1
+2020-02-21 18:12:33.899 1417-1656/system_process D/HWEMRP: notifyProposedRotation: 0
+2020-02-21 18:12:33.900 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:33.900 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:33.900 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:33.980 1417-1782/system_process D/HwConnectivityServiceEx: set cache by key is 10216 interfaceName iswlan0 value is false
+2020-02-21 18:12:34.038 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.038 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.038 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.038 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.038 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:34.039 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.039 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.039 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.039 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:34.039 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.039 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.039 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:34.087 1417-1844/system_process I/TrafficMonitor: update:rxPkts:4,txPkts:3,rxBytes:566,txBytes:2128
+2020-02-21 18:12:34.087 1417-1844/system_process I/TrafficMonitor: start expired. level:-1
+2020-02-21 18:12:34.087 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:34.108 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.108 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.108 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.108 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.108 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: 0
+2020-02-21 18:12:34.109 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.109 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.109 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.109 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.109 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.109 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:0
+2020-02-21 18:12:34.109 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:-1
+2020-02-21 18:12:34.109 1417-1656/system_process D/HWEMRP: notifyProposedRotation: 0
+2020-02-21 18:12:34.248 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.248 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.248 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.248 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.248 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:34.248 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.249 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.249 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.249 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:34.249 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.249 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:34.249 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.318 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.318 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.318 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.318 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.318 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: 0
+2020-02-21 18:12:34.319 914-931/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.319 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.319 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:0
+2020-02-21 18:12:34.319 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:-1
+2020-02-21 18:12:34.319 1417-1656/system_process D/HWEMRP: notifyProposedRotation: 0
+2020-02-21 18:12:34.320 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.320 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.320 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.528 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.528 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.528 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.528 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.528 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:34.528 914-931/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.529 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.529 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.529 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.529 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.529 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:34.529 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:34.590 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:34.594 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -77, Chload: 70
+2020-02-21 18:12:34.597 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:34.598 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.598 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.598 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.598 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.598 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: 0
+2020-02-21 18:12:34.598 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.599 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.599 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.599 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:0
+2020-02-21 18:12:34.599 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.599 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:-1
+2020-02-21 18:12:34.599 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.599 1417-1656/system_process D/HWEMRP: notifyProposedRotation: 0
+2020-02-21 18:12:34.603 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:34.604 2355-2820/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:34.604 2355-2820/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:34.668 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:34.668 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:34.668 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:34.668 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:34.668 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:34.668 914-931/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:34.669 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:34.669 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:34.669 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:34.669 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:34.669 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:34.669 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:34.889 634-3651/? I/netd: trafficSwapActiveStatsMap() <35.70ms>
+2020-02-21 18:12:34.895 1417-1782/system_process D/HwConnectivityServiceEx: set cache by key is 1000 interfaceName iswlan0 value is false
+2020-02-21 18:12:34.896 1417-1782/system_process D/ConnectivityService: get Network state from cache, cacheBlock is 0
+2020-02-21 18:12:35.080 1417-1844/system_process I/TrafficMonitor: expired arrive. level:-1
+2020-02-21 18:12:35.080 1417-1844/system_process I/TrafficMonitor: during_ms:2005,period_ms:2000
+2020-02-21 18:12:35.080 1417-1844/system_process I/TrafficMonitor: count:53,rx_sum:4,tx_sum:3,rxBytes:566,during_ms:2005,rx_speed:282.2942643391521,tx_speed:1061.3466334164589,rto:1.3333333333333333
+2020-02-21 18:12:35.438 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:35.438 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:35.439 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:35.439 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:35.439 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: 0
+2020-02-21 18:12:35.439 914-930/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:35.439 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:35.439 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:35.439 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:0
+2020-02-21 18:12:35.439 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:35.440 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:35.440 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:-1
+2020-02-21 18:12:35.440 1417-1656/system_process D/HWEMRP: notifyProposedRotation: 0
+2020-02-21 18:12:35.509 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:35.509 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:35.509 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:35.509 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:35.509 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:35.509 914-931/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:35.509 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:35.509 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:35.509 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:35.509 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:35.510 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:35.510 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:35.578 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:35.578 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:35.578 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:35.578 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:35.578 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: 0
+2020-02-21 18:12:35.578 914-931/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:35.579 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:35.579 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:35.579 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:0
+2020-02-21 18:12:35.579 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:35.579 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:-1
+2020-02-21 18:12:35.579 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:35.579 1417-1656/system_process D/HWEMRP: notifyProposedRotation: 0
+2020-02-21 18:12:35.833 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: generateCompressList procsGroups error!
+2020-02-21 18:12:35.843 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: getPssForPid error skip! procName=com.hpbr.bosszhipin
+2020-02-21 18:12:35.844 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: getPssForPid error skip! procName=com.huawei.hiai.engineservice
+2020-02-21 18:12:35.881 2339-6400/? I/PGServer: getTopFrontApp. calling pkg: android
+2020-02-21 18:12:35.992 1417-24714/system_process W/AwareLog: AwareMem_Reclaim: getPssForPid error skip! procName=com.huawei.appmarket
+2020-02-21 18:12:36.033 2339-6400/? I/PGServer: getTopFrontApp. calling pkg: android
+2020-02-21 18:12:36.039 796-796/? I/aptouch_daemon: check_afe_status, idle out.
+2020-02-21 18:12:36.041 796-796/? I/aptouch_daemon: print_log, touch:1, down:1 (+0)
+2020-02-21 18:12:36.041 1417-1818/system_process D/libfingersense_wrapper: Calling fingersense_classify_touch()
+2020-02-21 18:12:36.045 1417-1818/system_process D/libfingersense_wrapper: fingersense_classify_touch() finished
+2020-02-21 18:12:36.047 24731-24731/com.docin.zlibrary.ui.android W/Settings: Setting device_provisioned has moved from android.provider.Settings.Secure to android.provider.Settings.Global.
+2020-02-21 18:12:36.047 24731-24731/com.docin.zlibrary.ui.android V/HiTouch_HiTouchSensor: User setup is finished.
+2020-02-21 18:12:36.091 1417-1844/system_process I/TrafficMonitor: update:rxPkts:9,txPkts:16,rxBytes:503,txBytes:725
+2020-02-21 18:12:36.091 1417-1844/system_process I/TrafficMonitor: start expired. level:-1
+2020-02-21 18:12:36.091 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:36.122 796-796/? I/aptouch_daemon: print_log, touch:0, down:0 
+2020-02-21 18:12:36.125 24731-24731/com.docin.zlibrary.ui.android V/AudioManager: querySoundEffectsEnabled...
+2020-02-21 18:12:36.132 719-855/? E/BufferQueueProducer: [com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity#1]:1338: disconnect: not connected (req=1)
+2020-02-21 18:12:36.132 24731-24912/com.docin.zlibrary.ui.android W/libEGL: EGLNativeWindowType 0xbb3c68c8 disconnect failed
+2020-02-21 18:12:36.133 1417-1782/system_process V/WindowManager: removeIfPossible: Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity} callers=com.android.server.wm.WindowState.removeIfPossible:5506492 com.android.server.wm.WindowManagerService.removeWindow:5504480 android.view.IWindowSession$Stub.onTransact:7509052 com.android.server.wm.Session.onTransact:6758608 android.os.Binder.execTransactInternal:8304892 
+2020-02-21 18:12:36.135 1417-1782/system_process V/WindowManager: Not removing Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity EXITING} due to exit animation 
+2020-02-21 18:12:36.136 1417-1782/system_process D/ZrHung.AppEyeTransparentWindow: TransparentWindow cancelCheckFreezeScreen
+2020-02-21 18:12:36.136 1417-1782/system_process D/ZrHung.AppEyeTransparentWindow: TransparentWindow mHungConfigStatus = 0,mHungConfigEnable = 1
+2020-02-21 18:12:36.138 1417-10287/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:36.138 1417-10287/system_process E/InputDispatcher: Window handle Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity} has no registered input channel
+2020-02-21 18:12:36.140 1417-1656/system_process I/StatusBarDisable: setFlags what=0 which=1 pkg=Window{7d67251 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity}
+2020-02-21 18:12:36.155 1417-10287/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:36.155 1417-10287/system_process E/InputDispatcher: Window handle Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity} has no registered input channel
+2020-02-21 18:12:36.169 634-3651/? I/netd: trafficSwapActiveStatsMap() <18.11ms>
+2020-02-21 18:12:36.171 1417-10287/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:36.176 2339-6596/? E/AppInfoMgr: not find pkgs by uid: 0
+2020-02-21 18:12:36.176 2339-6596/? I/DownloadState: singleUid: 10221 [com.docin.zlibrary.ui.android] speed: 2459 real speed: 2438 (rxB:11416 txB:883 rxP:12 txP:16) scroff: false
+2020-02-21 18:12:36.177 2339-6596/? I/DownloadState: singleUid: 10103 [com.huawei.browser] speed: 517 real speed: 512 (rxB:498 txB:2088 rxP:3 txP:2) scroff: false
+2020-02-21 18:12:36.181 2339-6596/? I/DownloadState: shareUid: 1000 com.huawei.lbs transmitting data speed : 73 bytes/s (rxB:0 txB:365 rxP:0 txP:7 iface:1) scroff: false
+2020-02-21 18:12:36.181 2339-6596/? I/DownloadState: shareUid: 0 default_socket transmitting data speed : 86 bytes/s (rxB:111 txB:320 rxP:2 txP:8 iface:1) scroff: false
+2020-02-21 18:12:36.181 2339-6596/? I/DownloadState: shareUid: 0 /system/bin/init transmitting data speed : 24 bytes/s (rxB:0 txB:120 rxP:0 txP:3 iface:1) scroff: false
+2020-02-21 18:12:36.181 2339-6596/? I/DownloadState: shareUid: 0 default_sk transmitting data speed : 113 bytes/s (rxB:568 txB:0 rxP:10 txP:0 iface:1) scroff: false
+2020-02-21 18:12:36.188 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:36.371 1417-1659/system_process V/WindowManager: Exit animation finished in Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity EXITING}: remove=true
+2020-02-21 18:12:36.371 1417-1659/system_process E/WindowManager: win=Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity EXITING} destroySurfaces: appStopped=false win.mWindowRemovalAllowed=true win.mRemoveOnExit=true
+2020-02-21 18:12:36.371 1417-1659/system_process V/WindowManager: postWindowRemoveCleanupLocked: Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity}
+2020-02-21 18:12:36.371 1417-1659/system_process V/WindowManager: Removing Window{837ad29 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity} from AppWindowToken{809946d token=Token{8a87b03 ActivityRecord{8b5e991 u0 com.docin.zlibrary.ui.android/com.docin.mupdf.MuPDFActivity t8965}}}
+2020-02-21 18:12:36.405 1417-1782/system_process I/chatty: uid=1000(system) Binder:1417_3 identical 13 lines
+2020-02-21 18:12:36.421 1417-1782/system_process E/InputDispatcher: Window handle WindowManager has no registered input channel
+2020-02-21 18:12:36.545 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:36.558 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType: 7
+2020-02-21 18:12:36.558 914-1814/? D/motion@1.0-service: motion-hal Motion::readEvents motionType == MOTIONHUB_TYPE_ROTATION
+2020-02-21 18:12:36.558 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionResult->motion: 7
+2020-02-21 18:12:36.558 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 0: 1
+2020-02-21 18:12:36.558 914-1814/? D/motion@1.0-service: motion-hal Motion::ReadMotionData motionsData = 1: -1
+2020-02-21 18:12:36.559 914-931/? D/motion@1.0-service: pollMotionResult g_pollResultReturn = 2
+2020-02-21 18:12:36.560 1417-1656/system_process I/HWExtDeviceManager: trigger onDeviceDataChanged : mListener : com.android.server.policy.HWExtMotionRotationProcessorEx$1@82a92f0,type : 700
+2020-02-21 18:12:36.560 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  proposedRotation:-1
+2020-02-21 18:12:36.560 1417-1656/system_process D/HWEMRP: onDeviceDataChanged  oldProposedRotation:0
+2020-02-21 18:12:36.561 914-1814/? D/motion@1.0-service: g_motionPollResultReady::unlock out
+2020-02-21 18:12:36.561 914-1814/? D/motion@1.0-service: ActMotionCb motionClientVector.size = 0
+2020-02-21 18:12:36.561 914-1814/? D/motion@1.0-service: ActMotionCb out
+2020-02-21 18:12:36.673 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:36.699 796-796/? E/aptouch_daemon: update_frame, thp_afe_get_frame return nullptr
+2020-02-21 18:12:36.722 796-796/? I/aptouch_daemon: check_afe_status, idle in. 300
+2020-02-21 18:12:36.792 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:37.023 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -77, Chload: 127
+2020-02-21 18:12:37.026 1417-1844/system_process D/WiFi_PRO: MSG_RETURN_AP_CURRY_RSSI rssi = -39
+2020-02-21 18:12:37.026 1417-1953/system_process I/HuaweiWifiWatchdogStateMachine: POta txb txg rxg:0, 49, 0. Lr =0% Totpkt=49
+2020-02-21 18:12:37.026 1417-1844/system_process I/QosMonitor: queryRtt: rttType = 3
+2020-02-21 18:12:37.026 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:37.027 1417-26282/system_process I/HwUidTcpMonitor: TcpStatisticsRun run
+2020-02-21 18:12:37.028 1417-1844/system_process I/QosMonitor: postEventFromNative: msg=100,arg1=4,arg2=10
+2020-02-21 18:12:37.028 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:37.029 1417-1844/system_process I/QosMonitor: postEventFromNative: msg=100,arg1=0,arg2=10
+2020-02-21 18:12:37.029 1417-1844/system_process I/MQoS: rtt=200,tcpTxPkts=39409447,tcpRxPkts=60554779
+2020-02-21 18:12:37.029 1417-1844/system_process I/QosMonitor: resetRtt: rttType = 3
+2020-02-21 18:12:37.029 1417-26282/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 79
+2020-02-21 18:12:37.029 1417-5909/system_process D/HwConnectivityServiceEx: set cache by key is 1000 interfaceName iswlan0 value is false
+2020-02-21 18:12:37.030 1417-1844/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 8
+2020-02-21 18:12:37.030 1417-26283/system_process I/HwWifiProServiceProxy: TcpStatisticsRun run
+2020-02-21 18:12:37.031 1417-1953/system_process I/HuaweiWifiWatchdogStateMachine: PTcp RTT:200, rtt pkt=24, tcp_rx=29, tcp_tx=45, tcp_reTran=0, rtRate=0
+2020-02-21 18:12:37.031 1417-1953/system_process D/HuaweiWifiWatchdogStateMachine: rssi bad, mrssi=-39 < TargetRssi=-30
+2020-02-21 18:12:37.031 1417-26283/system_process D/HwWifiConnectivityMonitor: ENTER: notifyTopUidTcpInfo, tx = 23, rx = 23, reTx = 0, uid = 10221, tr = 0.0
+2020-02-21 18:12:37.031 1417-26283/system_process D/HwWifiConnectivityMonitor: ENTER: notifyTopUidTcpInfo, rtt = 296, rttPkts = 4, aveRtt = 74.0, app = com.docin.zlibrary.ui.android
+2020-02-21 18:12:37.031 1417-26283/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10221 mPacketName = com.docin.zlibrary.ui.android mSendSegs = 67850 mResendSegs = 38 mRcvSegs = 113137 ]
+2020-02-21 18:12:37.031 1417-26283/system_process D/HwUidTcpMonitor: parseWlanUidTcpStatistics lastUidTcpStatInfo = [ mUid = 10103 mPacketName = com.huawei.browser mSendSegs = 44462 mResendSegs = 20 mRcvSegs = 58477 ]
+2020-02-21 18:12:37.031 1417-1948/system_process D/HwWifiConnectivityMonitor: handleTopUidInternetStatusChanged, uid = 10221, status = 0
+2020-02-21 18:12:37.034 1417-1948/system_process I/HwWifiProServiceProxy: ctrlHwWifiNetwork pkgName: WIFIPRO_SERVICE interfaceId: 9
+2020-02-21 18:12:37.035 1417-5909/system_process I/MQoS: QOS_level:3(3),wifi-link;use signalLvl:3;RAT:4G
+2020-02-21 18:12:37.173 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:37.295 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:37.332 851-851/? E/Thermal-daemon: [ap] temp_new :32  temp_old :33
+2020-02-21 18:12:37.333 851-851/? E/Thermal-daemon: Report temperature: [ap] temp :32  report_threshold:1
+2020-02-21 18:12:37.611 713-713/? E/WifiHAL: enter wifi_get_link_stats
+2020-02-21 18:12:37.613 1417-1845/system_process E/WificondControl: Noise: 0, Snr: -77, Chload: 127
+2020-02-21 18:12:37.616 1417-1845/system_process V/HwWifiServiceFactory: get AllImpl object = com.android.server.wifi.HwWifiServiceFactoryImpl@8180053
+2020-02-21 18:12:37.624 1417-1845/system_process D/TelephonyManager: getAllCellInfo calling app is android
+2020-02-21 18:12:37.625 2355-2820/? W/PhoneInterfaceManager: shouldBlockLocation running ...
+2020-02-21 18:12:37.625 2355-2820/? I/PhoneInterfaceManager: shouldBlockLocation  ret:false
+2020-02-21 18:12:37.673 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:37.794 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:38.094 1417-1844/system_process I/TrafficMonitor: update:rxPkts:7,txPkts:6,rxBytes:878,txBytes:2247
+2020-02-21 18:12:38.094 1417-1844/system_process I/TrafficMonitor: start expired. level:-1
+2020-02-21 18:12:38.094 1417-1844/system_process I/TrafficMonitor: gettimer:interval=2000
+2020-02-21 18:12:38.172 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:38.294 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:38.672 677-1103/? W/hwcomposer: setGpuFreqBoost:160: boostGpuFreq release !
+2020-02-21 18:12:38.794 677-1103/? W/hwcomposer: setGpuFreqBoost:155: boostGpuFreq succ !
+2020-02-21 18:12:38.809 13118-26284/? I/HWBR-O-0111|AdBlockImpl: onUrlRequested ...

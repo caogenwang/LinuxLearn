@@ -40,7 +40,7 @@ int main()
     int j=0;
     for(j=0;j<THREAD_NUM;j++)
     {
-	pthread_join(tid[j],NULL);
+	    pthread_join(tid[j],NULL);
     }
 }
 
