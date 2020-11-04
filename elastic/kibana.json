@@ -1,0 +1,763 @@
+GET _cat/indices
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+PUT /lib/user/1
+{
+  "firstname": "Jane",
+  "lastname": "Smith",
+  "age": 32,
+  "about": "I like to collect rock album.",
+  "interests":["mustic"]
+}
+
+POST /lib/user/
+{
+  "firstname": "Jack",
+  "lastname": "ma",
+  "age": 67,
+  "about": "I like to make money.",
+  "interests":["money"]
+}
+#覆盖式修改
+PUT /lib/user/1
+{
+  "firstname": "Jane",
+  "lastname": "Smith",
+  "age": 35,
+  "about": "I like to collect rock album.",
+  "interests":["mustic"]
+}
+GET lib/_analyze
+#更新式修改
+POST /lib/user/1/_update
+{
+  "doc":{
+    "age":50
+  }
+}
+
+DELETE /lib/user/xUyvjHUB0r0RKdatPddt
+
+GET /lib/user/xUyvjHUB0r0RKdatPddt
+
+GET _all/_settings
+
+GET /lib/_settings
+
+GET /_mget
+{
+  "docs":[
+    {
+      "_index": "lib",
+      "_type": "user",
+      "_id": 1,
+      "_source":"interests"
+    },
+    {
+      "_index": "lib",
+      "_type": "user",
+      "_id": 2,
+      "_source":"age"
+    },
+    {
+       "_index": "lib",
+      "_type": "user",
+      "_id": 3,
+      "_source":["firstname","age"]
+    }
+  ]
+}
+#相同类型
+GET /lib/user/_mget
+{
+  "docs":[
+    {
+      "_id":2
+    },
+    {
+      "_id":2
+    }
+  ]
+}
+
+GET /lib/user/_mget
+{
+  "ids":["1","2","3"]
+}
+
+#bulk批量操作
+POST /lib2/books/_bulk
+{"index": {"_id": 1}}
+{"title": "jave","price": 55}
+{"index": {"_id": 2}}
+{"title": "html5","price": 30}
+{"index": {"_id": 3}}
+{"title": "Php","price": 20}
+{"index": {"_id": 4}}
+{"title": "Python","price": 50}
+
+GET lib2/books/_mget
+{
+  "ids":["1","2","3","4"]
+}
+
+GET lib2/books/_search
+{
+  "query":{
+    "match_all": {}
+  }
+}
+
+PUT /lib3?include_type_name=true
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  }
+  , "mappings": {
+    "user":{
+      "properties":{
+        "name": {"type": "text"},
+        "address": {"type": "text"},
+        "age": {"type": "long"},
+        "interests": {"type": "text"},
+        "birthday": {"type": "date"}
+      }
+    }
+  }
+}
+
+PUT /lib3/user/1
+{
+  "name": "zhaoliu",
+  "address": "hei long jiang sheng tie ling shi",
+  "age": 50,
+  "interests": "xi huan hejiu,duanlian,lvyou",
+  "birthday": "1970-12-12"
+}
+
+PUT /lib3/user/2
+{
+  "name": "zhaoming",
+  "address": "bei jing hai dian qu qing he",
+  "age": 20,
+  "interests": "xi huan hejiu,duanlian,changge",
+  "birthday": "1998-12-12"
+}
+
+PUT /lib3/user/3
+{
+  "name": "lisi",
+  "address": "bei jing hai dian qu qing he",
+  "age": 23,
+  "interests": "xi huan hejiu,duanlian,changge",
+  "birthday": "1995-12-12"
+}
+
+PUT /lib3/user/4
+{
+  "name": "wangwu",
+  "address": "bei jing hai dian qu qing he",
+  "age": 40,
+  "interests": "xi huan biancheng,tingyinyue,changge",
+  "birthday": "1994-10-12"
+}
+
+PUT /lib3/user/5
+{
+  "name": "zhangsan",
+  "address": "bei jing chao yang qu",
+  "age": 40,
+  "interests": "xi huan tingyinyue,changge,tiaowu",
+  "birthday": "1950-10-12"
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "match_all": {}
+  }
+}
+
+GET /lib3/user/_search?q=interests:changge&sort=age:aesc
+
+#term 查询
+GET /lib3/user/_search/
+{
+  "query":{
+    "term": {
+      "name": {
+        "value": "zhangsan"
+      }
+    }
+  }
+}
+#terms 多个匹配的
+GET /lib3/user/_search/
+{
+  "from": 0,
+  "size": 2,
+   "query":{
+     "terms": {
+       "interests": [
+         "hejiu",
+         "lvyou"
+       ]
+     }
+   }
+}
+
+#match 查询,进行了分词
+GET /lib3/user/_search
+{
+  "query":{
+    "match": {
+      "name": "zhangsan lisi"
+    }
+  }
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "match_all": {}
+  }
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "multi_match": {
+      "query": "changge",
+      "fields": ["name","interests"]
+    }
+  }
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "match_phrase": {
+      "interests": "duanlian,changge"
+    }
+  }
+}
+
+GET /lib3/user/_search
+{
+  "_source":["name","age"],
+  "query":{
+    "match_phrase": {
+      "interests": "changge"
+    }
+  }
+}
+
+GET /lib3/user/_search?explain=true
+{
+  "query":{
+    "match_phrase": {
+      "interests": "duanlian"
+    }
+  },
+  "_source":{
+    "include":"name",
+    "exclude":["age","bir*"]
+  }
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "match_all": {}
+  },
+  "sort":[
+    {
+      "age":{
+        "order": "asc"
+      }    
+    }
+  ]
+}
+
+
+GET /lib3/user/_search
+{
+  "query":{
+   "match_phrase_prefix": {
+     "name": {
+       "query": "zhao"
+     }
+   } 
+  }
+}
+
+GET /lib3/user/_search?explain=true
+{
+  "query":{
+    "range": {
+      "birthday": {
+        "gte": 1990,
+        "lte": 2000
+      }
+    }
+  }
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "range": {
+      "birthday": {
+        "from": 1990,
+        "to": 2000,
+        "include_lower": true,
+        "include_upper": false
+      }
+    }
+  }
+}
+#通配符查询
+GET /lib3/user/_search?explain=true
+{
+  "query":{
+    "wildcard": {
+      "name": {
+        "value": "zhao*"
+      }
+    }
+  }
+}
+
+GET /lib3/user/_search
+{
+  "query":{
+    "wildcard": {
+      "name": {
+        "value": "li?i"
+      }
+    }
+  }
+}
+#模糊查询
+GET /lib3/user/_search
+{
+  "query":{
+    "fuzzy": {
+      "name": "zhoaliu"
+    }
+  }
+}
+#highlight
+GET /lib3/user/_search
+{
+  "query":{
+    "match": {
+      "interests": "lvyou"
+    }
+  },
+  "highlight":{
+    "fields":{
+      "interests":{}
+    }
+  }
+}
+PUT /lib2/books/5
+{
+  "title" : "Cpp",
+  "price" : 90
+}
+
+DELETE /lib2/books/u0zEjHUB0r0RKdatIdk7
+
+GET /lib2/books/_search
+{
+  "query":{
+    "match_all": {}
+  }
+}
+#过滤查询
+GET /lib2/books/_search
+{
+  "query":{
+    "bool": {
+      "filter": [
+        {"term": {
+          "price": 30
+        }}
+      ]
+    }
+  }
+}
+
+GET /lib2/books/_search?explain=true
+{
+  "query":{
+    "bool": {
+      "filter": [
+        {"terms": {
+          "price": [30,50]
+        }}
+      ]
+    }
+  }
+}
+
+GET /lib2/_mapping
+
+GET /lib2/books/_search?explain=true
+
+#bool
+GET /lib2/books/_search
+{
+  "query":{
+    "bool": {
+      "should": [
+        {"term": {"price": {"value": "30"}}},
+        {"term": {"title": {"value": "cpp"}}}
+      ],
+      "must_not": [
+        {"term": {"price": {"value": "30"}}}
+      ]
+    }
+  }
+}
+
+GET /lib2/books/_search
+{
+  "query":{
+    "bool": {
+      "should": [
+        {"term": {"price": {"value": "30"}}},
+        {
+          "bool": {
+            "must": [
+              {"term": {"title": {"value": "cpp"}}},
+              {"term": {"price": {"value": "90"}}}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET /lib2/books/_search
+{
+  "query":{
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "price": {
+              "gte": 10,
+              "lte": 50
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET /lib2/books/_search
+{
+  "query":{
+    "bool": {
+      "filter": [
+        {
+          "exists": {
+            "field": "price"
+          }
+        }
+      ]
+    }
+  }
+}
+
+#聚合查询
+GET /lib2/books/_search
+{
+  "from": 0,
+  "size": 0,
+  "aggs":{
+    "price_sum":{
+      "sum": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+GET /lib2/books/_search
+{
+  "from": 0,
+  "size": 0,
+  "aggs":{
+    "price_avg":{
+      "avg": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+GET /lib2/books/_search
+{
+  "from": 0,
+  "size": 0,
+  "aggs":{
+    "price_max":{
+      "max": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+GET /lib2/books/_search
+{
+  "from": 0,
+  "size": 0,
+  "aggs":{
+    "price_min":{
+      "min": {
+        "field": "price"
+      }
+    }
+  }
+}
+#cardinality去重
+GET /lib2/books/_search
+{
+  "from": 0,
+  "size": 0,
+  "aggs":{
+    "price_cardinality":{
+      "cardinality": {
+        "field": "price"
+      }
+    }
+  }
+}
+#分组
+GET /lib2/books/_search
+{
+  "from": 0,
+  "size": 0,
+  "aggs":{
+    "price_group":{
+      "terms": {
+        "field": "price"
+      }
+    }
+  }
+}
+
+GET /lib3/user/_search
+#对唱歌有兴趣的按年龄分组
+GET /lib3/user/_search
+{
+  "size": 0,
+  "query":{
+    "bool": {
+      "must": [
+        {"term": {
+          "interests": {
+            "value": "changge"
+          }
+        }}
+      ]
+    }
+  },
+  "aggs":{
+    "age_group":{
+      "terms": {
+        "field": "age",
+        //分组进行排序
+        "order": {
+          "age_avg": "asc"//注意所用的字段
+        }
+      },
+      "aggs": {
+        "age_avg": {
+          "avg": {
+            "field": "age"
+          }
+        }
+      }
+    }
+  }
+}
+
+#复合查询
+GET /lib3/user/_search
+{
+  "query":{
+    "constant_score": {
+      "filter": {
+        "terms": {
+          "interests": ["changge","lvyou"]
+        }
+      }
+    }
+  }
+}
+
+GET /lib3/user/_search?scroll=1m
+{
+  "query":{
+    "match_all": {}
+  },
+  "sort":["_doc"],
+  "size": 2
+}
+
+GET /lib3/user/_search
+
+GET /_search/scroll
+{
+  "scroll": "1m",
+  "scroll_id": "FGluY2x1ZGVfY29udGV4dF91dWlkDXF1ZXJ5QW5kRmV0Y2gBFEFVM3NrSFVCMHIwUktkYXRsVDVaAAAAAAAAaDUWdVBnSFNfVXlScHFFUkRUR25NRi1OZw=="
+}
+
+
+PUT /my_index/
+{
+  "mappings": {
+    "my_type":{
+      "dynamic_templates": [
+        {
+          "en":{
+            "match": "*_en",
+            "match_mapping_type": "string",
+            "mapping":{
+              "type": "text",
+              "analyzer": "english"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+#rebuild index
+PUT /my_index/type/4
+{
+  "content": "1989-12-12"
+}
+GET /my_index/type/4
+
+PUT /my_index/type/5
+{
+  "content": "I like java"
+}
+
+GET /my_index/_mapping
+#增加字符串类型，必须修改字段类型
+#字段的类型一旦确定就不能修改了
+PUT /my_index/_mapping/type
+{
+   "mappings" : {
+      "properties" : {
+        "content" : {
+          "type" : "text"
+        }
+      }
+    }
+}
+
+#修改字符串类型必须修改字符串类型
+#把旧索引的数据导入新的索引
+
+#如果新建一个索引，在java应用程序中使用的都是旧索引，需要重启程序
+
+PUT /my_index/_alias/index2
+GET /index2/_mapping
+#创建新的索引
+PUT /newindex/
+{
+  "mappings": {
+      "properties": {
+        "content":{
+        "type": "text"
+        }
+      }
+  }
+}
+GET /newindex/_search
+
+#将旧的索引中的数据导入新的索引
+#采用批量导入，bulk和scroll
+
+GET my_index/type/_search?scroll=1m
+{
+  "query":{
+    "match_all": {}
+  },
+  "sort":["_doc"],
+  "size": 2
+}
+
+#使用bulk批量添加
+POST /_bulk
+{"index": {"_index": "newindex","_type": "_doc","_id": 1}}
+{"content": "1988-12-12"}
+GET /newindex/_search
+
+#将新的索引和index索引关联
+POST /_aliases
+{
+  "actions": [
+    {"remove": {"index": "my_index","alias": "index2"}},
+    { "add": {"index": "newindex","alias": "index2"}}
+  ]
+}
+
+GET /index2/_mapping
+GET /my_index/_mapping
+#新的程序使用index2，是text类型了。老的程序还是用my_index类型的别名index2，不影响。查询
+#不受影响
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
