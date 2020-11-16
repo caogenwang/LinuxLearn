@@ -58,6 +58,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "system_error": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "__functional_03": "cpp",
+        "thread": "cpp"
     }
 }

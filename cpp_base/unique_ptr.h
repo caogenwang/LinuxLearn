@@ -124,6 +124,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	operator()(_Up*) const = delete;
     };
 
+
+
+
+
+
+
+
+
+
   /// 20.7.1.2 unique_ptr for single objects.
   template <typename _Tp, typename _Dp = default_delete<_Tp> >
     class unique_ptr
@@ -131,28 +140,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // use SFINAE to determine whether _Del::pointer exists
       class _Pointer
       {
-	template<typename _Up>
-	  static typename _Up::pointer __test(typename _Up::pointer*);
+          template<typename _Up>
+          static typename _Up::pointer __test(typename _Up::pointer*);
+          template<typename _Up>
+          static _Tp* __test(...);
+          typedef typename remove_reference<_Dp>::type _Del;
 
-	template<typename _Up>
-	  static _Tp* __test(...);
-
-	typedef typename remove_reference<_Dp>::type _Del;
-
-      public:
-	typedef decltype(__test<_Del>(0)) type;
+        public:
+            typedef decltype(__test<_Del>(0)) type;
       };
 
       typedef std::tuple<typename _Pointer::type, _Dp>  __tuple_type;
-      __tuple_type                                      _M_t;
+      __tuple_type                                      _M_t;//元组
 
     public:
-      typedef typename _Pointer::type   pointer;
+      typedef typename _Pointer::type   pointer;//原数据类型的指针
       typedef _Tp                       element_type;
       typedef _Dp                       deleter_type;
 
-      // Constructors.
-
+      // 默认的构造函数，不拥有任何东西
       /// Default constructor, creates a unique_ptr that owns nothing.
       constexpr unique_ptr() noexcept
       : _M_t()
@@ -161,12 +167,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       /** Takes ownership of a pointer.
        *
-       * @param __p  A pointer to an object of @c element_type
-       *
+       * @param __p  指向element_type对象的一个指针
+       * @param __d  删除器的引用. 
        * The deleter will be value-initialized.
        */
       explicit
-      unique_ptr(pointer __p) noexcept
+      unique_ptr(pointer __p) noexcept//带一个裸指针的构造函数
       : _M_t(__p, deleter_type())
       { static_assert(!is_pointer<deleter_type>::value,
 		     "constructed with null function pointer deleter"); }
@@ -185,9 +191,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       /** Takes ownership of a pointer.
        *
-       * @param __p  A pointer to an object of @c element_type
-       * @param __d  An rvalue reference to a deleter.
-       *
        * The deleter will be initialized with @p std::move(__d)
        */
       unique_ptr(pointer __p,
@@ -197,13 +200,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      "rvalue deleter bound to reference"); }
 
       /// Creates a unique_ptr that owns nothing.
-      constexpr unique_ptr(nullptr_t) noexcept : unique_ptr() { }
+      constexpr unique_ptr(nullptr_t) noexcept : unique_ptr() { }//委托构造函数，调用其他的构造函数
 
-      // Move constructors.
 
-      /// Move constructor.
+      /// 移动构造函数.右值引用
+      /*
+        此处注意两点：1.__u.release()返回裸指针，同时__u失去对裸指针的控制权。2.完美转发forward，根据推导的类型是左值引用还是右值引用，调用不同的函数 
+      */
       unique_ptr(unique_ptr&& __u) noexcept
       : _M_t(__u.release(), std::forward<deleter_type>(__u.get_deleter())) { }
+
 
       /** @brief Converting constructor from another type
        *
@@ -231,26 +237,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// Destructor, invokes the deleter if the stored pointer is not null.
       ~unique_ptr() noexcept
       {
-	auto& __ptr = std::get<0>(_M_t);
-	if (__ptr != nullptr)
-	  get_deleter()(__ptr);
-	__ptr = pointer();
+          auto& __ptr = std::get<0>(_M_t);
+          if (__ptr != nullptr)
+            get_deleter()(__ptr);
+          __ptr = pointer();//析构指针
       }
 
       // Assignment.
 
-      /** @brief Move assignment operator.
-       *
+      /** 移动赋值
        * @param __u  The object to transfer ownership from.
-       *
        * Invokes the deleter first if this object owns a pointer.
        */
-      unique_ptr&
-      operator=(unique_ptr&& __u) noexcept
+      unique_ptr&operator=(unique_ptr&& __u) noexcept
       {
-	reset(__u.release());
-	get_deleter() = std::forward<deleter_type>(__u.get_deleter());
-	return *this;
+          reset(__u.release());
+          get_deleter() = std::forward<deleter_type>(__u.get_deleter());
+          return *this;
       }
 
       /** @brief Assignment from another type.
@@ -261,122 +264,127 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        * Invokes the deleter first if this object owns a pointer.
        */
       template<typename _Up, typename _Ep>
-	typename enable_if< __and_<
-	  is_convertible<typename unique_ptr<_Up, _Ep>::pointer, pointer>,
-	  __not_<is_array<_Up>>
-	  >::value,
-	  unique_ptr&>::type
-	operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
-	{
-	  reset(__u.release());
-	  get_deleter() = std::forward<_Ep>(__u.get_deleter());
-	  return *this;
-	}
+      typename enable_if< __and_<
+        is_convertible<typename unique_ptr<_Up, _Ep>::pointer, pointer>,
+        __not_<is_array<_Up>>
+        >::value,
+        unique_ptr&>::type
+    operator=(unique_ptr<_Up, _Ep>&& __u) noexcept
+    {
+      reset(__u.release());
+      get_deleter() = std::forward<_Ep>(__u.get_deleter());
+      return *this;
+    }
 
-      /// Reset the %unique_ptr to empty, invoking the deleter if necessary.
-      unique_ptr&
-      operator=(nullptr_t) noexcept
+      /// 将unique_ptr置空
+      unique_ptr& operator=(nullptr_t) noexcept
       {
-        reset();
+        reset();//注意原始指针会被delete掉
         return *this;
       }
 
       // Observers.
 
-      /// Dereference the stored pointer.
+      /// 解引用.
       typename add_lvalue_reference<element_type>::type
       operator*() const
       {
-	_GLIBCXX_DEBUG_ASSERT(get() != pointer());
-	return *get();
+          _GLIBCXX_DEBUG_ASSERT(get() != pointer());
+          return *get();//返回裸指针的值
       }
 
       /// Return the stored pointer.
-      pointer
-      operator->() const noexcept
+      pointer operator->() const noexcept
       {
-	_GLIBCXX_DEBUG_ASSERT(get() != pointer());
-	return get();
+          _GLIBCXX_DEBUG_ASSERT(get() != pointer());
+          return get();
       }
 
-      /// Return the stored pointer.
-      pointer
-      get() const noexcept
-      { return std::get<0>(_M_t); }
+      /// 返回裸指针.
+      pointer get() const noexcept
+      { 
+        return std::get<0>(_M_t); 
+      }
 
-      /// Return a reference to the stored deleter.
-      deleter_type&
-      get_deleter() noexcept
-      { return std::get<1>(_M_t); }
+      /// 返回删除器的引用
+      deleter_type& get_deleter() noexcept
+      { 
+        return std::get<1>(_M_t); 
+      }
 
-      /// Return a reference to the stored deleter.
-      const deleter_type&
-      get_deleter() const noexcept
-      { return std::get<1>(_M_t); }
+      const deleter_type& get_deleter() const noexcept
+      { 
+        return std::get<1>(_M_t); 
+      }
 
-      /// Return @c true if the stored pointer is not null.
+      /// 存贮的指针不为空的时候，返回true.
       explicit operator bool() const noexcept
-      { return get() == pointer() ? false : true; }
-
-      // Modifiers.
+      { 
+        return get() == pointer() ? false : true; 
+      }
 
       /// Release ownership of any stored pointer.
-      pointer
-      release() noexcept
+      pointer release() noexcept //注意，__p不会被析构，如果没有delete__p，会造成内存泄漏
       {
-	pointer __p = get();
-	std::get<0>(_M_t) = pointer();
-	return __p;
+          pointer __p = get();
+          std::get<0>(_M_t) = pointer();
+          return __p;
       }
 
-      /** @brief Replace the stored pointer.
-       *
-       * @param __p  The new pointer to store.
-       *
-       * The deleter will be invoked if a pointer is already owned.
-       */
-      void
-      reset(pointer __p = pointer()) noexcept
+      void reset(pointer __p = pointer()) noexcept//默认传参是一个空指针
       {
-        using std::swap;
-        swap(std::get<0>(_M_t), __p);
-        if (__p != pointer())
-          get_deleter()(__p);
+          using std::swap;
+          swap(std::get<0>(_M_t), __p);//注意这个地方，pointer()是一个空的时候，
+          if (__p != pointer())        //智能指针失去控制权的时候，原始指针会被析构
+            get_deleter()(__p);//!!!!!!
       }
 
-      /// Exchange the pointer and deleter with another object.
-      void
-      swap(unique_ptr& __u) noexcept
+      /// 智能指针的交换.
+      void swap(unique_ptr& __u) noexcept
       {
-	using std::swap;
-	swap(_M_t, __u._M_t);
+          using std::swap;
+          swap(_M_t, __u._M_t);
       }
 
-      // Disable copy from lvalue.
+      // 禁止拷贝构造和赋值构造.
       unique_ptr(const unique_ptr&) = delete;
       unique_ptr& operator=(const unique_ptr&) = delete;
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*智能指针指向一个数组*/
   /// 20.7.1.3 unique_ptr for array objects with a runtime length
   // [unique.ptr.runtime]
   // _GLIBCXX_RESOLVE_LIB_DEFECTS
   // DR 740 - omit specialization for array objects with a compile time length
   template<typename _Tp, typename _Dp>
-    class unique_ptr<_Tp[], _Dp>
+    class unique_ptr<_Tp[], _Dp>//_Tp[]数组类型
     {
       // use SFINAE to determine whether _Del::pointer exists
       class _Pointer
       {
-	template<typename _Up>
-	  static typename _Up::pointer __test(typename _Up::pointer*);
+        template<typename _Up>
+          static typename _Up::pointer __test(typename _Up::pointer*);
 
-	template<typename _Up>
-	  static _Tp* __test(...);
+        template<typename _Up>
+          static _Tp* __test(...);
 
-	typedef typename remove_reference<_Dp>::type _Del;
+        typedef typename remove_reference<_Dp>::type _Del;
 
-      public:
-	typedef decltype(__test<_Del>(0)) type;
+            public:
+        typedef decltype(__test<_Del>(0)) type;
       };
 
       typedef std::tuple<typename _Pointer::type, _Dp>  __tuple_type;
@@ -404,9 +412,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  >;
 
     public:
-      typedef typename _Pointer::type	pointer;
-      typedef _Tp		 	element_type;
-      typedef _Dp                       deleter_type;
+      typedef typename _Pointer::type	    pointer;
+      typedef _Tp		 	                    element_type;
+      typedef _Dp                         deleter_type;
 
       // Constructors.
 
@@ -431,25 +439,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Disable construction from convertible pointer types.
       template<typename _Up, typename = _Require<is_pointer<pointer>,
 	       is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
-	explicit
-	unique_ptr(_Up* __p) = delete;
+	    explicit unique_ptr(_Up* __p) = delete;
 
-      /** Takes ownership of a pointer.
-       *
-       * @param __p  A pointer to an array of @c element_type
-       * @param __d  A reference to a deleter.
-       *
-       * The deleter will be initialized with @p __d
-       */
+    
       unique_ptr(pointer __p,
 	  typename conditional<is_reference<deleter_type>::value,
 	      deleter_type, const deleter_type&>::type __d) noexcept
       : _M_t(__p, __d) { }
 
       /** Takes ownership of a pointer.
-       *
-       * @param __p  A pointer to an array of @c element_type
-       * @param __d  A reference to a deleter.
        *
        * The deleter will be initialized with @p std::move(__d)
        */
@@ -479,10 +477,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// Destructor, invokes the deleter if the stored pointer is not null.
       ~unique_ptr()
       {
-	auto& __ptr = std::get<0>(_M_t);
-	if (__ptr != nullptr)
-	  get_deleter()(__ptr);
-	__ptr = pointer();
+          auto& __ptr = std::get<0>(_M_t);
+          if (__ptr != nullptr)
+            get_deleter()(__ptr);
+          __ptr = pointer();
       }
 
       // Assignment.
@@ -496,9 +494,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unique_ptr&
       operator=(unique_ptr&& __u) noexcept
       {
-	reset(__u.release());
-	get_deleter() = std::forward<deleter_type>(__u.get_deleter());
-	return *this;
+        reset(__u.release());
+        get_deleter() = std::forward<deleter_type>(__u.get_deleter());
+        return *this;
       }
 
       /** @brief Assignment from another type.
@@ -519,32 +517,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       /// Reset the %unique_ptr to empty, invoking the deleter if necessary.
-      unique_ptr&
-      operator=(nullptr_t) noexcept
+      unique_ptr& operator=(nullptr_t) noexcept
       {
-	reset();
-	return *this;
+          reset();
+          return *this;
       }
 
       // Observers.
 
       /// Access an element of owned array.
       typename std::add_lvalue_reference<element_type>::type
-      operator[](size_t __i) const
+      operator[](size_t __i) const//重载了中括号，可以像数组一样访问
       {
-	_GLIBCXX_DEBUG_ASSERT(get() != pointer());
-	return get()[__i];
+          _GLIBCXX_DEBUG_ASSERT(get() != pointer());
+          return get()[__i];
       }
 
       /// Return the stored pointer.
-      pointer
-      get() const noexcept
-      { return std::get<0>(_M_t); }
+      pointer get() const noexcept
+      { 
+        return std::get<0>(_M_t); 
+      }
 
       /// Return a reference to the stored deleter.
-      deleter_type&
-      get_deleter() noexcept
-      { return std::get<1>(_M_t); }
+      deleter_type& get_deleter() noexcept
+      { 
+        return std::get<1>(_M_t); 
+      }
 
       /// Return a reference to the stored deleter.
       const deleter_type&
@@ -558,12 +557,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Modifiers.
 
       /// Release ownership of any stored pointer.
-      pointer
-      release() noexcept
+      pointer release() noexcept
       {
-	pointer __p = get();
-	std::get<0>(_M_t) = pointer();
-	return __p;
+          pointer __p = get();
+          std::get<0>(_M_t) = pointer();
+          return __p;
       }
 
       /** @brief Replace the stored pointer.
@@ -572,26 +570,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *
        * The deleter will be invoked if a pointer is already owned.
        */
-      void
-      reset(pointer __p = pointer()) noexcept
+      void reset(pointer __p = pointer()) noexcept
       {
-	using std::swap;
-	swap(std::get<0>(_M_t), __p);
-	if (__p != nullptr)
-	  get_deleter()(__p);
+            using std::swap;
+            swap(std::get<0>(_M_t), __p);
+            if (__p != nullptr)
+              get_deleter()(__p);
       }
 
       // Disable resetting from convertible pointer types.
-      template<typename _Up, typename = _Require<is_pointer<pointer>,
-	       is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
-	void reset(_Up*) = delete;
+      template<typename _Up, typename = _Require<is_pointer<pointer>,is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
+	    void reset(_Up*) = delete;
 
       /// Exchange the pointer and deleter with another object.
-      void
-      swap(unique_ptr& __u) noexcept
+      void swap(unique_ptr& __u) noexcept
       {
-	using std::swap;
-	swap(_M_t, __u._M_t);
+        using std::swap;
+        swap(_M_t, __u._M_t);
       }
 
       // Disable copy from lvalue.
@@ -599,17 +594,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unique_ptr& operator=(const unique_ptr&) = delete;
 
       // Disable construction from convertible pointer types.
-      template<typename _Up, typename = _Require<is_pointer<pointer>,
-	       is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
-	unique_ptr(_Up*, typename
+      template<typename _Up, typename = _Require<is_pointer<pointer>,is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
+	    unique_ptr(_Up*, typename
 		   conditional<is_reference<deleter_type>::value,
 		   deleter_type, const deleter_type&>::type) = delete;
 
       // Disable construction from convertible pointer types.
-      template<typename _Up, typename = _Require<is_pointer<pointer>,
-	       is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
-	unique_ptr(_Up*, typename
-		   remove_reference<deleter_type>::type&&) = delete;
+      template<typename _Up, typename = _Require<is_pointer<pointer>,is_convertible<_Up*, pointer>, __is_derived_Tp<_Up>>>
+	    unique_ptr(_Up*, typename
+		  remove_reference<deleter_type>::type&&) = delete;
     };
 
   template<typename _Tp, typename _Dp>

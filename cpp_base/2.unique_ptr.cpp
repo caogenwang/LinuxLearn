@@ -38,24 +38,27 @@ class Student2{
 int main()
 {
     // 1.unique_ptr<Student> pStu = std::unique_ptr<Student>(new Student(18,4,0));//这个赋值是错的，因为unique_ptr不允许拷贝构造和赋值构造，可以转移构造和转移赋值
-    unique_ptr<Student> pStu(new Student(18,4,0));
-    cout<<"---------pStu------------"<<endl;
+    // unique_ptr<Student> pStu(new Student(18,4,0));
+    // cout<<"---------pStu------------"<<endl;
     // pStu.reset();指针不再指向之前的指针
     // Student* pStu2 = pStu.release();//pStu是去控制权，但是不析构对象.这个时候需要主动删除对象，因为是在堆地址// delete pStu2;
     // cout<<pStu->age<<endl;//0x7f9184402c10
-    pStu.reset();//指针不再指向之前的指针
+    // pStu.reset();//指针不再指向之前的指针,这个地方裸指针会被析构掉
 
     // unique_ptr<Student> pStu2(std::move(pStu));//当需要转移控制权时，需要使用move语义
     // cout<<pStu2->age<<endl;
     // cout<<pStu->age<<endl;//访问会出错
 
+    //转移构造的流程:原智能指针调用release，失去控制权后，返回的裸指针去初始化当前智能指针
 
-    // {
-    //     Student *s1 = new Student(18,4,0);
-    //     unique_ptr<Student2> pst2 = unique_ptr<Student2>(new Student2(19,4,0,s1));
-    //     cout<<pst2->age<<endl;
-    //     cout<<pst2->uStu->age<<endl;
-    // }
+
+    {
+        //类对象中含有智能指针
+        Student *s1 = new Student(18,4,0);
+        unique_ptr<Student2> pst2 = unique_ptr<Student2>(new Student2(19,4,0,s1));
+        cout<<pst2->age<<endl;
+        cout<<pst2->uStu->age<<endl;
+    }
     return 0;
 }
 
