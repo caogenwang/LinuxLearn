@@ -3,39 +3,42 @@
 #include <memory>
 using namespace std;
 
-// class Student{
-//     public:
-//         Student(int _age,int _grade,int _male):age(_age),grade(_grade),male(_male)
-//         {}
-//         ~Student(){
-//             cout<<"Student delete"<<endl;
-//         }
-//         void setAge();
-//         void setGrade();
-//         void setMale();
+class Student{
+    public:
+        Student(int _age,int _grade,int _male):age(_age),grade(_grade),male(_male)
+        {}
+        ~Student(){
+            cout<<"Student delete"<<endl;
+        }
+        void setAge();
+        void setGrade();
+        void setMale();
 
-//         int age;
-//         int grade;
-//         int male;
-// };
+        int age;
+        int grade;
+        int male;
+};
 
-// int main()
-// {
-//     shared_ptr<Student> ptr1 = shared_ptr<Student>(new Student(18,4,0));
-//     cout<<ptr1->age<<endl;
+int main()
+{
+    // shared_ptr<Student> ptr1 = shared_ptr<Student>(new Student(18,4,0));//与unique_ptr不同的地方
+    // cout<<ptr1->age<<endl;
 
-//     shared_ptr<Student> ptr2 = ptr1;
-//     shared_ptr<Student> ptr4 = ptr1;
-//     cout<<ptr2->age<<endl;
-//     cout<<ptr1.use_count()<<endl;// 3
+    // shared_ptr<Student> ptr2 = ptr1;
+    // shared_ptr<Student> ptr4 = ptr1;
+    // cout<<ptr2->age<<endl;
+    // cout<<ptr1.use_count()<<endl;// 3
 
-//     Student*s1 = new Student(19,4,0);
-//     shared_ptr<Student> ptr3(s1);
-//     cout<<ptr3->age<<endl;
+    Student*s1 = new Student(19,4,0);
+    shared_ptr<Student> ptr3(s1);
+    cout<<ptr3.use_count() <<endl;
 
-//     cout<<ptr3.get()<<endl;//0x7fbcdfd027b0
-//     return 0;
-// }
+    shared_ptr<Student> ptr5 = ptr3;
+    cout<<ptr5.use_count() <<endl;
+    cout<<ptr3.use_count() <<endl;
+    // cout<<ptr3.get()<<endl;//0x7fbcdfd027b0
+    return 0;
+}
 
 /*
     shared_ptr基本用法
@@ -65,7 +68,7 @@ using namespace std;
 //   std::shared_ptr<Frame> f(new Frame());              // 裸指针直接初始化
 //   std::shared_ptr<Frame> f1 = new Frame();            // Error，explicit禁止隐式初始化
 //   std::shared_ptr<Frame> f2(f);                       // 拷贝构造函数
-//   std::shared_ptr<Frame> f3 = f;                      // 拷贝构造函数
+//   std::shared_ptr<Frame> f3 = f;                      // 赋值构造函数
 //   f2 = f;                                             // copy赋值运算符重载
 //   std::cout << f3.use_count() << " " << f3.unique() << std::endl;
 
@@ -143,51 +146,51 @@ using namespace std;
 //     }
 // };在from this中这种调用方法会出错
 
-class Frame : public std::enable_shared_from_this<Frame> {
-  public:
-    std::shared_ptr<Frame> GetThis() {
-      return shared_from_this();
-    }
-};
+// class Frame : public std::enable_shared_from_this<Frame> {
+//   public:
+//     std::shared_ptr<Frame> GetThis() {
+//       return shared_from_this();
+//     }
+// };
 
-int main()
-{
-  std::shared_ptr<Frame> f1(new Frame());
-  std::shared_ptr<Frame> f2 = f1->GetThis();
-  std::cout << f1.use_count() << " " << f2.use_count() << std::endl;
+// int main()
+// {
+//   std::shared_ptr<Frame> f1(new Frame());
+//   std::shared_ptr<Frame> f2 = f1->GetThis();
+//   std::cout << f1.use_count() << " " << f2.use_count() << std::endl;
 
-  std::shared_ptr<Frame> f3(new Frame());
-  std::shared_ptr<Frame> f4 = f3;
-  std::cout << f3.use_count() << " " << f4.use_count() << std::endl;
+//   std::shared_ptr<Frame> f3(new Frame());
+//   std::shared_ptr<Frame> f4 = f3;
+//   std::cout << f3.use_count() << " " << f4.use_count() << std::endl;
   
-  return 0;
-}
+//   return 0;
+// }
 
-template<typename _Tp>
-class enable_shared_from_this
-{
-  protected:
-    constexpr enable_shared_from_this() noexcept { }
-    enable_shared_from_this(const enable_shared_from_this&) noexcept { }
-    enable_shared_from_this& operator=(const enable_shared_from_this&) noexcept { return *this; }
-    ~enable_shared_from_this() { }
+// template<typename _Tp>
+// class enable_shared_from_this
+// {
+//   protected:
+//     constexpr enable_shared_from_this() noexcept { }
+//     enable_shared_from_this(const enable_shared_from_this&) noexcept { }
+//     enable_shared_from_this& operator=(const enable_shared_from_this&) noexcept { return *this; }
+//     ~enable_shared_from_this() { }
 
-  public:
-    shared_ptr<_Tp> shared_from_this()
-    { return shared_ptr<_Tp>(this->_M_weak_this); }
+//   public:
+//     shared_ptr<_Tp> shared_from_this()
+//     { return shared_ptr<_Tp>(this->_M_weak_this); }
 
-    shared_ptr<const _Tp> shared_from_this() const
-    { return shared_ptr<const _Tp>(this->_M_weak_this); }
+//     shared_ptr<const _Tp> shared_from_this() const
+//     { return shared_ptr<const _Tp>(this->_M_weak_this); }
 
-  private:
-    template<typename _Tp1>
-    void _M_weak_assign(_Tp1* __p, const __shared_count<>& __n) const noexcept
-    { _M_weak_this._M_assign(__p, __n); }
+//   private:
+//     template<typename _Tp1>
+//     void _M_weak_assign(_Tp1* __p, const __shared_count<>& __n) const noexcept
+//     { _M_weak_this._M_assign(__p, __n); }
 
-    template<typename _Tp1, typename _Tp2>
-    friend void __enable_shared_from_this_helper(const __shared_count<>&,
-            const enable_shared_from_this<_Tp1>*,
-            const _Tp2*) noexcept;
+//     template<typename _Tp1, typename _Tp2>
+//     friend void __enable_shared_from_this_helper(const __shared_count<>&,
+//             const enable_shared_from_this<_Tp1>*,
+//             const _Tp2*) noexcept;
 
-    mutable weak_ptr<_Tp>  _M_weak_this;
-};
+//     mutable weak_ptr<_Tp>  _M_weak_this;
+// };

@@ -100,7 +100,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr shared_ptr() noexcept
       : __shared_ptr<_Tp>() { }
 
-      shared_ptr(const shared_ptr&) noexcept = default;
+      shared_ptr(const shared_ptr&) noexcept = default;//使用的默认的拷贝构造函数，就是浅拷贝？！！
 
       /**
        *  @brief  Construct a %shared_ptr that owns the pointer @a __p.
@@ -109,8 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  @throw  std::bad_alloc, in which case @c delete @a __p is called.
        */
       template<typename _Tp1>
-	explicit shared_ptr(_Tp1* __p)
-        : __shared_ptr<_Tp>(__p) { }
+	    explicit shared_ptr(_Tp1* __p): __shared_ptr<_Tp>(__p) { }//带参数的构造函数
 
       /**
        *  @brief  Construct a %shared_ptr that owns the pointer @a __p
@@ -126,8 +125,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  __shared_ptr will release __p by calling __d(__p)
        */
       template<typename _Tp1, typename _Deleter>
-	shared_ptr(_Tp1* __p, _Deleter __d)
-        : __shared_ptr<_Tp>(__p, __d) { }
+	    shared_ptr(_Tp1* __p, _Deleter __d): __shared_ptr<_Tp>(__p, __d) { }//带删除器
 
       /**
        *  @brief  Construct a %shared_ptr that owns a null pointer
@@ -143,8 +141,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  The last owner will call __d(__p)
        */
       template<typename _Deleter>
-	shared_ptr(nullptr_t __p, _Deleter __d)
-        : __shared_ptr<_Tp>(__p, __d) { }
+	    shared_ptr(nullptr_t __p, _Deleter __d): __shared_ptr<_Tp>(__p, __d) { }
 
       /**
        *  @brief  Construct a %shared_ptr that owns the pointer @a __p
@@ -162,8 +159,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  __shared_ptr will release __p by calling __d(__p)
        */
       template<typename _Tp1, typename _Deleter, typename _Alloc>
-	shared_ptr(_Tp1* __p, _Deleter __d, _Alloc __a)
-	: __shared_ptr<_Tp>(__p, __d, std::move(__a)) { }
+	    shared_ptr(_Tp1* __p, _Deleter __d, _Alloc __a): __shared_ptr<_Tp>(__p, __d, std::move(__a)) { }//带有分配器
 
       /**
        *  @brief  Construct a %shared_ptr that owns a null pointer
@@ -288,8 +284,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       shared_ptr&
       operator=(shared_ptr&& __r) noexcept
       {
-	this->__shared_ptr<_Tp>::operator=(std::move(__r));
-	return *this;
+          this->__shared_ptr<_Tp>::operator=(std::move(__r));
+          return *this;
       }
 
       template<class _Tp1>
@@ -466,40 +462,52 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     class weak_ptr : public __weak_ptr<_Tp>
     {
-    public:
-      constexpr weak_ptr() noexcept
-      : __weak_ptr<_Tp>() { }
+        public:
+          constexpr weak_ptr() noexcept
+          : __weak_ptr<_Tp>() { }
 
-      template<typename _Tp1, typename = typename
-	       std::enable_if<std::is_convertible<_Tp1*, _Tp*>::value>::type>
-	weak_ptr(const weak_ptr<_Tp1>& __r) noexcept
-	: __weak_ptr<_Tp>(__r) { }
+          template<typename _Tp1, typename = typename
+            std::enable_if<std::is_convertible<_Tp1*, _Tp*>::value>::type>
+      weak_ptr(const weak_ptr<_Tp1>& __r) noexcept
+      : __weak_ptr<_Tp>(__r) { }
 
-      template<typename _Tp1, typename = typename
-	       std::enable_if<std::is_convertible<_Tp1*, _Tp*>::value>::type>
-	weak_ptr(const shared_ptr<_Tp1>& __r) noexcept
-	: __weak_ptr<_Tp>(__r) { }
+          template<typename _Tp1, typename = typename
+            std::enable_if<std::is_convertible<_Tp1*, _Tp*>::value>::type>
+      weak_ptr(const shared_ptr<_Tp1>& __r) noexcept
+      : __weak_ptr<_Tp>(__r) { }
+
+      /*两种初始化，weak和shared*/
+      template<typename _Tp1>
+      weak_ptr&operator=(const weak_ptr<_Tp1>& __r) noexcept
+      {
+        this->__weak_ptr<_Tp>::operator=(__r);
+        return *this;
+      }
 
       template<typename _Tp1>
-	weak_ptr&
-	operator=(const weak_ptr<_Tp1>& __r) noexcept
-	{
-	  this->__weak_ptr<_Tp>::operator=(__r);
-	  return *this;
-	}
+      weak_ptr&operator=(const shared_ptr<_Tp1>& __r) noexcept
+      {
+        this->__weak_ptr<_Tp>::operator=(__r);
+        return *this;
+      }
 
-      template<typename _Tp1>
-	weak_ptr&
-	operator=(const shared_ptr<_Tp1>& __r) noexcept
-	{
-	  this->__weak_ptr<_Tp>::operator=(__r);
-	  return *this;
-	}
-
-      shared_ptr<_Tp>
-      lock() const noexcept
-      { return shared_ptr<_Tp>(*this, std::nothrow); }
+          shared_ptr<_Tp>lock() const noexcept
+          { return shared_ptr<_Tp>(*this, std::nothrow); }
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // 20.7.2.3.6 weak_ptr specialized algorithms.
   template<typename _Tp>

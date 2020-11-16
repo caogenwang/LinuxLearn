@@ -605,75 +605,59 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		  remove_reference<deleter_type>::type&&) = delete;
     };
 
-  template<typename _Tp, typename _Dp>
-    inline void
-    swap(unique_ptr<_Tp, _Dp>& __x,
-	 unique_ptr<_Tp, _Dp>& __y) noexcept
-    { __x.swap(__y); }
 
-  template<typename _Tp, typename _Dp,
-	   typename _Up, typename _Ep>
-    inline bool
-    operator==(const unique_ptr<_Tp, _Dp>& __x,
-	       const unique_ptr<_Up, _Ep>& __y)
+
+  /*模板函数，处理unique_ptr智能指针相关*/
+
+    template<typename _Tp, typename _Dp>
+    inline void swap(unique_ptr<_Tp, _Dp>& __x,unique_ptr<_Tp, _Dp>& __y) noexcept
+    { 
+      __x.swap(__y); //最终调用的还是智能指针成员的函数，最终调用的是tuple的交换函数
+    }
+
+    template<typename _Tp, typename _Dp,typename _Up, typename _Ep>
+    inline bool operator==(const unique_ptr<_Tp, _Dp>& __x,const unique_ptr<_Up, _Ep>& __y)
     { return __x.get() == __y.get(); }
 
-  template<typename _Tp, typename _Dp>
-    inline bool
-    operator==(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+    template<typename _Tp, typename _Dp>
+    inline bool operator==(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
     { return !__x; }
 
-  template<typename _Tp, typename _Dp>
-    inline bool
-    operator==(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+    template<typename _Tp, typename _Dp>
+    inline bool operator==(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
     { return !__x; }
 
-  template<typename _Tp, typename _Dp,
-	   typename _Up, typename _Ep>
-    inline bool
-    operator!=(const unique_ptr<_Tp, _Dp>& __x,
-	       const unique_ptr<_Up, _Ep>& __y)
+    template<typename _Tp, typename _Dp,typename _Up, typename _Ep>
+    inline bool operator!=(const unique_ptr<_Tp, _Dp>& __x,const unique_ptr<_Up, _Ep>& __y)
     { return __x.get() != __y.get(); }
 
-  template<typename _Tp, typename _Dp>
-    inline bool
-    operator!=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+    template<typename _Tp, typename _Dp>
+    inline bool operator!=(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
     { return (bool)__x; }
 
-  template<typename _Tp, typename _Dp>
-    inline bool
-    operator!=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+    template<typename _Tp, typename _Dp>
+    inline bool operator!=(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
     { return (bool)__x; }
 
-  template<typename _Tp, typename _Dp,
-	   typename _Up, typename _Ep>
-    inline bool
-    operator<(const unique_ptr<_Tp, _Dp>& __x,
-	      const unique_ptr<_Up, _Ep>& __y)
+  template<typename _Tp, typename _Dp,typename _Up, typename _Ep>
+    inline bool operator<(const unique_ptr<_Tp, _Dp>& __x,const unique_ptr<_Up, _Ep>& __y)
     {
-      typedef typename
-	std::common_type<typename unique_ptr<_Tp, _Dp>::pointer,
-	                 typename unique_ptr<_Up, _Ep>::pointer>::type _CT;
+      typedef typename std::common_type<typename unique_ptr<_Tp, _Dp>::pointer,
+      typename unique_ptr<_Up, _Ep>::pointer>::type _CT;
       return std::less<_CT>()(__x.get(), __y.get());
     }
 
-  template<typename _Tp, typename _Dp>
-    inline bool
-    operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
-    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),
-								 nullptr); }
+    template<typename _Tp, typename _Dp>
+    inline bool operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(__x.get(),nullptr); }
 
-  template<typename _Tp, typename _Dp>
-    inline bool
-    operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
-    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,
-								 __x.get()); }
+    template<typename _Tp, typename _Dp>
+    inline bool operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+    { return std::less<typename unique_ptr<_Tp, _Dp>::pointer>()(nullptr,__x.get()); }
 
-  template<typename _Tp, typename _Dp,
-	   typename _Up, typename _Ep>
+    template<typename _Tp, typename _Dp,typename _Up, typename _Ep>
     inline bool
-    operator<=(const unique_ptr<_Tp, _Dp>& __x,
-	       const unique_ptr<_Up, _Ep>& __y)
+    operator<=(const unique_ptr<_Tp, _Dp>& __x,const unique_ptr<_Up, _Ep>& __y)
     { return !(__y < __x); }
 
   template<typename _Tp, typename _Dp>
@@ -751,6 +735,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct _MakeUniq<_Tp[_Bound]>
     { struct __invalid_type { }; };
 
+  ///模板函数
   /// std::make_unique for single objects
   template<typename _Tp, typename... _Args>
     inline typename _MakeUniq<_Tp>::__single_object
