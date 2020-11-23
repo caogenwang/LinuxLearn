@@ -30,12 +30,12 @@ int main()
     pthread_t tid[THREAD_NUM];
     for(i=0;i<THREAD_NUM;i++)
     {
-	int err = pthread_create(&tid[i],NULL,thr_add,NULL);
-	if(err)
-	{
-	    fprintf(stderr,"pthread_create():%s\n",strerror(err));
-	    exit(1);
-	}
+        int err = pthread_create(&tid[i],NULL,thr_add,NULL);
+        if(err)
+        {
+            fprintf(stderr,"pthread_create():%s\n",strerror(err));
+            exit(1);
+        }
     }
     int j=0;
     for(j=0;j<THREAD_NUM;j++)
