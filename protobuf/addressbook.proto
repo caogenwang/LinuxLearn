@@ -1,0 +1,60 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+
+// package类似于namespace，可以避免命名冲突
+package AddressBookInfo;
+
+// message类似于class
+message Person
+{
+    string name = 1;
+    int32 id = 2;
+    string email = 3;
+    
+    // 枚举类型
+    enum PhoneType
+    {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }
+    
+    message PhoneNumber
+    {
+        string number = 1;
+        // proto3中enum没有default选项，把第一个值作为default
+        PhoneType type = 2;
+    }
+    
+    // repeated表示message或者filed可以重复多次
+    repeated PhoneNumber phones = 4;
+}
+
+message Address
+{
+	string address = 1;
+}
+
+message AddressBook
+{
+    string owner = 1;
+    repeated Person person_infos = 2;
+
+    /* 
+    ** oneof类似于union类型，某一个时刻只能设置一个field，所有的field共享同一段内存。
+    ** 设置oneof字段将自动清除oneof的所有其他字段，即只能同时设置(set_)一个，不然就会core dump。
+    ** 可以在oneof内部添加和删除field，但是删除和添加oneof要小心。
+    ** oneof中数据成员的编号建议承上启下，尽量不要随意编号。
+    */
+    oneof PayType
+    {
+        string type_ali = 3;
+        string type_wx = 4;
+    }
+
+    /*
+    ** map是key-value类型，key可以是int或者string，value可以是自定义message。
+    ** Any用来实现泛型，可以表示任意类型。
+    */
+    map<string, google.protobuf.Any> owner_address = 5;
+}
