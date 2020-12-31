@@ -90,3 +90,9 @@
 3. HKImage工程添加到hminions工程实现。
 4. 学习redis的使用。
 5. 学习linux的io功能。
+
+周报：12.28-12.31
+1. HKSWFReflow工程添加自动编译c程序功能。
+2. HKPDF添加自动编译c程序功能。
+3. docxinshi工程测试调试实现c代码的自动编译和加载。
+4. 学习如何实现数据库同步。
