@@ -84,3 +84,9 @@
 4. 学习kibana查看数据流量。
 5. 学习linux的io功能。
 
+周报：12.21-12.25
+1. HKImage根据不同的图片类型返回不同类型图片。
+2. HKImage返回图片测试。
+3. HKImage工程添加到hminions工程实现。
+4. 学习redis的使用。
+5. 学习linux的io功能。
