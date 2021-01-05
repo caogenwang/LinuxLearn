@@ -62,6 +62,9 @@
         "__functional_03": "cpp",
         "thread": "cpp",
         "__hash": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "numeric": "cpp"
     }
 }

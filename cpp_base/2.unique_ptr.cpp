@@ -6,10 +6,10 @@ class Student{
     public:
         Student(int _age,int _grade,int _male):age(_age),grade(_grade),male(_male)
         {
-            cout<<"Student construct"<<endl;
+            cout<<"Student construct "<<this<<endl;
         }
         ~Student(){
-            cout<<"Student delete"<<endl;
+            cout<<"Student delete "<<this<<endl;
         }
         void setAge();
         void setGrade();
@@ -24,9 +24,11 @@ class Student2{
     public:
         Student2(int _age,int _grade,int _male,Student*_s):age(_age),
         grade(_grade),male(_male),uStu(_s)
-        {}
+        {
+            cout<<"Student2 construct "<<this<<endl;
+        }
         ~Student2(){
-            cout<<"Student2 delete"<<endl;
+            cout<<"Student2 delete "<<this<<endl;
         }
         int age;
         int grade;
@@ -37,10 +39,10 @@ class Student2{
 
 int main()
 {
-    // 1.unique_ptr<Student> pStu = std::unique_ptr<Student>(new Student(18,4,0));//这个赋值是错的，因为unique_ptr不允许拷贝构造和赋值构造，可以转移构造和转移赋值
-    // unique_ptr<Student> pStu(new Student(18,4,0));
+    // unique_ptr<Student> pStu = std::unique_ptr<Student>(new Student(18,4,0));//这种赋制方法是右值引用，调用移动赋值
+    // unique_ptr<Student> pStu(new Student(18,4,0));//这是可以的
     // cout<<"---------pStu------------"<<endl;
-    // pStu.reset();指针不再指向之前的指针
+    // pStu.reset();//指针不再指向之前的指针
     // Student* pStu2 = pStu.release();//pStu是去控制权，但是不析构对象.这个时候需要主动删除对象，因为是在堆地址// delete pStu2;
     // cout<<pStu->age<<endl;//0x7f9184402c10
     // pStu.reset();//指针不再指向之前的指针,这个地方裸指针会被析构掉
@@ -55,9 +57,9 @@ int main()
     {
         //类对象中含有智能指针
         Student *s1 = new Student(18,4,0);
-        unique_ptr<Student2> pst2 = unique_ptr<Student2>(new Student2(19,4,0,s1));
-        cout<<pst2->age<<endl;
-        cout<<pst2->uStu->age<<endl;
+        unique_ptr<Student2> pst2 = unique_ptr<Student2>(new Student2(19,4,0,s1));//s1在Student2中是智能指针，会被自动析构
+        // cout<<pst2->age<<endl;
+        // cout<<pst2->uStu->age<<endl;
     }
     return 0;
 }

@@ -43,21 +43,37 @@ class Xiaoming:public Student
     }
 };
 
-// int main()
-// {
-//     Student s1(10);
-//     Student s2(20);
-    
-//     int *p1 = (int*)&s1;
-//     cout<<&s1<<endl;
-//     cout<<&(s1.a)<<endl;
-//     cout<<*p1<<endl;
+class B{
+    char b;
+    int a;
+};
 
-//     int *p2 = (int*)&s2;
-//     cout<<&(s2)<<endl;
-//     cout<<&(s2.a)<<endl;
-//     cout<<*p2<<endl;//每个类的虚函数列表的指针指向同一块内存
-// }
+int main()
+{
+
+    cout<<"size (B):"<<sizeof(B)<<endl;
+
+
+    Student s1(10);
+    Student s2(20);
+    cout<<"size (studet):"<<sizeof(Student)<<endl;
+    cout<<"size (int):"<<sizeof(int)<<endl;
+    cout<<"size (char):"<<sizeof(char)<<endl;
+
+    cout<<"size (studet*):"<<sizeof(Student*)<<endl;
+    cout<<"size (int*):"<<sizeof(int*)<<endl;
+    cout<<"size (char*):"<<sizeof(char*)<<endl;
+
+    int *p1 = (int*)&s1;
+    cout<<&s1<<endl;
+    cout<<&(s1.a)<<endl;
+    cout<<hex<<*p1<<endl;
+
+    int *p2 = (int*)&s2;
+    cout<<&(s2)<<endl;
+    cout<<&(s2.a)<<endl;
+    cout<<hex<<*p2<<endl;//每个类的虚函数列表的指针指向同一块内存
+}
 
 // typedef void(*Fun)(void); 
 // int main()
@@ -84,9 +100,9 @@ class Xiaoming:public Student
 //             (Fun)*((int*)*(int*)(&b)+2);  // Base::h()
 
 
-int main()
-{
-    Student *s1 = new Xiaoming(10);
-    s1->func0();
+// int main()
+// {
+//     Student *s1 = new Xiaoming(10);
+//     s1->func0();
 
-}
+// }

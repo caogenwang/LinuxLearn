@@ -94,7 +94,9 @@ int main(int argc,char**argv)
 {
     list<int> lists;
     lists.push(1);
-    // lists.push(2);
+    lists.push(2);
+    lists.push(3);
+    
     list<int>::iterator it = lists.front();
     cout << (*it).data()<<endl;
     it++;

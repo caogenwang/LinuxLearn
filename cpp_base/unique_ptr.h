@@ -50,7 +50,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 
   /// Primary template of default_delete, used by unique_ptr
-  template<typename _Tp>
+  template<typename _Tp>//删除单个元素
     struct default_delete
     {
       /// Default constructor
@@ -133,33 +133,42 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
 
-  /// 20.7.1.2 unique_ptr for single objects.
-  template <typename _Tp, typename _Dp = default_delete<_Tp> >
+  /// 20.7.1.2 unique_ptr for single objects.单个数据
+  template <typename _Tp, typename _Dp = default_delete<_Tp> >//可以自定义一个删除器default_delete
     class unique_ptr
     {
       // use SFINAE to determine whether _Del::pointer exists
       class _Pointer
       {
           template<typename _Up>
-          static typename _Up::pointer __test(typename _Up::pointer*);
+          static typename _Up::pointer __test(typename _Up::pointer*);//传入一个pointe*
+
           template<typename _Up>
-          static _Tp* __test(...);
-          typedef typename remove_reference<_Dp>::type _Del;
+          static _Tp* __test(...);//返回_Tp*的__test函数
+
+          typedef typename remove_reference<_Dp>::type _Del;//对于模板类型，需要加typename
 
         public:
-            typedef decltype(__test<_Del>(0)) type;
+            typedef decltype(__test<_Del>(0)) type;//__test第一个类型_Tp*返回
       };
 
       typedef std::tuple<typename _Pointer::type, _Dp>  __tuple_type;
-      __tuple_type                                      _M_t;//元组
+      __tuple_type                                      _M_t;//元组，存放的删除器类型和具体的删除器
 
     public:
-      typedef typename _Pointer::type   pointer;//原数据类型的指针
-      typedef _Tp                       element_type;
-      typedef _Dp                       deleter_type;
+      typedef typename _Pointer::type   pointer;//
+      typedef _Tp                       element_type;//数据类型
+      typedef _Dp                       deleter_type;//删除器类型
 
       // 默认的构造函数，不拥有任何东西
       /// Default constructor, creates a unique_ptr that owns nothing.
+      /*
+      noexcept
+      该关键字告诉编译器，函数中不会发生异常,这有利于编译器对程序做更多的优化。
+      如果在运行时，noexecpt函数向外抛出了异常（如果函数内部捕捉了异常并完成处理，
+      这种情况不算抛出异常），程序会直接终止，调用std::terminate()函数，
+      该函数内部会调用std::abort()终止程序。
+      */
       constexpr unique_ptr() noexcept
       : _M_t()
       { static_assert(!is_pointer<deleter_type>::value,
@@ -168,12 +177,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /** Takes ownership of a pointer.
        *
        * @param __p  指向element_type对象的一个指针
-       * @param __d  删除器的引用. 
+       * @param __d  删除器的引用
        * The deleter will be value-initialized.
        */
       explicit
-      unique_ptr(pointer __p) noexcept//带一个裸指针的构造函数
-      : _M_t(__p, deleter_type())
+      unique_ptr(pointer __p) noexcept//
+      : _M_t(__p, deleter_type())//
       { static_assert(!is_pointer<deleter_type>::value,
 		     "constructed with null function pointer deleter"); }
 
