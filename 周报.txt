@@ -96,3 +96,10 @@
 2. HKPDF添加自动编译c程序功能。
 3. docxinshi工程测试调试实现c代码的自动编译和加载。
 4. 学习如何实现数据库同步。
+
+周报：1.4-1.8
+1. 研究如何实现pdf2pdf的问题。
+2. 梳理pdf2stream的代码，研究pdf文件的组成元素。
+3. 利用mupdf工程尝试生成pdf文件。
+4. hkreader-web-server工程更新文档的id。
+5. 研究kibaba的使用。
