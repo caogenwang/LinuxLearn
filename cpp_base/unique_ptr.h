@@ -73,7 +73,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		      "can't delete pointer to incomplete type");
 	static_assert(sizeof(_Tp)>0,
 		      "can't delete pointer to incomplete type");
-	delete __ptr;
+	delete __ptr;//注意，对于自定义类的删除器的默认动作就是delete，这个时候会调用析构函数
       }
     };
 
@@ -134,7 +134,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /// 20.7.1.2 unique_ptr for single objects.单个数据
-  template <typename _Tp, typename _Dp = default_delete<_Tp> >//可以自定义一个删除器default_delete
+  template <typename _Tp, typename _Dp = default_delete<_Tp> >//可以自定义一个删除器default_delete，仿函数啊
     class unique_ptr
     {
       // use SFINAE to determine whether _Del::pointer exists
