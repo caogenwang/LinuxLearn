@@ -248,7 +248,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
           auto& __ptr = std::get<0>(_M_t);
           if (__ptr != nullptr)
-            get_deleter()(__ptr);
+            get_deleter()(__ptr);//这里是删除器动作的地方
           __ptr = pointer();//析构指针
       }
 
