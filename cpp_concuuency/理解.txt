@@ -1,0 +1,171 @@
+如何理解C++的承诺和期待模型呢？
+
+promise，packet_task是承诺的主体，将一个期望值放在future中，持有future的线程会期待承诺者给与的期望值。
+promis具有简单的同步功能，packet_task可以封装一个执行者者，承诺的值由这个执行者来赋予。
+
+1. async是一个模板函数，用来启动一个异步线程，而要获得异步线程的返回值，
+    需要利用future，promise，packet_task这样的包装类。promise是一个
+    可以存放共享状态值的类，同时可以在需要的时候获得返回值，当期待的线程没有执行完成后，
+    则调用get会阻塞。promise和packet_task承诺给未来的值，都是通过future这个类来获取。
+    未来的期望值则需要调用future.get来获取。packet-task只是一个包装类，它本什并不启动一个线程。
+    需要通过thread和async来启动。packet-task的作用就是为了获得异步线程的返回值。
+
+    promise+future常用的异步线程具有同步阻塞作用：简单的同步机制都是通过设置某种共享状态然后通过future获取该共享状态达到同步
+        主线程                         子线程
+    -------------                ----------------
+    |  promise  |                |              |
+    |   get|    |main:promise set|              |child:通过future get得到主线程设置的值，如果主线程没有设置，子线程会阻塞
+    |   future-------------------| future.get() |-------------           |
+    |           |                |              |
+    -------------                ----------------
+
+    packet_task也是获取子线程的返回值。
+    将主线程即需要task结果的线程称为provider，称执行任务task或上面print_int的线程为executor。
+    
+    async通过创建或者选取一个当前空闲线程执行任务，然后将计算结果保存至与此async相关的future中，
+    期间只有存取结果值，没有其它的交互，并且是provider持有future(因为值是通过future.get()获得，在主线程中)，
+    executor执行任务，返回的值凡在future中，等待主线程调用get。async的参数，deferred和async代表的共享值
+    是什么时候放在get中，deferred是调用get的时候，线程才开始执行；如果默认值，则会立刻执行，执行完则放在get中等待被
+    获取。
+
+    packaged_task是一个对象其内部持有callable object，provider创建一个下线程executor执行任务，
+    最后provider通过相关的future获取任务计算结果。和async差不多。只有任务结果的存取，没有其它交互。
+
+    promise是provider持有，executor持有相关的future，然后provider通过promise设定共享状态的值，
+    future获取该共享值后执行某些任务。形式上和前面两个有点相反。
+
+(2) 细看future,async,packaged_task,promise
+2.1  future可以获取计算的结果，用于不同线程间的简单同步，future的创建方式：async, 
+    packaged_task::get_future ,  promise::get_future这三种返回有效的future，
+    这里有效是指future和某个共享状态关联。
+
+    future() noexcept;//创建一个空的future，其不和任何共享状态相关，注意该future是invalid的，但是其可以move
+    future (const future&) = delete;//禁止拷贝构造
+    future (future&& x) noexcept;//具有move语义
+    ~future();//解除和某个共享状态的关联，若该future是最后一个和共享状态关联的则共享状态也被销毁，因为future是禁止拷贝的，所以这里最后一个可以理解为该future是valid的(和某个共享状态关联)
+    future& operator= (future&& rhs) noexcept;//移动赋值，若rhs是valid的那么赋值后rhs将不再和该共享状态关联，赋值后的future和该共享状态关联
+    future& operator= (const future&) = delete;//禁止拷贝赋值
+    shared_future<T> share();//返回一个shared_future，shared_future允许多个shared_future和共享状态关联并且可以多次get，而future只允许一个future和共享状态关联。调用share()的future不再和共享状态关联，如future<int> f=async(task); shared_future<int> sh=f.share(); f.get(); f.get()*2;
+    bool valid() const noexcept;//若future和共享状态关联则返回true，否则返回false
+    T get();//若future和某个T类型的共享状态关联，那么调用future::get()，若该状态还没有准备好阻塞线程直到准备好，若状态准备好了，则返回该状态值，并将future和共享状态解绑，此future将invalid
+    void wait() const;//阻塞等待共享状态就绪
+    future_status wait_for (const chrono::duration<Rep,Period>& rel_time) const;//在rel_time时间内等待共享状态值就绪
+    future_status wait_until (const chrono::time_point<Clock,Duration>& abs_time) const;//直到abs_time时刻等待共享状态就绪
+
+    future_status:
+
+    返回值	描述
+    future_status::ready	共享状态的标志已经变为 ready，即 Provider 在共享状态上设置了值或者异常。
+    future_status::timeout	超时，即在规定的时间内共享状态的标志没有变为 ready。
+    future_status::deferred	共享状态包含一个 deferred 函数。
+
+2.2 async开启后台线程执行任务
+        async (Fn&& fn, Args&&... args);//自动选择线程执行任务fn，args是fn的参数，若fn是某个对象的非静态成员函数那么第一个args必须是对象的名字，后面的args是fn所需的参数
+ 
+    async (launch policy, Fn&& fn, Args&&... args);//有三种方式policy执行任务fn
+    policy=launch::async表示开启一个新的线程执行fn
+    policy=launch::deferred 表示fn推迟到future::wait/get时才执行
+    policy=launch::async|launch::deferred表示由库自动选择哪种机制执行fn，和第一种构造方式async(fn,args)策略相同
+
+2.3 packaged_task类似与std::function但是其允许异步存取结果，其内部持有一个函数调用和共享状态，
+    该共享状态可以被packaged_task返回的future获取。
+    packaged_task() noexcept;//空的packaged_task对象，没有共享状态和内部函数
+    explicit packaged_task (Fn&& fn);//内部有共享状态和函数fn
+    explicit packaged_task (allocator_arg_t aa, const Alloc& alloc, Fn&& fn);//共享状态通过alloc分配内存(该共享状态可能是个buffer)
+    packaged_task (const packaged_task&) = delete;//禁止拷贝构造
+    packaged_task (packaged_task&& x) noexcept;//具有移动语义
+    
+    ~packaged_task();//丢弃共享状态，若还有future和共享状态关联，那么共享状态不会被销毁直到future销毁，如果析构发生时共享状态还没有被设置那么析构将设置共享状态并在状态里加入异常
+    
+    packaged_task& operator= (packaged_task&& rhs) noexcept;//rhs的共享状态将被移动，rhs将没有共享状态
+    ackaged_task& operator= (const packaged_task&) = delete;//禁止拷贝
+    
+    bool valid() const noexcept;//若packaged_task内部有共享状态则返回true，否则返回false
+    future<Ret> get_future();//返回一个future用以获得共享状态，该函数只能被调用一次
+    
+    void operator()(Args... args);//执行fn，若成功则将结果写入共享状态，若失败则写入异常到共享状态，通过future::get()可以获取该状态
+    void make_ready_at_thread_exit (args... args);//结果介入共享状态，但是在该函数所在的调用线程结束后才使共享状态就绪，即该线程结束后future::get()才能获取状态值，若在写入状态值和线程没有退出期间有写入该状态的行为将抛出future_error的异常
+    void swap (packaged_task& x) noexcept;//交换两个packaged_task的内部share state 和 callable object
+
+2.4 promise可以存入一个共享状态值，相关的std::future可以获取该值
+    promise();//空的promise对象，没有共享状态值
+    template <class Alloc> promise (allocator_arg_t aa, const Alloc& alloc);//Alloc将为共享状态值开辟内存
+    promise (const promise&) = delete;//禁止拷贝赋值
+    romise (promise&& x) noexcept;//具备移动语义
+    ~promise();//和~packaged_task()语义一样
+    
+    promise& operator= (promise&& rhs) noexcept;//移动赋值，rhs不再有共享状态
+    promise& operator= (const promise&) = delete;
+    
+    future<T> get_future();//返回一个future和共享状态关联，可以通过此future获取共享状态的值或异常，该函数只能被调用一次
+    
+    void set_value (const T& val);//设置共享状态的值
+    void set_value (const T& val);
+    void promise<R&>::set_value (R& val);   // when T is a reference type (R&)
+    void promise<void>::set_value (void);   // when T is void
+    
+    void set_exception (exception_ptr p);//设置异常指针p到共享状态中，若状态关联的future::get()会获得该异常(并解除阻塞)
+    void set_value_at_thread_exit (const T& val);//和packaged_task::make_ready_at_thread_exit()语义一样
+    void set_value_at_thread_exit (T&& val);	
+    void promise<R&>::set_value_at_thread_exit (R& val);     // when T is a reference type (R&)
+    void promise<void>::set_value_at_thread_exit (void);     // when T is void
+    void set_exception_at_thread_exit (exception_ptr p);//设置异常到共享状态中，但是在线程结束时才使共享状态就绪
+    void swap (promise& x) noexcept;//交换两个promise对象的共享状态
+
+2.5 shared_future和future的区别是：一个future对象和一个共享状态相关，且转移只能通过move语义。
+    但是多个shared_future对象可以和共享状态相关(即多对一)。std::shared_future 与 std::future 
+    类似，但是 std::shared_future 可以拷贝、多个 std::shared_future 可以共享某个共享状态的最终
+    结果(即共享状态的某个值或者异常)。shared_future 可以通过某个 std::future 对象隐式转换
+    （参见 std::shared_future 的构造函数），或者通过 std::future::share() 显示转换，
+    无论哪种转换，被转换的那个 std::future 对象都会变为 not-valid.
+
+    shared_future() noexcept;
+    shared_future (const shared_future& x);
+    shared_future (shared_future&& x) noexcept;
+    shared_future (future<T>&& x) noexcept;
+    下面的成员函数和future差不多：
+    operator=
+    赋值操作符，与 std::future 的赋值操作不同，std::shared_future 除了支持 move 赋值操作外，还支持普通的赋值操作。
+    get
+    获取与该 std::shared_future 对象相关联的共享状态的值（或者异常）。
+    valid
+    有效性检查。
+    wait
+    等待与该 std::shared_future 对象相关联的共享状态的标志变为 ready。
+    wait_for
+    等待与该 std::shared_future 对象相关联的共享状态的标志变为 ready。（等待一段时间，超过该时间段wait_for 返回。）
+    wait_until
+    等待与该 std::shared_future 对象相关联的共享状态的标志变为 ready。（在某一时刻前等待，超过该时刻 wait_until 返回。）
+3） 通常线程池采用模板实现时各线程执行的都是相同类型的任务，若采用packaged_task可以将不同类型的函数对象封转在其内部，每个线程取走一个packaged_task执行，那么线程池执行的任务可以不同。
+     下面是一个GUI中一个线程专门接收用户任务并压入任务队列，另一个线程专门执行用户任务。
+    std::mutex m;
+    std::deque<std::packaged_task<void()> > tasks;
+    bool gui_shutdown_message_received();
+    void get_and_process_gui_message();
+    void gui_thread()
+    {
+    while(!gui_shutdown_message_received())//不断获取用户任务
+    {
+        get_and_process_gui_message();
+        std::packaged_task<void()> task;
+        {
+            std::lock_guard<std::mutex> lk(m);
+            if(tasks.empty())
+                continue;
+            task=std::move(tasks.front());//
+            tasks.pop_front();
+        }
+        task();
+    }
+    }
+    std::thread gui_bg_thread(gui_thread);
+    template<typename Func>
+    std::future<void> post_task_for_gui_thread(Func f)//添加任务
+    {
+    std::packaged_task<void()> task(f);
+    std::future<void> res=task.get_future();
+    std::lock_guard<std::mutex> lk(m);
+    tasks.push_back(std::move(task));//
+    return res;
+    }
+

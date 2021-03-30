@@ -1,0 +1,123 @@
+1. C++中对共享数据的存取在并发条件下可能会引起data race的undifined行为，
+    需要限制并发程序以某种特定的顺序执行，有两种方式：使用mutex保护共享数据，
+    原子操作：针对原子类型操作要不一步完成，要么不做，不可能出现操作一半被切换CPU，
+    这样防止由于多线程指令交叉执行带来的可能错误。非原子操作下，某个线程可能看见的是
+    一个其它线程操作未完成的数据。
+2. 1  关于bool的原子化
+   1.1 std::atomic_flag是一个bool原子类型有两个状态：set(flag=true) 和 
+    clear(flag=false)，必须被ATOMIC_FLAG_INIT初始化此时flag为clear状态，相当于静态初始化。
+    一旦atomic_flag初始化后只有三个操作：test_and_set,clear,析构，均是原子化操作。
+    atomic_flag::test_and_set检查flag是否被设置，若被设置直接返回true，
+    若没有设置则设置flag为true后再返回false。atomic_clear()清楚flag标志即flag=false。
+    不支持拷贝、赋值等操作，这和所有atomic类型一样，因为两个原子类型之间操作不能保证原子化。
+    atomic_flag的可操作性不强导致其应用局限性，还不如atomic<bool>。
+  
+    使用atomic_flag作为简单的自旋锁例子：本线程可以对flag设置了就跳出循环，避免使用mutex导致线程阻塞:
+    #include <iostream>       // std::cout
+    #include <atomic>         // std::atomic_flag
+    #include <thread>         // std::thread
+    #include <vector>         // std::vector
+    #include <sstream>        // std::stringstream
+    
+    std::atomic_flag lock_stream = ATOMIC_FLAG_INIT;//flag处于clear状态，没有被设置过
+    std::stringstream stream;
+    
+    void append_number(int x) {
+        while (lock_stream.test_and_set()) {}//检查并设置是个原子操作，如以前没有设置过则退出循环，
+        stream << "thread #" << x << '\n';  //每个线程都等待前面一个线程将lock_stream状态清楚后跳出循环
+        lock_stream.clear();
+    }
+
+    int main (){ 
+        std::vector<std::thread> threads; 
+        for (int i=1; i<=10; ++i) 
+            threads.push_back(std::thread(append_number,i)); 
+        for (auto& th : threads) 
+            th.join(); 
+        std::cout << stream.str(); 
+        return 0;
+    }
+    采用class封装可以用于lock_guard或unique_lock，但是最好不要将此用于任何竞态条件下，这是一个busy loop！
+    class spinlock_mutex
+    {
+        std::atomic_flag flag;
+        public:
+        spinlock_mutex():
+        flag(ATOMIC_FLAG_INIT){}
+        void lock()
+        {
+            while(flag.test_and_set(std::memory_order_acquire));
+        }
+        void unlock()
+        {
+            flag.clear(std::memory_order_release);
+        }
+    };
+2. atomic<T>模板类，生成一个T类型的原子对象,并提供了系列原子操作函数，
+    其中T是trivially  copyable type满足：要么全部定义了拷贝/移动/赋值函数，要么全部没定义;
+    没有虚成员;基类或其它任何非static成员都是trivally copyable。典型的内置类型bool、int等属于
+    trivally copyable。再如class triviall{public: int x};也是。T能够被memcpy、memcmp函数使用，
+    从而支持compare/exchange系列函数。
+
+    有一条规则：不要在保护数据中通过用户自定义类型T通过参数指针或引用使得共享数据超出保护的作用域。
+    atomic<T>编译器通常会使用一个内部锁保护，而如果用户自定义类型T通过参数指针或引用可能产生死锁。
+    总之限制T可以更利于原子指令。注意某些原子操作可能会失败，比如atomic<float>、atomic<double>
+    在compare_exchange_strong()时和expected相等但是内置的值表示形式不同于expected，
+    还是返回false，没有原子算术操作针对浮点数;同理一些用户自定义的类型T由于内存的不同表示形式导致
+    memcmp失败，从而使得一些相等的值仍返回false。
+
+    atomic<T>的成员函数：
+    template < class T > 
+    struct atomic {
+        bool is_lock_free() const volatile;//判断atomic<T>中的T对象是否为lock free的，若是返回true。lock free(锁无关)指多个线程并发访问T不会出现data race，任何线程在任何时刻都可以不受限制的访问T
+        bool is_lock_free() const;
+        atomic() = default;//默认构造函数，T未初始化，可能后面被atomic_init(atomic<T>* obj,T val )函数初始化
+        constexpr atomic(T val);//T由val初始化
+        atomic(const atomic &) = delete;//禁止拷贝
+        atomic & operator=(const atomic &) = delete;//atomic对象间的相互赋值被禁止，但是可以显示转换再赋值，如atomic<int> a=static_cast<int>(b)这里假设atomic<int> b
+        atomic & operator=(const atomic &) volatile = delete;//atomic间不能赋值
+        T operator=(T val) volatile;//可以通过T类型对atomic赋值，如：atomic<int> a;a=10;
+        T operator=(T val);
+        operator  T() const volatile;//读取被封装的T类型值，是个类型转换操作，默认内存序是memory_order_seq需要其它内存序则调用load
+        operator  T() const;//如：atomic<int> a,a==0或者cout<<a<<endl都使用了类型转换函数
+        //以下函数可以指定内存序memory_order
+        T exchange(T val, memory_order = memory_order_seq_cst) volatile;//将T的值置为val，并返回原来T的值
+        T exchange(T val, memory_order = memory_order_seq_cst);
+        void store(T val, memory_order = memory_order_seq_cst) volatile;//将T值设为val
+        void store(T val, memory_order = memory_order_seq_cst);
+        T load(memory_order = memory_order_seq_cst) const volatile;//访问T值
+        T load(memory_order = memory_order_seq_cst) const;
+        bool compare_exchange_weak(T& expected, T val, memory_order = memory_order_seq_cst) volatile;//该函数直接比较原子对象所封装的值与参数 expected 的物理内容，所以某些情况下，对象的比较操作在使用 operator==() 判断时相等，但 compare_exchange_weak 判断时却可能失败，因为对象底层的物理内容中可能存在位对齐或其他逻辑表示相同但是物理表示不同的值(比如 true 和 2 或 3，它们在逻辑上都表示"真"，但在物理上两者的表示并不相同)。可以虚假的返回false(和expected相同)。若本atomic的T值和expected相同则用val值替换本atomic的T值，返回true;若不同则用本atomic的T值替换expected，返回false。
+        bool compare_exchange_weak(T &, T, memory_order = memory_order_seq_cst);
+        bool compare_exchange_strong(T &, T, memory_order = memory_order_seq_cst) volatile;//
+        与compare_exchange_weak 不同, strong版本的 compare-and-exchange 操作不允许(spuriously 地)返回 false，即原子对象所封装的值与参数 expected 的物理内容相同，比较操作一定会为 true。不过在某些平台下，如果算法本身需要循环操作来做检查， compare_exchange_weak 的性能会更好。因此对于某些不需要采用循环操作的算法而言, 通常采用compare_exchange_strong 更好
+            bool compare_exchange_strong(T &, T, memory_order = memory_order_seq_cst);
+    };
+
+    #include <iostream>       // std::cout
+    #include <atomic>         // std::atomic
+    #include <thread>         // std::thread
+    #include <vector>         // std::vector
+    // a simple global linked list:
+    struct Node { int value; Node* next; };
+    std::atomic<Node*> list_head (nullptr);
+    void append (int val) {     // append an element to the list
+    Node* newNode = new Node {val,list_head};
+    // next is the same as: list_head = newNode, but in a thread-safe way:
+    while (!list_head.compare_exchange_weak(newNode->next,newNode)) {}
+    // (with newNode->next updated accordingly if some other thread just appended another node)
+    }
+    int main ()
+    {
+    // spawn 10 threads to fill the linked list:
+    std::vector<std::thread> threads;
+    for (int i=0; i<10; ++i) threads.push_back(std::thread(append,i));
+    for (auto& th : threads) th.join();
+    // print contents:
+    for (Node* it = list_head; it!=nullptr; it=it->next)
+        std::cout << ' ' << it->value;
+    std::cout << '\n';
+    // cleanup:
+    Node* it; while (it=list_head) {list_head=it->next; delete it;}
+    return 0;
+    }

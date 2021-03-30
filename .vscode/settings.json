@@ -66,6 +66,11 @@
         "__tree": "cpp",
         "map": "cpp",
         "numeric": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "condition_variable": "cpp",
+        "deque": "cpp",
+        "future": "cpp",
+        "queue": "cpp",
+        "random": "cpp"
     }
 }
