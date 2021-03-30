@@ -1,0 +1,218 @@
+C++并发实战10：保护共享数据的可选机制
+
+1  mutex粒度
+    使用mutex的时候要尽量缩小临界区，若可能的话，对mutex加锁仅仅是为了获取共享数据，
+    而对数据的计算放在临界区之外。a lock should be held for only the minimum possible 
+    time needed to perform the required operations。一个非常好的实例就是copy on write。
+    不要在临界区内进行IO，IO比内存读取慢100倍以上。在不需要mutex的时候一定要注意解锁，
+    这通常对临界区的lock_guard单独开辟一个scope就可以实现，当然对已可以实现解锁的unique_lock
+    可以灵活实现任意地方对其所管理的mutex的解锁。一个unique_lock灵活运用的例子如下：
+
+    void get_and_process_data()
+    {
+        std::unique_lock<std::mutex> my_lock(the_mutex);//加锁，获取数据
+        some_class data_to_process=get_next_data_chunk();
+        my_lock.unlock(); //解锁
+        result_type result=process(data_to_process);//对数据的处理
+        my_lock.lock(); //再加锁，将处理结构重写，从而不需要对整个get_and_process_data过程上锁
+        write_result(data_to_process,result);//将处理结果重写
+    }
+
+    下面看一个缩小临界区带来的改变：
+    class Y
+    {
+        private:
+        int some_detail;
+        mutable std::mutex m;
+        int get_detail() const
+        {
+            std::lock_guard<std::mutex> lock_a(m); 
+            return some_detail;//由于是int，直接返回也不费事
+        }
+    public:
+        Y(int sd):some_detail(sd){
+
+        }
+        friend bool operator==(Y const& lhs, Y const& rhs)
+        {
+            if(&lhs==&rhs)
+            return true;
+            //先加锁获取数据，然后用取到的数据进行操作
+            int const lhs_value=lhs.get_detail();//单独上锁
+            int const rhs_value=rhs.get_detail(); 
+            return lhs_value==rhs_value; 
+        }
+    };
+
+    来在比较操作时应该对lhs和rhs同时加锁lock(lhs.m,rhs.m)，为了缩小临界区加之int很小，
+    改成在一个时刻只对一个对象加锁，这样可能出现一个问题: 比较的结果是不同时刻的两个对象，
+    若lhs发生阻塞，而rhs随后被修改，结果并非是想要的。if you
+    don’t hold the required locks for the entire duration of an operation,
+    you’re exposing yourself to race conditions。所有关于临界区的设计需要特别小心，
+    这里只是浅谈了下而已。
+
+
+ 2.单件模式的处理：单件模式的应用如：Buffer、数据库连接(单例模式)
+    2.1 最原始的单件模式，资源没有创建则创建，若已经创建好了则直接使用，具体的应用比如创建一个buffer。
+    std::shared_ptr<some_resource> resource_ptr;
+    void foo()
+    {
+        if(!resource_ptr)//#1#
+        { 
+            resource_ptr.reset(new some_resource);//创建一个新的，用的是临时变量 
+        }
+        resource_ptr->do_something();
+    }
+
+    说明：该段代码在单线程下没有问题，但是在多线程下存在race condition，
+        比如多个线程同时发现resource_ptr为NULL，都去创建resource_ptr实例
+        2.2  多线程改进版：将创建工作采用mutex保护，降低性能
+            std::shared_ptr<some_resource> resource_ptr;
+            std::mutex resource_mutex;
+            void foo()
+            {
+                std::unique_lock<std::mutex> lk(resource_mutex); //加锁
+                if(!resource_ptr)
+                {
+                    resource_ptr.reset(new some_resource); 
+                }
+                lk.unlock();
+                resource_ptr->do_something();
+            }
+
+        说明：这样本身没有错误，却会导致多线程串行化，其它线程都去等待：
+        一个线程创建号resource_ptr后释放锁。从而影响性能。
+
+    2.3  双重检查加锁机制:  存在风险
+        void undefined_behaviour_with_double_checked_locking()
+        {
+            if(!resource_ptr)//第一次检查变量没有创建则请求锁 
+            {
+                std::lock_guard<std::mutex> lk(resource_mutex);
+                if(!resource_ptr)//获得锁的情形下创建变量
+                {
+                    resource_ptr.reset(new some_resource); 
+                }
+            }
+            resource_ptr->do_something(); 
+        }
+      考虑下面的事件序列：
+      1) 线程A发现变量没有被初始化, 然后它获取锁并开始变量的初始化。//变量对应resource_ptr
+      2) 由于某些编程语言的语义，编译器生成的代码允许在线程A执行完变量的初始化之前，更新变量并将其指向部分初始化的对象。
+      3) 线程B发现共享变量已经被初始化，并返回变量。由于线程B确信变量已被初始化，它没有获取锁。如果在A完成初始化之前共享变量对B可见（这是由于A没有完成初始化或者因为一些初始化的值还没有穿过B使用的内存(缓存一致性)），程序很可能会崩溃。
+      c++称这样为data race。
+
+    2.4 std::call_once()用于多线程只执行一次
+        template <class Fn, class... Args>
+        void call_once (once_flag& flag, Fn&& fn, Args&&... args);
+        若其它线程没有执行由flag标记的call_once，则本线程将调用fn执行创建工作。
+        如果已经有线程(称为活动执行体)在执行flag标记的call_once，那么此后的其它线程调用此
+        flag标记的call_once将会成为被动执行体，被动执行体不会调用fn函数，反而等待活动执行体
+        从fn返回，从而保证fn只会被调用一次。如果活动执行体在call_once中抛出异常那么将会从被动
+        执行体中选择一个称为新的活动执行体。值得注意的是一旦活动执行call_once成功返回，
+        当前的被动执行体和以后的call_once都不会产生活动执行体即不会调用fn。
+        若fn是一个对象的成员函数，那么第一个第一个args必须是这个成员函数所属的类。
+        例如:call_once(flag,&X::fn,this)//X是个class
+        std::once_flag同std::mutex一样是不能copy和move的，
+        所有当把它们定义在一个类里面的时候要注意copy constructor和move constructor的设计。
+        下面是来自cplusplus上的实例：只会有一个线程成功设置winner变量
+
+        // call_once example
+        #include <iostream>       // std::cout
+        #include <thread>         // std::thread, std::this_thread::sleep_for
+        #include <chrono>         // std::chrono::milliseconds
+        #include <mutex>          // std::call_once, std::once_flag
+        int winner;
+        void set_winner (int x) { 
+            winner = x; 
+        }
+
+        std::once_flag winner_flag;
+
+        void wait_1000ms (int id) {
+            // count to 1000, waiting 1ms between increments:
+            for (int i=0; i<1000; ++i)
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            // claim to be the winner (only the first such call is executed):
+            std::call_once (winner_flag,set_winner,id);
+        }
+
+        int main ()
+        {
+            std::thread threads[10];
+            // spawn 10 threads:
+            for (int i=0; i<10; ++i)
+                threads[i] = std::thread(wait_1000ms,i+1);
+            std::cout << "waiting for the first among 10 threads to count 1000 ms...\n";
+            for (auto& th : threads) th.join();
+            std::cout << "winner thread: " << winner << '\n';
+            return 0;
+        }
+
+        那么现在的单件模式可以修改为：
+        std::shared_ptr<some_resource> resource_ptr;
+        std::once_flag resource_flag; 
+        void init_resource()
+        {
+            resource_ptr.reset(new some_resource); 
+        }
+        void foo()
+        {
+            std::call_once(resource_flag,init_resource);//不管多少个线程调用，只会有一个线程执行init_resource，注意call_once参数要求是函数指针
+            resource_ptr->do_something();
+        }
+
+2.5 Linux下有个API的语义和std::call_once一样。The purpose of pthread_once is 
+    to ensure that a piece of initialization code  is  executed  at most once. 自己man下吧，点到为止。
+    #include <pthread.h>
+    pthread_once_t once_control = PTHREAD_ONCE_INIT;
+    int  pthread_once(pthread_once_t  *once_control,  void  (*init_routine)(void));
+
+2.6  对于一个局部static类型的初始化也存在线程安全问题,多个线程可能想同时初始化这个static类型，
+    这个问题和单件模式本质是一样的，现在有了std::call_once也解决了。
+
+    class my_class;
+    my_class& get_my_class_instance()
+    {
+        static my_class instance; 
+        return instance;
+    }
+    call_once(flag,get_my_class_instance);
+
+2.7 在某些读多写少的情形下可以使用读写锁，boost::shared_mutex，但是C++标准库没有提供读写锁机制，
+    这也说明了：不要盲目相信读写锁能提升性能，copy on write可能更适合些。读写锁不是灵丹妙药，
+    其性能依赖于读者和写者的数量，并且读写锁本身就增加了复杂性，所以是否获得性能提升还有待具体情形。
+    下面是一个DNS查询/更新的例子：
+
+    #include <map>
+    #include <string>
+    #include <mutex>
+    #include <boost/thread/shared_mutex.hpp>
+    class dns_entry;
+    class dns_cache
+    {
+        std::map<std::string,dns_entry> entries;
+        mutable boost::shared_mutex entry_mutex;
+    public:
+        dns_entry find_entry(std::string const& domain) const//DNS查询
+        {
+            boost::shared_lock<boost::shared_mutex> lk(entry_mutex);//采用shared_lock保证多个shared_lock可以并发读
+            std::map<std::string,dns_entry>::const_iterator const it=
+            entries.find(domain);
+            return (it==entries.end())?dns_entry():it->second;
+        }
+        void update_or_add_entry(std::string const& domain,
+        dns_entry const& dns_details)
+        {
+            std::lock_guard<boost::shared_mutex> lk(entry_mutex);//lock_guard是独占锁，任何其它的lock_guard或shared_lock都要被阻塞
+            entries[domain]=dns_details;
+        }
+    };
+2.8递归锁 std::recursive_mutex,可以在同一个线程中多次加锁，同样的也要相应的多次解锁后其它线程
+    才能获得该锁。可以采用lock_guard<recursive_mutex> / unique_lock<recursive_mutex>
+    管理递归锁。
+    某些时候一个class需要多个线程访问，为了保证线程安全，class的每个成员函数都需要mutex加锁保护，
+    这样若将来某个线程调用其中一个成员函数，该成员函数又去调用另外一个成员函数，
+    这是recursive_mutex就可以实现多次加锁功能了。
+    但无论如何，使用递归锁都不是个好办法，这说明设计上存在某些问题，
+    第二个成员函数加锁mutex时第一个成员函数可能已经打破了某些invariants。可以重新创建一个函数内部调用这两个成员函数，总之使用递归锁时要反思自己的设计本身。
