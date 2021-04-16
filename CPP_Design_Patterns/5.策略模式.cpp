@@ -2,7 +2,13 @@
     策略模式也是一种扩展模式，进行动态时绑定，可以随时扩展新的方法，而不用
     修改之前的代码，实现代码的复用；继承+多态
 */
+class Context{
 
+};
+
+class StrategyFactory{
+
+};
 
 class TaxStrategy{
 public:
@@ -56,10 +62,9 @@ public:
         delete this->strategy;
     }
 
-    public double CalculateTax(){
+    public: double CalculateTax(){
         //...
         Context context();
-        
         double val = 
             strategy->Calculate(context); //多态调用
         //...
