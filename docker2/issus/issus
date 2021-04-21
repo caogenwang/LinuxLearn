@@ -1,0 +1,21 @@
+执行docker pull和push
+docker pull hello-world
+docker tag hello-world 192.168.28.202:5000/hello-world
+docker push 192.168.28.202:5000/hello-world
+
+
+2.添加仓库的地址
+The push refers to repository [192.168.2.50:5000/elixir_centos_hk]
+Get https://192.168.2.50:5000/v2/: http: server gave HTTP response to HTTPS client
+systemctl daemon-reload
+systemctl restart docker.service
+systemctl enable docker.service
+
+3. 进入docker的问题
+OCI runtime exec failed: exec failed: container_linux.go:349: starting container process caused "exec: \"/bin/bash\": stat /bin/bash: no such file or directory": unknown
+解决办法:
+docker exec -it 1e33b26152e1 /bin/sh
+or
+docker exec -it 1e33b26152e1 bash
+or
+docker exec -it 1e33b26152e1 sh
