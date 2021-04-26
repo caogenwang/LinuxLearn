@@ -22,20 +22,29 @@
             2. 具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现。
             3. 环境（Context）类：持有一个策略类的引用，最终给客户端调用。
 */
-class Context{
 
-};
 
 class StrategyFactory{
 
 };
 
-class TaxStrategy{
+class TaxStrategy{//策略的基类
 public:
     virtual double Calculate(const Context& context)=0;
     virtual ~TaxStrategy(){}
 };
 
+class Context{//环境持有和设置不同的策略
+    public:
+    TaxStrategy * taxStrategy;
+    void setStrategy( TaxStrategy * taxStrategy)
+    {
+        this->taxStrategy = taxStrategy;
+    }
+    void startStrategy(){
+        taxStrategy->Calculate(this);//具体的方法
+    }
+};
 
 class CNTax : public TaxStrategy{
 public:
