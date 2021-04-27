@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+
+/*业务抽象,是不同平台需要具体实现的*/
 class MessageImpl{
     public:
         virtual void PlaySound()=0;
@@ -9,7 +11,7 @@ class MessageImpl{
         
         virtual ~MessageImpl(){}
 };
-
+/*平台部分是公共部分*/
 class Mesage{
     protected:
     MessageImpl* messageImp;
@@ -104,4 +106,11 @@ int main()
 应该放在不同的类中；
 还是要抽出可变分布和不可变部分；
 抽象部分和实现部分进行剥离
+
+继承转组合，与装饰模式不同的是，需要将原来放在同一个类中的功能进行拆分，所谓的桥应该指啥？桥接模式理解为将不同维度的变化作为独立的类，然后
+用组合的方式放到一个类中，这个类中放的都是抽象类。
+
+1. 桥接（Bridge）模式的定义如下：将抽象与实现分离，使它们可以独立变化。
+    它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。
+
 */
