@@ -71,6 +71,7 @@
         "deque": "cpp",
         "future": "cpp",
         "queue": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "forward_list": "cpp"
     }
 }
