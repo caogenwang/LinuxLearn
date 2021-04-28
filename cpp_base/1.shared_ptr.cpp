@@ -21,21 +21,21 @@ class Student{
 
 int main()
 {
-    // shared_ptr<Student> ptr1 = shared_ptr<Student>(new Student(18,4,0));//与unique_ptr不同的地方
-    // cout<<ptr1->age<<endl;
+    shared_ptr<Student> ptr1 = shared_ptr<Student>(new Student(18,4,0));//与unique_ptr不同的地方
+    cout<<ptr1->age<<endl;
 
-    // shared_ptr<Student> ptr2 = ptr1;
-    // shared_ptr<Student> ptr4 = ptr1;
-    // cout<<ptr2->age<<endl;
-    // cout<<ptr1.use_count()<<endl;// 3
+    shared_ptr<Student> ptr2 = ptr1;
+    shared_ptr<Student> ptr4 = ptr1;
+    cout<<ptr2->age<<endl;
+    cout<<ptr1.use_count()<<endl;// 3
 
-    Student*s1 = new Student(19,4,0);
-    shared_ptr<Student> ptr3(s1);
-    cout<<ptr3.use_count() <<endl;
+    // Student*s1 = new Student(19,4,0);
+    // shared_ptr<Student> ptr3(s1);
+    // cout<<ptr3.use_count() <<endl;
 
-    shared_ptr<Student> ptr5 = ptr3;
-    cout<<ptr5.use_count() <<endl;
-    cout<<ptr3.use_count() <<endl;
+    // shared_ptr<Student> ptr5 = ptr3;
+    // cout<<ptr5.use_count() <<endl;
+    // cout<<ptr3.use_count() <<endl;
     // cout<<ptr3.get()<<endl;//0x7fbcdfd027b0
     return 0;
 }
