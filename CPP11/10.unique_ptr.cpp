@@ -30,6 +30,11 @@ class DeleteF{
     }
 };
 
+void deletef(Student *s){
+     cout<<"deletef"<<endl;
+    delete s;
+}
+
 int main(){
     // int *a = new int(20);
     // string *psa = new string[10];
@@ -55,6 +60,7 @@ int main(){
     /*智能指针指向数组*/
     std::unique_ptr<Student[],DeleteF> ups(new Student[2]{Student("xiao hong",50),Student("hua wei",100)},d);
 
+    std::unique_ptr<Student,decltype(deletef)> ups3(new Student("lihua",15),deletef);//如此定义，，可以使用普通函数作为删除器
     // delete []s;//这个指针必须定位到开始，才能全部删除，否则出错
     return 0;
 }
