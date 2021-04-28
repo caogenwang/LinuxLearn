@@ -49,7 +49,7 @@ void mem_func_sample(){
      f1(2);   //x在f1的副本.incr(2)
      cout<<x.i<<endl;  x.i=4;
 
-     auto f2=bind(&integer::ince_by,ref(x),_1);
+     auto f2=bind(&integer::incr_by,ref(x),_1);
      f2(2);   //x.incr_by(2)
      cout<<x.i<<endl;       //x.i=6;
 
@@ -64,4 +64,9 @@ void mem_func_sample(){
      f4(y,2);
      cout<<x.i<<endl;//x.i=12
 
+}
+
+int main(){
+    mem_func_sample();
+    return 0;
 }
