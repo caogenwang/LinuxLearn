@@ -1,0 +1,52 @@
+//weak_ptr弱引用智能指针
+一. weak_ptr的概况
+
+（一）weak_ptr的创建
+
+　　1. 直接初始化：weak_ptr<T> wp(sp); //其中sp为shared_ptr类型
+
+　　2. 赋值： wp1 = sp; //其中sp为shared_ptr类型
+
+  　　　　　　wp2 = wp1; //其中wp1为weak_ptr类型
+
+（二）常用操作
+
+　　1. use_count()：获取当前控制块中资源的强引用计数。
+
+　　2. expired()：判断所观测的资源是否失效（即己经被释放），即use_count是否为0。
+
+  　　（1）shared_ptr<int> sp1 = wp.lock();//如果wp失效,则sp为空（其中wp为weak_ptr类型）
+
+  　　（2）shared_ptr<int> sp2(wp); //如果wp失效，则抛std::bad_weak_ptr异常。
+
+　　3. lock()：获取所监视资源的shared_ptr，如shared_ptr<int> sp = wp.lock(); //wp为weak_ptr类型。
+
+　　4. reset()：重置weak_ptr，影响弱引用计数
+
+三）注意事项
+
+　　1. weak_ptr不是独立的智能指针，它是shared_ptr的助手，只是监视shared_ptr管理的资源是否释放，不会影响强引用计数，不能管理资源。
+
+　　2.weak_ptr没有重载操作符*和->，因为它不共享指针，不能操作资源。
+
+　　3.weak_ptr主要用来代替可能空悬的shared_ptr。
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+int main()
+{
+    auto sp1 = make_shared<int>(10);
+    weak_ptr<int> wp(sp1);  //通过shared_ptr初始化
+    weak_ptr<int> wp1, wp2;
+    wp1 = sp1;   //利用shared_ptr来赋值
+    wp2 = wp;    //利用weak_ptr赋值
+    auto sp2 = wp2.lock(); //sp2为shared_ptr类型
+
+    sp1 = nullptr;
+
+    cout << wp2.use_count() << endl; //1，强引用计数
+    return 0;
+}
+
