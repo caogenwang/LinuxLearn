@@ -12,7 +12,7 @@ do
     read -p "Press any key" -n 1
 done
 
-exec 3<&-
+# exec 3<&-
 
 #将文件也重定向到标准输入，也就是read都要读取标准输入。
 #如果不做重定向，while循环读取的是文件，循环内的read也会读取文件，不会等待

@@ -7,6 +7,7 @@ checkfile()
     if [ -z $filename ]
     then
         echo "File name missing"
+        exit 1
     elif [ ! -f $filename ]
     then
         echo "The file $filename doesn't exist!"
