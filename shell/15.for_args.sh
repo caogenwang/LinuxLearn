@@ -16,6 +16,15 @@ do
 done
 
 index=1
+echo "Listing args with \"\$*\": "
+
+for arg in "$*"
+do
+    echo "Arg #$index = $arg"
+    let index+=1
+done
+
+index=1
 echo "Listing args with \"\$@\": "
 
 for arg in "$@"
