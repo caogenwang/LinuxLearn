@@ -21,4 +21,17 @@
     如果类B和类C同时有一个成员变了m，m如何在D对象的内存地址上分布的？是否会相互覆盖？
     菱形继承的虚函数表:
 
-                
+另外，时至今日，你一定要熟悉 C++11/14/17 常用的语言特性和类库，这里简单地列一下：
+统一的类成员初始化语法与 std::initializer_list
+注解标签（attributes）
+final/override/=default/=delete 语法
+auto 关键字
+Range-based 循环语法
+结构化绑定
+stl 容器新增的实用方法
+std::thread
+线程局部存储 thread_local
+线程同步原语 std::mutex、std::condition_variable 等
+原子操作类
+智能指针类
+std::bind/std::function               
