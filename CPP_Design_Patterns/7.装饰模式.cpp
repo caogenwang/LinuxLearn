@@ -73,7 +73,7 @@ class CytroStream:public Stream{//加密的方法,可以针对所有的stream
             stream->write();
         }
     private:
-        Stream *stream; 
+        Stream *stream; //将继承改为组合一个父类，既继承又组合了父类，可以接收不同的类型的具体子类
 };
 
 class FileterStream:public Stream{//过滤的方法,可以针对所有的stream
