@@ -1,0 +1,12 @@
+[ hal_start ] --> [ init_hal ] --> [ init_krl ]
+[ init_hal ] --> [ init_halplaltform ] --> [ move_img2maxpadr ] --> [ init_halmm ] --> [ init_halintupt ]
+[ init_krl ] --> [ die ]
+[ init_halplaltform ] --> [ init_machbstart ] --> [ init_bdvideo ]
+[ init_halmm ] --> [ init_phymmarge ]
+[ init_halintupt ] --> [ init_descriptor ] --> [ init_idt_descriptor ] --> [ init_intfltdsc ] --> [ init_i8259 ] --> [ i8259_enabled_line ]
+
+
+如果有 graph-easy 的同学，直接 CV，然后：
+```sh
+graph-easy calltree.txt
+```

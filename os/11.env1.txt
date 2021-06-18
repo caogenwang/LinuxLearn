@@ -1,0 +1,87 @@
+终于试成功了，真开心，断断续续搞了快一个星期。
+因为我的主机是mac, 谢谢第九天魔王大、neohoped大和老王大的分享，免去套娃，少走很多弯路。
+
+0.在主机Mac上安装 Virtual Box 6.1，开了2个虚拟机：
+虚拟机1: HelloOS
+虚拟机2: Linux Ubuntu 20.04 (server)
+
+1. 依照老师课程介绍安装虚拟机1: HelloOS
+2. 新增虚拟机2: Linux Ubuntu 20.04
+但建议网络可用bridge 桥接模式不用缺省的NAT，方便从虛擬機2傳檔案到mac 主機。
+
+       例如我的虚拟机2的网络设定：
+
+连接方式：桥接网卡
+
+界面名称： en0: Wi-Fi (AirPort)
+
+3. 启动虛擬機2
+在家目錄执行以下命令建立虚拟磁碟
+dd bs=512 if=/dev/zero of=hd.img count=204800
+
+4. sudo losetup /dev/loop0 hd.img
+
+会遇到losetup: hd.img: failing to set up loop device: Device or resource busy
+可執行以下命令查看：
+sudo losetup
+
+列出 /dev/loop0 到 /dev/loop5都被使用了, 挑一个没人用的例如： /dev/loop6
+
+sudo losetup /dev/loop6 hd.img
+
+5. 进行格式化：请依照实际使用的loop设备号码更改，我这里用的是/dev/loop6
+
+sudo mkfs.ext4 -q /dev/loop6
+
+6. 建立hdisk目录 mkdir hdisk
+
+    挂载硬盘文件
+
+     sudo mount -o loop ./hd.img ./hdisk/
+
+     建立boot目录 sudo mkdir ./hdisk/boot/
+
+7. 安装grub 请依照实际使用的loop设备号码更改，我这里用的是/dev/loop6
+
+      sudo grub-install --boot-directory=./hdisk/boot/ --force --allow-floppy /dev/loop6
+
+8. 创建grub.cfg
+
+      安装好grub，应该可看到 ./hdisk/boot/ 下多了一个grub目录，
+
+      cd 进去 ./hdisk/boot/grub/
+
+      里面没有grub.cfg，要自行创建，文件内容请参考老师课程
+
+9. 回到mac上
+将虚拟机2上刚做好的hd.img 透过scp 传回我的mac，例如：
+
+scp [vic@192.168.50.27](mailto:vic@192.168.50.27):hd.img . (hd.img是放在虚拟机2的家目录，最后有个小点，表示将档案拷到现在这个目录)
+
+10. 转换虚拟机1要用的硬盘格式为VDI
+在mac上执行
+
+VBoxManage convertfromraw ./hd.img --format VDI ./hd.vdi
+
+此时应可看到除了原来的hd.img，多了一个hd.vdi的档案 (约13MB)
+
+11. 在mac的/Users/vic/VirtualBox VMs目录执行以下命令：
+
+VBoxManage storagectl HelloOS --name "SATA" --add sata --controller IntelAhci --portcount 1
+VBoxManage closemedium disk ./hd.vdi
+VBoxManage storageattach HelloOS --storagectl "SATA" --port 1 --device 0 --type hdd --medium ./hd.vdi
+
+12. 在mac 上执行
+
+VBoxManage startvm HelloOS
+
+13. 如果看到虚拟机1 的GRUB 菜单画面出现
+
+*HelloOS
+
+按下回车键看到
+
+error: file '/boot/HelloOS.eki' not found.
+
+error: you need to load the kernel first.
+

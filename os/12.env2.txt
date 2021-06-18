@@ -1,0 +1,274 @@
+1、grub启动后，选择对应的启动菜单项，grub会通过自带文件系统驱动，定位到对应的eki文件
+
+2、grub会尝试加载eki文件【eki文件需要满足grub多协议引导头的格式要求】
+这些是在imginithead.asm中实现的，所以要包括：
+A、grub文件头，包括魔数、grub1和grub2支持等
+B、定位的_start符号等
+
+3、grub校验成功后，会调用_start，然跳转到_entry
+A、_entry中:关闭中断
+B、加载GDT
+C、然后进入_32bits_mode，清理寄存器，设置栈顶
+D、调用inithead_entry【C】
+
+4、inithead_entry.c
+A、从imginithead.asm进入后，首先进入函数调用inithead_entry
+B、初始化光标，清屏
+C、从eki文件内部，找到initldrsve.bin文件，并分别拷贝到内存的指定物理地址
+D、从eki文件内部，找到initldrkrl.bin文件，并分别拷贝到内存的指定物理地址
+E、返回imginithead.asm
+
+5、imginithead.asm中继续执行
+jmp 0x200000
+而这个位置，就是initldrkrl.bin在内存的位置ILDRKRL_PHYADR
+所以后面要执行initldrkrl.bin的内容
+
+6、这样就到了ldrkrl32.asm的_entry
+A、将GDT加载到GDTR寄存器【内存】
+B、将IDT加载到IDTR寄存器【中断】
+C、跳转到_32bits_mode
+初始寄存器
+初始化栈
+调用ldrkrl_entry【C】
+
+7、ldrkrlentry.c
+A、初始化光标，清屏
+B、收集机器参数init_bstartparm【C】
+
+8、bstartparm.c
+A、初始化machbstart_t
+B、各类初始化函数，填充machbstart_t的内容
+C、返回
+
+9、ldrkrlentry.c
+A、返回
+
+10、ldrkrl32.asm
+A、跳转到0x2000000地址继续执行
+
+
+2. 
+真实进入实际写代码的课程了。
+对于grub的头格式在的第二节写个HelloOS.bin就已经有了，这次头格式还是会有。理由是grub是一级引导器。
+这节课的内容就是围绕着由一级转到二级引导器的过程展开了。
+关于二级引导器的加载过程，简单点说就是把我们内核加载到指定内存的位置并执行，这个加载函数核心是m2mcopy函数，东哥留给我们自己分析了，但东哥强调分析了下为什么会有32位下的代码和16位汇编代码共存的现象。 其实是为了让BIOS提供的获取硬件信息的操作函数（也就是实模式下的BIOS中断号来获取的）做成了c语言环境下也可以调用的功能。这就像跨语言互相调用的技术。汇编调用c语言的方法，反过来c语言调用汇编方法。但更为复杂些，原因是保护模式到实模式再回到保护模式的切换过程。内核可以获取硬件信息就可以根据硬件环境参数，配置自身参数开始工作了。如何配置参数，那又是下节继续播讲。周五见。
+关于思考题，这个是grub也是要把控制权交给我们二级引导器的入口地址。 至于为什么不光有一个_start就可以了，我猜测是为了做验证吧。_start的操作是jmp 地址。这个地址正好是_entry。有错误还请东哥指正。哈哈
+
+
+3.
+回答一下问题，GRUB 头中为什么需要 _entry 标号和 _start 标号的地址？
+
+我们定义的 flags 值为：
+MBT_HDR_FLAGS EQU 0x00010003
+
+根据 Multiboot Specification 定义的头结构
+Offset Type Field Name Note
+0 u32 magic required
+4 u32 flags required
+8 u32 checksum required
+12 u32 header_addr if flags[16] is set
+16 u32 load_addr if flags[16] is set
+20 u32 load_end_addr if flags[16] is set
+24 u32 bss_end_addr if flags[16] is set
+28 u32 entry_addr if flags[16] is set
+32 u32 mode_type if flags[2] is set
+36 u32 width if flags[2] is set
+40 u32 height if flags[2] is set
+44 u32 depth if flags[2] is set
+
+flags[16] 解释如下：
+If bit 16 in the ‘flags’ word is set, then the fields at offsets 12-28 in the Multiboot header are valid, and the boot loader should use them instead of the fields in the actual executable header to calculate where to load the OS image. This information does not need to be provided if the kernel image is in ELF format, but it must be provided if the images is in a.out format or in some other format. Compliant boot loaders must be able to load images that either are in ELF format or contain the load address information embedded in the Multiboot header; they may also directly support other executable formats, such as particular a.out variants, but are not required to.
+
+也就是如果我们用的是标准的 ELF 文件就不需要提供额外的地址信息，而我们用的是自己定义的格式就需要人家从哪里加载哪里运行，所以需要将 bit 16 使能，填充相应的字段。
+
+再解释下两个字段的含义：
+load_addr
+Contains the physical address of the beginning of the text segment. The offset in the OS image file at which to start loading is defined by the offset at which the header was found, minus (header_addr - load_addr). load_addr must be less than or equal to header_addr.
+
+entry_addr
+The physical address to which the boot loader should jump in order to start running the operating system.
+
+4.
+先回答思考题，grub是multiboot规范，因此引导器头部数据必须得满足一定的规则才能被grub所加载，
+本文中的MBT_HDR_FLAGS为0x001003，第16位被置为1，因此load_addr和entry_addr都是有效的，
+而它们正好分别对应_start和_entry。
+其中load_addr是引导器二进制文件text段的起始地址，即_start，grub解析头部数据后，拿到_start地址，
+并从该地址处开始执行二级引导器代码。
+而entry_addr对应的是操作系统的入口点，也就是_entry。引导程序最后将跳转到这里，不过本文的实现并没有完全按照这种思路来，
+_start直接跳到_entry，然后由_entry负责二级引导工作
+
+
+5.
+
+大体上整理了一下，有几处没弄清楚【上半部分】：
+
+1、bstartparm.c从init_bstartparm函数开始
+A、初始化machbstart_t
+
+2、跳转到chkcpmm.c的init_chkcpu函数，检查是否支持CPUID功能
+A、init_chkcpu函数
+CPU自带检查方式：无法反转 Eflags第21位，表示CPU支持CPUID功能
+如果反转成功，说明不支持CPUID，打印内核错误并退出
+B、然后调用CPUID功能，判断是否支持长模式
+先通过通过0x80000000参数，调用cpuid命令，判断CPU是否支持扩展处理器信息【返回值比0x80000000大】
+如果支持，通过0x80000001参数，调用cpuid命令，获取扩展处理器信息，然后检测第29位，判断是否支持长模式
+如果不支持，打印内核错误并退出
+C、设置mbsp中cpumode为64位
+
+3、返回chkcpmm.c，继续检测内存信息
+A、跳转到chkcpmm.c的init_mem函数
+B、通过mmap调用realadr_call_entry(RLINTNR(0),0,0)
+C、实际会执行ldrkrl32.asm的realadr_call_entry
+D、跳转到save_eip_jmp
+E、最后在cpmty_mode处，把 0x18：0x1000 [段描述索引：段内的偏移]，装入到 CS：EIP 寄存器中
+F、而EIP这个地址恰恰是内存中initldrsve.bin的位置，因为之前write_realintsvefile把数据加载到了REALDRV_PHYADR 0x1000【而且在initldrsve.lds好像也指定了段内偏移0x1000】
+同时CS中段描述符为k16cd_dsc，说明是16位代码段，可以执行，CPU继续从EIP地址执行
+G、而initldrsve.bin是由realintsve.asm编译得到的，所以实际会继续执行realintsve.asm中代码
+H、然后到real_entry这里，通过传入的参数ax，判断调用func_table哪个方法
+当前参数位0，ax就是0，也就是调用了func_table的第一个函数_getmmap
+I、_getmmap中，通过BIOS的15h中断，获取内存信息
+J、检查内存信息，如果小于128M，打印内核错误并退出
+K、设置machbstart_t内存相关参数
+L、然后调用了init_acpi
+
+4、在init_acpi中
+通过“RSD PTR ”及校验，判断是否支持ACPI功能
+不支持则 打印内核错误并退出
+
+5、返回到bstartparm.c
+好像是确认了一下initldrsve.bin的状态，获取了一下文件内存地址及大小
+
+6、返回到bstartparm.c，继续调用到chkcpmm.c的init_krlinitstack函数
+
+7、然后调用到了fs.c的move_krlimg函数
+首先判断新申请的地址，是否可用
+-》如果可用直接使用
+-》如果不可用，则判断申请的内存大小是否超出设备物理大小
+-》-》如果超出大小，系统打印内核错误并退出
+-》-》如果不超出大小，系统会将内存对齐到0x1000后，将initldrsve.bin移动到新位置，并修正地址
+整体来说move_krlimg更像是申请内存，但不知道为何要不断驱赶initldrsve.bin文件
+
+8、返回到chkcpmm.c
+初始化栈顶和栈大小
+
+9、返回到bstartparm.c
+调用fs.c的init_krlfile函数，将Cosmos.eki加载到了IMGKRNL_PHYADR
+并填写了mbsp相关内容
+
+10、返回到bstartparm.c
+调用了chkcpmm.c的init_meme820函数
+然后调用到了fs.c的move_krlimg函数申请了内存，拷贝了一份e820map_t到Cosmos.eki之后的地址，并修正mbsp指向新地址
+感觉和内存保护 或 物理地址与虚拟地址之间转换有一定关系
+
+大体上整理了一下，有几处没弄清楚【下半部分】：
+11、返回到bstartparm.c
+调用了chkcpmm.c的init_bstartpages
+
+12、然后调用到了fs.c的move_krlimg函数申请了内存，建立了MMU页表：
+顶级页目录，开始于0x1000000
+页目录指针目录，开始于0x1001000，，共16项 ，其中每一项都指向一个页目录
+页目录，开始于0x1002000， 每页指向512 个物理页，每页2MB【 0x200000】
+
+让物理地址p[0]和虚拟地址p[((KRNL_VIRTUAL_ADDRESS_START) >> KPML4_SHIFT) & 0x1ff]，指向同一个页目录指针页，确保内核在启动初期，虚拟地址和物理地址要保持相同
+没搞清楚为什么虚拟地址是这个，也暂时没搞清楚为何要指向(u64_t)((u32_t)pdpte | KPML4_RW | KPML4_P)
+
+最后，把页表首地址保存在机器信息结构中
+
+13、返回到bstartparm.c
+调用了graph.c的init_graph
+A、初始化了数据结构
+
+B、调用init_bgadevice
+首先获取GBA设备ID
+检查设备最大分辨率
+设置显示参数，并将参数保存到mbsp结构中
+
+C、如果不是图形模式，要通过BIOS中断进行切换，设置显示参数，并将参数保存到mbsp结构中：
+获取VBE模式，通过BIOS中断
+获取一个具体VBE模式的信息，通过BIOS中断
+设置VBE模式，通过BIOS中断
+这三个方法同样用到了realadr_call_entry，调用路径与上面_getmmap类似，不再展开
+
+D、初始化了一块儿内存
+感觉会与物理地址与虚拟地址之间转换由一定关系
+
+E、进行logo显示
+调用get_file_rpadrandsz定位到位图文件
+调用bmp_print，读入像素点，BGRA转换
+最后调用write_pixcolor，写入到mbsp->mb_ghparm正确的位置，图像就显示出来了
+
+14、然后一路返回
+到bstartparm.c的init_bstartparm
+到ldrkrlentry.c的ldrkrl_entry
+到ldrkrl32.asm的call ldrkrl_entry
+再往下是jmp 0x2000000
+这个地址就是IMGKRNL_PHYADR，就是刚才放Cosmos.eki的位置
+
+15、然后就接上了本节最后一部分内容了，不容易啊！哈哈哈！
+作者回复: 因为有一段 地址是物理地址，二级引导器中，并没有切换到长模式，是没有办法使用高端的物理地址，只能从低端地址切换
+
+大体上整理了一下，有几处没弄清楚【补充最后一段，发漏了】
+15、然后就接上了本节最后一部分内容了，不容易啊！哈哈哈！
+Cosmos.bin中【前面写错为Cosmos.eki了】，ld设置的程序入口为init_entry.asm的_start:
+
+16、 init_entry.asm中_start:
+A、关闭中断
+B、通过LGDT命令，指定长度和初始位置，加载GDT
+C、设置页表，开启PAE【CR4第五位设置为1】，将页表顶级目录放入CR3
+D、读取EFER，将第八位设置为1，写回EFER，设置为长模式
+E、开启保护模式【CR0第0位设置为1】，开启分页【CR0第31位设置为1】，开启CACHE【CR0第30位设置为0】，开启WriteThrough【CR0第29位设置为0】
+F、初始化寄存器们
+G、将之前复制到Cosmos.bin之后的mbsp地址，放入rsp
+H、0入栈，0x8入栈， hal_start 函数地址入栈
+I、调用机器指令“0xcb48”，做一个“返回”操作，同时从栈中弹出两个数据[0x8：hal_start 函数地址]，到[CS：RIP]
+长模式下，指令寄存器为RIP，也就是说下一个指令为hal_start 函数地址
+CS中为0x8，对应到ekrnl_c64_dsc，对应到内核代码段，可以执行，CPU继续冲RIP地址执行
+
+17、hal_start.c
+A、执行hal_start函数
+作者回复: 嗯 就是这样的
+
+6.
+思考题还是挺麻烦的，主要是没有注释啊，很多字段的含义都是靠猜，文章也没有介绍到这些。
+首先是 init_mem820 这个函数本身：
+```c
+void init_meme820(machbstart_t *mbsp)
+{
+    e820map_t *semp = (e820map_t *)((u32_t)(mbsp->mb_e820padr)); // e820数组地址
+    u64_t senr = mbsp->mb_e820nr; // 个数
+    e820map_t *demp = (e820map_t *)((u32_t)(mbsp->mb_nextwtpadr));
+    if (1 > move_krlimg(mbsp, (u64_t)((u32_t)demp), (senr * (sizeof(e820map_t)))))
+    {
+        kerror("move_krlimg err");
+    }
+
+    m2mcopy(semp, demp, (sint_t)(senr * (sizeof(e820map_t))));
+    mbsp->mb_e820padr = (u64_t)((u32_t)(demp));
+    mbsp->mb_e820sz = senr * (sizeof(e820map_t));
+    mbsp->mb_nextwtpadr = P4K_ALIGN((u32_t)(demp) + (u32_t)(senr * (sizeof(e820map_t))));
+    mbsp->mb_kalldendpadr = mbsp->mb_e820padr + mbsp->mb_e820sz;
+    return;
+}
+```
+我们发现这个函数实际上在拷贝内存，即将 semp 指针处的 senr * (sizeof(e820map_t) 内存大小拷贝到
+demp 处，而 demp 的地址正是 mb_nextwtpadr，那么这个 mb_nextwtpadr 是怎么来的呢？在init_krlfile函数中可以大致猜测：
+
+```c
+void init_krlfile(machbstart_t *mbsp)
+{
+    u64_t sz = r_file_to_padr(mbsp, IMGKRNL_PHYADR, "kernel.bin");
+    if (0 == sz)
+    {
+        kerror("r_file_to_padr err");
+    }
+    mbsp->mb_krlimgpadr = IMGKRNL_PHYADR;
+    mbsp->mb_krlsz = sz;
+    // 页对齐
+    mbsp->mb_nextwtpadr = P4K_ALIGN(mbsp->mb_krlimgpadr + mbsp->mb_krlsz);
+    mbsp->mb_kalldendpadr = mbsp->mb_krlimgpadr + mbsp->mb_krlsz;
+    return;
+}
+```
+没错，mb_nextwtpadr 正是跳过内核起始地址+内核大小后的第一个页地址，注意需要4k对齐。
+那么刚才内存拷贝的意图也很明显，对于初始化后的内存，内核本身的内存映射是不可访问的，必须保护充分内核，所以 init_mem820 函数的作用是跳过内核初始化内存。
+由于代码无注释，文中篇幅有限，如有错误，多多指正，望海涵~
