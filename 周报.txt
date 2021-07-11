@@ -224,3 +224,24 @@
 3. docxinshi工程的部署和测试。
 4. 学习网络的编程实现。
 5. 学习Linux中常用的命令。
+
+周报:5.31-6.4
+1. swf2image功能进一步优化。
+2. swf2image功能验证和测试。
+3. docxinshi工程关于swf2image功能的测试。
+4. HCbin工程库的更新。
+5. 学习Linux操作系统。
+
+
+周报：6.7-6.11
+1. 获取nif error文档id功能的添加。
+2. docxinshi工程中增加nif error文档测试。
+3. 监控nif error文档功能的测试和优化。
+4. HCBin工程库的更新。
+5. 测试nif err文档进一步流程的优化。
+
+周报：6.15-6.18
+1. levelDB基本功能学习。
+2. levelDB基本功能测试和demo编写。
+3. 封装levelDB nif层的接口。
+4. nif err手动处理出错的log。
