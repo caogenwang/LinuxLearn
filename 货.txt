@@ -134,20 +134,20 @@
                 vector<int> merge(vector<int>&v1,vector<int>&v2)
                 {
                     int len = max(v1.size(),v2.size());
-                    vector<int> v3(len,0);
+                    vector<int> v3(v1.size()+v2.size(),0);
                     int i = 0;
                     int j = 0;
                     int m = 0;
                     while(i < v1.size() && j < v2.size()){
-                        if(arr[i] > arr[j])
-                            v3[m++] = i++;
+                        if(v1[i] > v2[j])
+                            v3[m++] = v1[i++];
                         else
-                            v3[m++] = j++;
+                            v3[m++] = v2[j++];
                     }
                     while(i < v1.size())
-                        v3[m++] = i++;
+                        v3[m++] = v1[i++];
                     while(j < v2.size())
-                         v3[m++] = j++;
+                        v3[m++] = v2[j++];
 
                     return v3;
                 }
