@@ -1,0 +1,142 @@
+
+如果你传递过来一个const类型的容器，那么只能用const_iterator来遍历。
+void Method(const vector<int> vInt)
+{
+  vector<int>::const_iterator iter;
+}
+vector<int> ivec;
+vector<int>::const_iterator citer1 = ivec.begin();//const_iterator指向的常量
+const vector<int>::iterator citer2 = ivec.begin();//iterator是常量
+*citer1 = 1; //error
+*citer2 = 1; //right
+++citer1; //right
+++citer2; //error
+iterator与const_iterator
+所有的标准库容器都定义了相应的迭代器类型。迭代器对所有的容器都适用，现代 C++ 程序更倾向于使用迭代器而不是下标操作访问容器元素。
+
+1.iterator,const_iterator作用：遍历容器内的元素，并访问这些元素的值。iterator可以改元素值,但const_iterator不可改。跟C的指针有点像
+(容器均可以++iter,而vector还可以iter-n, iter+n,n为一整型,iter1-iter2:结果是difference_type类型，表两元素的距离.)
+2.const_iterator 对象可以用于const vector 或非 const vector,它自身的值可以改(可以指向其他元素),但不能改写其指向的元素值.
+3.const iterator与const_iterator是不一样的：声明一个 const iterator时，必须初始化它。一旦被初始化后，就不能改变它的值,它一旦被初始化后,只能用它来
+改它指的元素,不能使它指向其他元素。(因此const iterator几乎没什么用途)
+
+例 vector<int> nums(10); // nums is nonconst
+  const vector<int>::iterator cit = nums.begin();
+  *cit = 1;               // ok: cit can change its underlying element
+  ++cit;                  // error: can't change the value of cit
+
+  例：读入一段文本到 vector 对象，每个单词存储为 vector 中的一个元素。把 vector 对象中每个单词转化为小写字母。输出 vector 对象中转化后的元素，每八个单词为一行输出
+
+  //自己写的一个代码，于VS2008测试通过,因是VC6.0对标准C++支持不好,若要测试,需要更改预处理.
+//用下标操作
+#include <iostream>
+#include <string>
+#include <vector>
+using std::vector;
+using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
+int main()
+{
+    vector<string> svec;
+    string word;
+   while (cin>>word) 
+    svec.push_back(word); 
+    for (vector<string>::size_type ix=0;ix!=svec.size();++ix)
+   {
+        for (string::size_type index=0;index!=svec[ix].size();++index)     //注: svec[ix].size()返回类型为 string::size_type 
+       {
+           svec[ix][index]=tolower(svec[ix][index]);
+        }
+     }
+    for (vector<string>::size_type ix=0;ix!=svec.size();++ix)      
+    {
+        cout<<svec[ix]<<' ';
+        if ((ix+1)%8==0)
+       {
+            cout<<endl;
+       }
+    }
+    getchar();
+    return 0;
+}
+//用iterator改进...
+int main()
+{
+vector<string> svec;
+string word;
+while (cin>>word) 
+     svec.push_back(word);
+   for (vector<string>::iterator iter=svec.begin();iter!=svec.end();++iter) //因要改写,故应用iterator
+for (string::iterator iter2=(*iter).begin();iter2!=(*iter).end();++iter2) 
+     *iter2=tolower(*iter2);
+//上面两行代码亦改为: for (string::size_type index=0;index!=(*iter).size();++index)
+//但不建议 (*iter)[index]=tolower((*iter)[index]);
+int ix=0;
+for (vector<string>::const_iterator iter=svec.begin();iter!=svec.end();++iter,++ix) //因只是读取，故可用const_iterator
+{
+     cout<<*iter<<' ';
+     if ((ix+1)%8==0)
+     {
+         cout<<endl;
+     }
+}
+getchar();
+return 0;
+}
+
+const_iterator 与 const iterator
+const_iterator:
+C++为每种容器类型定义了一种名为const_iterator的类型，该类型只能用于读取容器内的元素，但不能改变其值。
+对const_iterator类型解引用，得到的是一个指向const对象的引用。
+     for (vector<string>::const_iterator iter = text.begin(); iter != text.end(); ++ iter){
+         cout << *iter << endl; //ok: print each element in text
+         *iter = " ";     // error: *iter is const
+     }
+
+const iterator:
+const的iterator和前者不一样，他指iterator本身是const，而非iterator指向的对象。
+因为iterator本身是const，所以声明的时候必须初始化,而且初始化后再不允许改变它的值（不能再指向其它元素）。
+注:这种const的iterator基本没啥用，因为一旦被初始化以后，只能改变他指向的唯一的指，不能指向其他元素，强烈不推荐使用。
+     vector<int> nums(10);  // nums is nonconst
+     const vector<int>::iterator cit = nums.begin();
+     *cit = 1;               // ok: cit can change its underlying element
+     ++cit;                  // error: can't change the value of cit
+
+const_iterator可以用于const或者非const容器（因为不能修改对象的值），但是const的iterator只能用于非const容器（只能修改唯一指向的值）。
+     const vector<int> nines(10, 9);  // cannot change elements in nines
+     // error: cit2 could change the element it refers to and nines is const
+     const vector<int>::iterator cit2 = nines.begin();
+     // ok: it can't change an element value, so it can be used with a const vector<int>
+     vector<int>::const_iterator it = nines.begin();
+     *it = 10; // error: *it is const
+     ++it;     // ok: it isn't const so we can change its value
+
+以下是我从网上找到的详细的解释:
+const   vector  <int>   vec(10,10); 
+
+在上述语句中，你的vec被定义为一个常量容器对象!要注意的是,是常量容器对象，而不是常量对象的容器! 
+(例如,不是vector <const int>!如下代码更易理解: 
+  
+   typedef vector <int> _VECTOR; 
+   const _VECTOR vec(10,10);//常型对象，但其中的元素是int而不是const int! 
+)
+
+但是，
+
+const   vector  <int> ::iterator   iter   =   vec.begin();
+
+在上述语句中，要注意的是，iter是一个常型迭代器，但其指向的数据对象是int而不是const int,其中的迭代器iter有修改vec成员的能力，这是语言特性所不允许的(关于常量对象的金科玉律是，任何修改常量对象的可能，都是语言所不容许的)!故上述语句产生编译期错误．
+
+const   vector  <int>   vec(10,10);  
+vector  <int> ::iterator   iter   =   vec.begin(); 
+
+和上一对语句同理，唯一的差别是，前一个iter是指向变量的常型迭代器，后一个iter是指向变量的可变值迭代器(非常型)．
+
+所以,在如下语句中:
+
+vector  <int>   vec(10,10);  
+const   vector  <int> ::iterator   iter   =   vec.begin(); 
+
+好!vec不是一个常型对象，当然可以有一个可修改其成员的iter迭代器!
