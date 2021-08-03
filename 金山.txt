@@ -1,0 +1,52 @@
+1. TCP的流量控制与拥塞控制
+    几种拥塞控制方法
+    慢开始( slow-start )、拥塞避免( congestion avoidance )、快重传( fast retransmit )和快恢复( fast recovery )。
+
+
+2. 提高连接常用套路
+    https://blog.csdn.net/hu2010shuai/article/details/56842667?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control
+    1、修改用户进程可打开文件数限制
+    2、修改网络内核对TCP连接的有关限制
+        第一种原因可能是因为Linux网络内核对本地端口号范围有限制
+        第二种无法建立TCP连接的原因可能是因为Linux网络内核的IP_TABLE防火墙对最大跟踪的TCP连接数有限制
+    3、使用支持高并发网络I/O的编程技术
+        可用的I/O技术有同步I/O，非阻塞式同步I/O(也称反应式I/O)，以及异步I/O
+        应尽量使用epoll或AIO技术来实现并发的TCP连接上的I/O控制，这将为提升程序对高并发TCP连接的支持提供有效的I/O保证
+
+3. TCP协议中的SO_LINGER选项
+    SO_LINGER选项用来设置延迟关闭的时间，等待套接字发送缓冲区中的数据发送完成。
+    没有设置该选项时，在调用close()后，在发送完FIN后会立即进行一些清理工作并返回。
+    如果设置了SO_LINGER选项，并且等待时间为正值，则在清理之前会等待一段时间。
+
+    以调用close()主动关闭为例，在发送完FIN包后，会进入FIN_WAIT_1状态。如果没有延迟关闭（即设置SO_LINGER选项），
+    在调用tcp_send_fin()发送FIN后会立即调用sock_orphan()将sock结构从进程上下文中分离。分离后，
+    用户层进程不会再接收到套接字的读写事件，也不知道套接字发送缓冲区中的数据是否被对端接收。
+    如果设置了SO_LINGER选项，并且等待时间为大于0的值，会等待套接字的状态从FIN_WAIT_1迁移到FIN_WAIT_2状态。
+    我们知道套接字进入FIN_WAIT_2状态是在发送的FIN包被确认后，而FIN包肯定是在发送缓冲区中的最后一个字节，
+    所以FIN包的确认就表明发送缓冲区中的数据已经全部被接收。当然，如果等待超过SO_LINGER选项设置的时间后，
+    还是没有收到FIN的确认，则继续进行正常的清理工作，Linux下也没有返回错误。从这里看来，
+    SO_LINGER选项的作用是等待发送缓冲区中的数据发送完成，但是并不保证发送缓冲区中的数据一定被对端接收
+    （对端宕机或线路问题），只是说会等待一段时间让这个过程完成。如果在等待的这段时间里接收到了带数据的包，
+    还是会给对端发送RST包，并且会reset掉套接字，因为此时已经关闭了接收通道。
+
+    1. 进程会睡眠，直到状态不为FIN_WAIT_1、CLOSING、LAST_ACK（也就是接收到对FIN的ACK包），或者等待超时
+    2. 在等待的过程中如果接收到带数据的包还是会发送RST包
+    3.消耗更多的额外资源
+
+    CP协议是一个通用的传输层协议，不关心上层具体的业务，如果要延迟关闭连接，最好是结合自己的业务和场景自己来管理，
+    不要依赖这个选项。nginx的延迟关闭就是自己来管理的，觉得要比直接使用SO_LINGER选项好一些，并且不会导致进程阻塞。 
+    ngxin在发送错误信息后，会等待一段时间，让用户把所有的数据都发送完。超过等待时间后，会直接关闭连接。
+    通过lingering_close，nginx可以保持更好的客户端兼容性，避免客户端被reset掉。
+    SO_LINGER还有一个作用就是用来减少TIME_WAIT套接字的数量。在设置SO_LINGER选项时，
+    指定等待时间为0，此时调用主动关闭时不会发送FIN来结束连接，而是直接将连接设置为CLOSE状态，
+    清除套接字中的发送和接收缓冲区，直接对对端发送RST包。
+
+4. udp的大流量模型
+
+5. linux bpf是什么？
+    socket过滤
+
+6. tcp的难点在哪里？
+    
+
+
