@@ -3,3 +3,172 @@
 
 2. udp和tcp的区别
 
+
+
+3.层序遍历
+
+
+4.最长递增子序列 LeetCode300
+    class Solution{
+    public:
+        int lengthOfLIS(vector<int>& nums) {
+            vector<int> dp(nums.size(),1);
+            int res = 0;
+            for(int i=0;i<nums.size();i++){
+                for(int i=0;j<i;j++){
+                    dp[i] = max(dp[i],dp[j]+1);
+                }
+                res = max(res,dp[i]);
+            }
+            retrun res;
+        }
+    };
+
+    //2.
+    class Solution {
+        public:
+            int lengthOfLIS(vector<int>& nums) {
+                vector<int> v;
+                for (auto a : nums) {
+                    auto it = lower_bound(v.begin(), v.end(), a);
+                    if (it == v.end()) 
+                        v.push_back(a);
+                    else 
+                        *it = a;
+                }
+        　　　　　return v.size();
+            }
+        };
+
+5.摇摆序列，LeetCode 376，最长的摆动序列
+    class Solution {
+    public:
+    int wiggleMaxLength(vector<int>& nums) {
+        const static int START = 0;
+        const static int UP = 1;
+        const static int DOWN = 2;
+        int status = START;
+        if (nums.size() < 2){
+            return nums.size();
+        }
+
+        int length = 1;
+        for (int i = 1; i < nums.size(); i++)
+        {
+            switch (status)
+            {
+                case START:
+                    if (nums[i]>nums[i-1])
+                    {
+                        status = UP;
+                        length ++;
+                    }
+                    else if(nums[i]<nums[i-1])
+                    {
+                        status = DOWN;
+                        length ++;
+                    }
+                    break;
+                case UP:
+                    if (nums[i]<nums[i-1])
+                    {
+                        status = DOWN;
+                        length ++;
+                    }
+                    break;
+                case DOWN:
+                    if (nums[i]>nums[i-1])
+                    {
+                        status = UP;
+                        length ++;
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+            return length;
+        }
+    };
+
+6. 最长没有重复的字符串
+    int lengthOfLongestSubstring(string s) {
+        int res = 0, left = -1, n = s.size();
+        unordered_map<int, int> m;
+        for (int i = 0; i < n; ++i) {
+            if (m.count(s[i]) && m[s[i]] > left) {//判断是否存在重复的
+                left = m[s[i]];
+            }
+            m[s[i]] = i;
+            res = max(res, i - left);
+        }
+        return res;
+    }
+
+string minWindow(string s, string t) {
+    string res = "";
+    unordered_map<char, int> letterCnt;
+    int left = 0, cnt = 0, minLen = INT_MAX;
+    for (char c : t) 
+        ++letterCnt[c];//记录所有t中的字符串
+    for (int i = 0; i < s.size(); ++i) {
+        if (--letterCnt[s[i]] >= 0) //计数器 cnt,遍历到的是t中的字符，所以要cnt加1
+            ++cnt;
+        while (cnt == t.size()) {//cnt==t.size()得到一个包含全部t的最小子串
+            if (minLen > i - left + 1) {
+                minLen = i - left + 1;
+                res = s.substr(left, minLen);
+            }
+            if (++letterCnt[s[left]] > 0)//如果起点去除的是t中的字符串，就将计数减一，退出
+                --cnt;
+            ++left;
+        }
+    }
+    return res;
+}
+最少覆盖字符串
+/*暴力破解*/
+string minWindow(string s, string t) {
+    vector<int> tmp(27,0);
+    for (int i=0; i<t.length(); i++) {
+        tmp[t[i]-'A'] = 1;
+    }
+    int size = t.length();
+    vector<vector<char> > res;
+    for (int i =0; i<s.length(); i++) {
+        int n = size;
+        vector<char> tmp_str;
+        vector<char> tmp_pos(tmp.begin(),tmp.end());
+        tmp_str.push_back(s[i]);
+        if(tmp_pos[s[i]-'A'] == 1){
+            tmp_pos[s[i]-'A'] = -1;
+            n--;
+        }
+        for (int j=i+1;j<s.length() ; j++) {
+            tmp_str.push_back(s[j]);
+            if (tmp_pos[s[j]-'A'] != -1) {
+                if (tmp_pos[s[j]-'A'] == 1) {
+                    tmp_pos[s[j]-'A'] = -1;
+                    n--;
+                }
+                if(n==0){
+                    res.push_back(tmp_str);
+                    break;
+                }
+            }
+        }
+    }
+    int min = INT_MAX;
+    int pos = 0;
+    for (int i=0; i<res.size(); i++) {
+        if(res[i].size()<min){
+            min = res[i].size();
+            pos = i;
+        }
+    }
+    string res_str;
+    for (int i=0; i<res[pos].size(); i++) {
+        res_str += res[pos][i];
+    }
+    return res_str;
+}
