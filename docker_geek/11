@@ -1,0 +1,51 @@
+1.
+docker exec、kubectl exec、ip netns exec、nsenter 等命令原理相同，都是基于 setns 系统调用，切换至指定的一个或多个 namespace(s)。
+
+2.
+# nsenter -t <pid> -n bash -c 'echo 600 > /proc/sys/net/ipv4/tcp_keepalive_time' （root 用户）
+$ sudo nsenter -t <pid> -n sudo bash -c 'echo 600 > /proc/sys/net/ipv4/tcp_keepalive_time' （非 root 用户）
+
+其中，<pid> 表示容器 init 进程在宿主机上看到的 PID。
+作者回复: 对！
+
+3.
+老师，咨询一个问题，就是我有一个容器里面有两个服务，映射出8000和9000的端口，在容器内会出现8000端口的服务访问宿主机ip：9000的端口不通，但是我service iptables stop ; seriver docker stop ;
+server docker start ; 就可以访问了。一旦reboot就不行了。请问是怎么样的问题
+ 
+作者回复: > service iptables stop
+看上去应该是 iptables stop 后把原来的iptables rules flush了，就可以工作了。
+你可以查看一下具体是那条iptables规则阻止了访问。
+
+4.
+宿主机的进入容器网络地址空间通过nsenter --target $(docker inspect -f {.State.Pid}) --net
+作者回复: 是的
+
+5.
+老师您好，有几个问题能否帮忙解答下，谢谢
+1.在/proc/sys/net 的诸多参数里，如何确认哪些是host level 哪些是容器level的呢？
+2.对于host level的这些参数，在启动容器的时候通过sysctl能修改么？如果能修改，是不是相当于同时影响了同host里其他容器的运行时参数呢？
+作者回复: @AMaMiMou
+很好的问题，对于/proc/sys/net下的参数，你在容器中看到的，基本都是network namespace下的。
+对于容器启动的时候，runc只允许修改namesapce下的参数值，而不会修改host相关的值。
+
+可以参看一下runc的sysctl validation的代码：
+
+https://github.com/opencontainers/runc/blob/ff819c7e9184c13b7c2607fe6c30ae19403a7aff/libcontainer/configs/validate/validator.go#L135
+
+6.
+这些问题文档上都没写，还是老师功力高，场景多。
+请教个问题，对于proc文件系统的其他目录容器怎么隔离的呢，比如在容器里面free命令看到的是宿主机的内存。
+作者回复: /proc下的内容大部分是没有隔离的，就想你说的/proc/meminfo, /proc/stat 在容器中看到的都和宿主机上的是一样的。
+其他有一些因为namespace不同而不同的/proc的内容，
+比如 /proc/<pid>/， 容器下只能看到自己pid namespace里的进程pid。
+/proc/mounts的内容和mount namespace相关。
+还有IPC namesapce相关的一些/proc下的参数，等等。
+
+7.
+既然nsenter与docker exec 原理一样，为啥nsenter修改proc/sys/net不会报错无权限呢
+作者回复: docker exec 同时进入了容器的pid/mnt/net namespace, 而 nsenter 修改参数的时候，只是进入了容器的net namespace.
+
+8.
+老师，为啥隔离的这些网络参数不和 /sys/fs/cgroup/net_cls,net_prio,cpu,pid 等一样，统一放在/sys/fs/cgroup/下面，而是跟宿主机共用一套 ？
+作者回复: 一个是namespace, 主要是资源隔离
+另外一个是cgroup，主要是资源的划分。

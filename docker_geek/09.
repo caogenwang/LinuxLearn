@@ -1,0 +1,9 @@
+Momory Cgroup 应该包括了对内核内存的限制，老师给出的例子情况比较简单，基本没有使用 slab，可以试下在容器中打开海量小文件，内核内存 inode、dentry 等会被计算在内。
+
+内存使用量计算公式（memory.kmem.usage_in_bytes 表示该 memcg 内核内存使用量）：
+memory.usage_in_bytes = memory.stat[rss] + memory.stat[cache] + memory.kmem.usage_in_bytes
+
+另外，Memory Cgroup OOM 不是真正依据内存使用量 memory.usage_in_bytes，而是依据 working set（使用量减去非活跃 file-backed 内存），working set 计算公式：
+working_set = memory.usage_in_bytes - total_inactive_file
+作者回复: @莫名， 很赞！每次你都可以更深入的挖掘知识点！
+

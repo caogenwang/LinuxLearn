@@ -1,0 +1,22 @@
+您好老师，请教一个问题，docker的IO限额只是针对direct io有效吗？生产中如果相对磁盘IO进行限制使用docker能满足需求吗？
+作者回复: 这个问题，需要先看一下你的Linux OS和docker的版本。
+cgroup v1 只是支持 Direct I/O限流， cgroup v2可以支持 Buffered I/O.
+不过目前，除了fedora 31+ 缺省支持cgroup v2外，其他的OS缺省的都是cgroup v1, 需要自己配置。docker/moby cgroup v2的代码应该已经合了，不过release出来的还不支持 v2。
+
+生产中I/O限制，取决于你的应用了，如果应用是Direct I/O那么可以用docker
+
+2.
+请问，docker 如果内存不足，会使用虚拟内存吗？我在公司机器上配置jvm内存和cgrpup 分配的内存总是不能很好的契合。感觉有些蹩脚
+作者回复: @蒋悦
+> 会使用虚拟内存吗？
+我想你这里说的"虚拟内存"应该是指Linux的swap, 就是只系统的物理内存不足的时候，把暂时不active的内存内容交换到磁盘的swap空间。
+容器是可以使用swap， 不过也会用一些问题，这个我在容器内存的这一章节里会介绍。
+
+3.
+CY 老师，好像在苹果笔记本上装了 docker 之后，我没有办法模拟课程里的内容。1. ps -ef | grep httpd 什么返回也没有。 2. 我也找不到 cgroup 的路径 /sys/fs/cgroup 目录不存在。 是不是一定要装一个虚拟机来做文章中的实验，请问推荐我装一个什么系统的虚拟机？
+作者回复: 对的，需要装一台Linux虚拟机。
+
+在这个容器课程中，每一讲里都会有一些小例子，所以需要你有一台安装有 Linux 的机器，或者用 VirtualBox 安装一个虚拟机来跑 Linux。Linux 的版本建议是 CentOS 8 或者是 Ubuntu 20.04。
+
+
+4.

@@ -1,0 +1,18 @@
+1.
+节点外访问容器内ip：
+1. 前提是正常启动容器和宿主机可以通过VETH和docker0网桥互通，两个节点之间互通
+2. 在外部的节点配置iptables(DNAT)规则：
+sudo iptables -t nat -A PREROUTING -d 172.17.0.10(容器的真实ip) -j DNAT --to-destination 172.31.27.61(节点的真实ip)
+3.之后即可从外部机器直接与container内ip交互
+
+反过来需要，容器节点本地做SNAT，否则数据包只能过去回不来
+
+2.
+老师，这段时间遇到这样一个问题，想问下遇到这种问题应该怎么找原因:什么日志都看不了
+
+adding interface vethbad9e82 to bridge docker0 failed: could not find bridge docker0: no such network interface"
+作者回复: 用"ip link show type bridge"命令看一下 docker0 interface是不是存在。
+
+3.
+老师您好，请问iptables 列出的NAT表是docker默认配置的吗？
+作者回复: 需要自己加一条 “iptables -P FORWARD ACCEPT”， 其它的是默认的配置。

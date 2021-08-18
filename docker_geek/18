@@ -1,0 +1,1 @@
+内核参数tcp_reordering是快速重传的一个初始门限值，到达max tcp_reordering的内核参数大小就会触发快速重传，而tp->reordering是乱序的数据量bytes总大小，触发到达一定大小也会触发快速重传，两者没什么关系，但都是触发快速重传的一个必要条件
