@@ -1,0 +1,74 @@
+1.
+首先很感谢老师，然后我还是有一些些不太明白，第一个: 处于task_interruptible的进程，虽然它在等信号量和等待io上，但是我理解这个时候其实cpu是空闲的，为什么不把cpu资源让出来，等io完成或者有信号量时再把它放入可运行的队列中去等待调用呢，类似于回调函数那样的思想。第二个: 如果是我的机器长期平均负载过高，是不是一定是D状态的进程或线程引起的。 第三个: 我有四个cpu的机器，现有五个进程，有四个在cpu中运行，其中三个是处于运行状态，另一个是处于task_interruptable状态，也就是D状态，还有一个在排队，那这个时候的负载是不是就是5？如果除了刚刚的D状态的进程其他的进程都运行完了，负载是不是又变成1了。 第四个: 根据老师的定义和公式，平均负载是...的平均进程数，我感觉平均进程数是一个整数，为什么我们看到的平均负载都是带小数的。希望老师帮忙解答一下，帮我解除疑惑。万分感谢
+作者回复: > 第一个
+这时候cpu仍然是空闲的，cpu也可以用来调度别的进程，只是需要竞争信号量的几个进程间相互在等待中。
+
+> 第二个
+这个就是我在文章中讲的，引起load average增高就是两个原因一个running 队列里的进程，一个是D进程。
+
+> 第三个
+如果在较长的一段时间里，都是处于这种状态，那么load average是5。只是处于D状态的进程，其实是不用cpu的，因此其他的四个进程应该都在运行。当其他的四个进程都退出了，只剩D进程，那么等待相当长的一段时间后，load average变成1.
+
+> 第四个
+因为load average是过去1分钟/5分钟/15分钟的一个平均值
+
+
+
+2.
+我想问下
+1.如果出现就D进程，我为什么好的故障方法排查在等待什么吗？
+2.一直有个疑问，是不是linux的进程数不能太多？太多会有很多的调度时间造成很卡？
+3.容器目前每个节点官方推荐是110个pod，openshift是250个，能问下你们这边的最佳实践不引起性能下降的前提下节点最大pod是多少个吗？
+作者回复: @争光 Alan
+> 1
+可以 `cat /proc/<pid>/stack`, 看到进程停在内核中的哪个函数上，结合内核的代码，可以“猜一下”大概是在哪个信号量上。
+
+> 2
+进程太多会有问题的。
+
+> 3
+我们用的缺省110个pod, 不过对pod/container要做一下max pid的限制， 同时需要监控cpu/memory/disk io/ network/D process number/max pid/max fd 等等
+
+
+3.
+感谢老师，受益匪浅！
+
+有一点不是很懂，想请教下：
+“这里我们做一个kernel module，通过一个 /proc 文件系统给用户程序提供一个读取的接口，只要用户进程读取了这个接口就会进入 UNINTERRUPTIBLE。”
+
+老师上面给的kernel module中，我的理解是只调用sleep，然后用户调用这个接口就进入D state，算是模拟DISK IO状态时获取不到资源时的状态吗？老师能不能给个参考，用户进程读是如何取了这个接口呢？
+作者回复: @Geek4329
+内核模块里调用的是 msleep(), 这个函数会把进程的状态设置为TASK_UNINTERRUPTIBLE。 就用它来模拟一下。
+
+void msleep(unsigned int msecs)
+{
+        unsigned long timeout = msecs_to_jiffies(msecs) + 1;
+
+        while (timeout)
+                timeout = schedule_timeout_uninterruptible(timeout);
+}
+
+signed long __sched schedule_timeout_uninterruptible(signed long timeout)
+{
+        __set_current_state(TASK_UNINTERRUPTIBLE);
+        return schedule_timeout(timeout);
+}
+
+
+用户程序读取/proc的接口的例子程序：
+https://github.com/chengyli/training/blob/main/cpu/load_average/uninterruptable/app-test.c
+
+
+4.
+“在 Linux 的系统维护中，我们需要经常查看 CPU 使用情况，再根据这个情况分析系统整体的运行状态。有时候你可能会发现，明明容器里所有进程的 CPU 使用率都很低，甚至整个宿主机的 CPU 使用率都很低，而机器的 Load Average 里的值却很高，容器里进程运行得也很慢。”
+
+老师，这个问题，我是不是可以这么理解
+
+    假设系统4CPU，平均负载很高为8，每个任务使用100% CPU可发挥最高性能
+        1. 如果都是CPU密集型负载，那么CPU使用率不超过50%，应用性能肯定下降
+        2. 如果全部是IO密集型负载，那么都在竞争IO资源，应用性能肯定下降
+        3. 假设有小于4个的CPU密集型负载，其他都是IO密集型负载，那么CPU密集型负载的性能应该不受影响。
+作者回复: @Geek2014,
+对于1，2，3点，我的理解和你一样。
+
+不过还是要说一下，I/O高的应用不一定是D进程，而只有D状态才是处于等待资源，才会引起load average增高。
