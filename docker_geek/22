@@ -1,0 +1,36 @@
+2.
+
+关于SigCgt bitmap 其实我是有些疑惑的，第一为什么是16位？我最开始是这样猜测的，就是一个位置代表一个信号量，那最多只能说明第一到第十六的信号量。 后面看到加了handle处理的函数是这个样子
+
+if (signo == SIGTERM) { printf("received SIGTERM\n"); exit(0); }
+然后他的sigcgt bitmap是:0000000000004000 ，如果按照这样的算法，一个数字代表4位，那一共16位，应该有64种信号量，为啥只有31种还是32种，剩下的是没定义？
+作者回复: @朱雯
+很好的问题！我在文中只是说了31个posix标准里的signal. Linux 里还有编号32-64的real-time signal的扩展定义。因为和这一讲的问题没有太大的关系，我没有具体展开了。
+
+3.
+不知道什么要在容器内执行，直接在去宿主机上docker kill不行么。或者直接edit一下编排文件加个环境变量啥的，不就能触发原地升级么。
+比较新的信号应该不止31个了，还增加了31个可靠信号，为了解决以前linux中信号堆积忽略信号的问题。
+
+作者回复: > 不知道什么要在容器内执行，直接在去宿主机上docker kill不行么。或者直接edit一下编排文件加个环境变量啥的，不就能触发原地升级么。
+
+在生产环境中，用户是没有权限登陆宿主机的。 在Pod spec部分，runtime允许修改的只有 cotainer image了。
+
+> 比较新的信号应该不止31个了，还增加了31个可靠信号，为了解决以前linux中信号堆积忽略信号的问题。
+
+你说的没错，还有新的 32-64 可靠信号。因为和这一讲的问题没有太大关系，在这里就不展开了。
+
+4.
+Host Namespace 向c程序init进程，发送SIGTERM，忽略了，发送SIGKILL杀掉了，是特权信号就给杀掉了对吧？ 还有一块不明白，在handler == SIG_DFL这里，SIGTERM，它是可以被捕获的。也就是说如果用户不注册handler，那么这个条件对 SIGTERM 也是满足的，为什么呢？
+作者回复: 至于为什么即使在宿主机机上向容器1号进程发送SIGTERM，在1号进程没有注册handler的情况下，不能被杀死的问题 （思考题）， 原因是这样的：
+
+开始要看内核里的那段代码，“ !(force && sig_kernel_only(sig))”，
+虽然由不同的namespace发送信号， 虽然force是1了，但是sig_kernel_only(sig)对于SIGTERM来说还是0， 这里是个&&, 那么 !(1 && 0) = 1。
+
+#define sig_kernel_only(sig) siginmask(sig, SIG_KERNEL_ONLY_MASK)
+#define SIG_KERNEL_ONLY_MASK (\
+        rt_sigmask(SIGKILL) | rt_sigmask(SIGSTOP))
+
+5.
+查了一下资料，貌似sig_kernel_only函数是用了判断信号是不是kill或者stop的，是这两个信号才会返回true，这就意味着force不为0，同时信号是kill或者stop的时候信号是不会被忽略的，这也就解释了为什么宿主机是可以通过kill信号来杀掉容器里的进程，而sigterm由于force的值可能会被忽略，那么force的值又是又什么决定的呢？
+作者回复: @维c
+很好的分析！force 由发送信号的进程和接受信号进程是否在同一个namespace里决定。你可以再看一下代码。
