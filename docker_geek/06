@@ -1,0 +1,3 @@
+老师，ticks 1s中是100次，这个怎么查呢？
+作者回复: USER_HZ, 可以用命令 "getconf CLK_TCK"拿
+

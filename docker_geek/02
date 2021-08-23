@@ -1,0 +1,42 @@
+1.
+为什么在容器中无法杀死1号进程。
+在容器中，1 号进程永远不会响应 SIGKILL 和 SIGSTOP 这两个特权信号；
+对于其他的信号，如果用户自己注册了 handler，1 号进程可以响应。
+
+利用可以响应term信号的优势，在注册回调的函数中退出进程
+
+2.
+Host Namespace 向c程序init进程，发送SIGTERM，忽略了，发送SIGKILL杀掉了，是特权信号就给杀掉了对吧？ 还有一块不明白，在handler == SIG_DFL这里，SIGTERM，它是可以被捕获的。也就是说如果用户不注册handler，那么这个条件对 SIGTERM 也是满足的，为什么呢？
+作者回复: 至于为什么即使在宿主机机上向容器1号进程发送SIGTERM，在1号进程没有注册handler的情况下，不能被杀死的问题 （思考题）， 原因是这样的：
+
+开始要看内核里的那段代码，“ !(force && sig_kernel_only(sig))”，
+虽然由不同的namespace发送信号， 虽然force是1了，但是sig_kernel_only(sig)对于SIGTERM来说还是0， 这里是个&&, 那么 !(1 && 0) = 1。
+
+#define sig_kernel_only(sig) siginmask(sig, SIG_KERNEL_ONLY_MASK)
+#define SIG_KERNEL_ONLY_MASK (\
+        rt_sigmask(SIGKILL) | rt_sigmask(SIGSTOP))
+
+3.
+关于思考题：
+这一讲的最开始，有这样一个 C 语言的 init 进程，它没有注册任何信号的 handler。如果我们从 Host Namespace 向它发送 SIGTERM，会发生什么情况呢？
+啥叫从host namespace向他发送sigterm，这是啥意思，是宿主机对他发送sigterm吗，宿主机发送，那就直接把他杀了，不仅法sigterm会杀，发kill也多半会杀，因为在宿主机，不同的namespace，force不一定为0，所以肯定不会被忽略，我的问题在于SIGNAL_UNKILLABLE 标签还会不会打上，打上以后是对宿主机这个标签也生效吗。
+作者回复: > 啥叫从host namespace向他发送sigterm，这是啥意思，是宿主机对他发送sigterm吗
+是的，在宿主机上的缺省namespace是host namespace.
+
+> 不同的namespace，force不一定为0
+是的， signal sender不在同一个namespace的时候， force不为0.
+
+> 我的问题在于SIGNAL_UNKILLABLE 标签还会不会打上，打上以后是对宿主机这个标签也生效吗。
+进程创建后这个标签是一直有的，只是pid在容器namespace里看到的是1，而在宿主机的namespace里是另外一个pid值
+
+4.
+Host Namespace 向c程序init进程，发送SIGTERM，忽略了，发送SIGKILL杀掉了，是特权信号就给杀掉了对吧？ 还有一块不明白，在handler == SIG_DFL这里，SIGTERM，它是可以被捕获的。也就是说如果用户不注册handler，那么这个条件对 SIGTERM 也是满足的，为什么呢？
+作者回复: 至于为什么即使在宿主机机上向容器1号进程发送SIGTERM，在1号进程没有注册handler的情况下，不能被杀死的问题 （思考题）， 原因是这样的：
+
+开始要看内核里的那段代码，“ !(force && sig_kernel_only(sig))”，
+虽然由不同的namespace发送信号， 虽然force是1了，但是sig_kernel_only(sig)对于SIGTERM来说还是0， 这里是个&&, 那么 !(1 && 0) = 1。
+
+#define sig_kernel_only(sig) siginmask(sig, SIG_KERNEL_ONLY_MASK)
+#define SIG_KERNEL_ONLY_MASK (\
+        rt_sigmask(SIGKILL) | rt_sigmask(SIGSTOP))
+        

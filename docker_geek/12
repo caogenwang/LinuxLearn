@@ -1,0 +1,42 @@
+1.
+容器 quota 的局限性：容器通常采用 overlay2 driver，仅支持在宿主文件系统 xfs 上开启 quota 功能。意味着 overlay over ext4 不支持 quota 功能，而实际生产环境上 ext4 的使用远多于 xfs。
+作者回复: @莫名，
+的确，我一直使用的是xfs, 对于ext4 quota的功能没有测试过。
+不过我之前搜索过， ext4在2016年就应该支持project quota了。我们可以一起再确认一下。
+
+
+```
+commit 689c958cbe6be4f211b40747951a3ba2c73b6715
+Author: Li Xi <pkuelelixi@gmail.com>
+Date: Fri Jan 8 16:01:22 2016 -0500
+
+    ext4: add project quota support
+
+    This patch adds mount options for enabling/disabling project quota
+    accounting and enforcement. A new specific inode is also used for
+    project quota accounting.
+
+    [ Includes fix from Dan Carpenter to crrect error checking from dqget(). ]
+
+    Signed-off-by: Li Xi <lixi@ddn.com>
+    Signed-off-by: Dmitry Monakhov <dmonakhov@openvz.org>
+    Signed-off-by: Theodore Ts'o <tytso@mit.edu>
+    Reviewed-by: Andreas Dilger <adilger@dilger.ca>
+    Reviewed-by: Jan Kara <jack@suse.cz>
+
+2.
+上篇的评论中提到：“我们在2019年初就不用docker了。”
+这篇中，老师提到了containerd，是说你们已经用containerd替换了docker吗？有机会对containerd和docker之间的使用对比做个介绍吗？
+作者回复: @Geek2014
+对的，我们已经使用containerd快两年了。
+这是之前我们组做的分享：
+https://www.infoq.cn/article/odslclsjvo8bnx*mbrbk
+
+3.
+老师能说下你们应用容器Quota的场景么。对于无状态服务一般就是日志会写文件了，离线任务比如机器学习的模型也不敢给人家限制呀😂
+作者回复: 如果用户需要使用大容量的磁盘空间，需要使用volume.
+Quota主要来限制容器的rootfs, 这个rootfs一般是在host的磁盘会和别的容器共享，所以需要对它做限制。
+
+
+
+

@@ -1,0 +1,133 @@
+1.
+简单总结了下，子进程被kill杀死的原因是，父进程在退出时，执行do_exit中，由于是cgroup_init 组的进程，因此向所有的子进程发送了sigkill信号。而导致这个的原因是，一般情况下，容器起来的第一个进程都不是专业的init进程，没有考虑过这些细节问题。由于正常情况下，父进程被终结，信号不会传递到子进程，exit时也不会给子进程发终结命令。这会导致多进程容器在关闭时，无法被终止。为了保证容器能够被正常终结。设计者在do_exit中做文章，使用sigkill这个不可屏蔽信号，而是为了能够在没有任何前提条件的情况下，能够把容器中所有的进程关掉。而一个优雅的解决方法是，使用一个专业的init进程作为容器的第一个进程，来处理相关业务。实现容器的优雅关闭。当然，如果子进程也把SigTerm做了劫持，那也是有可能导致容器无法关闭。
+作者回复: @胖胖虎， 很好的总结！
+
+2.
+老师，我做了个测试，现象有点迷惑，我打开两个终端，用sleep进行测试，方法和现象如下：
+1. 在第一个终端启动sleep，在另外一个终端通过命令去kill，能通过sigterm正常杀掉进程。
+# strace sleep 30000
+execve("/usr/bin/sleep", ["sleep", "30000"], [/* 25 vars */]) = 0
+................................................................................................
+--- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=1505, si_uid=0} ---
++++ killed by SIGTERM +++
+
+2. 启动一个容器里面的命令是sleep 30000，用strace跟踪进程，我使用kill，杀不掉sleep进程，然后通过docker stop发现，先是发送sigterm信号，没有成功，最后被强制杀掉了：
+# strace -p 2207
+strace: Process 2207 attached
+restart_syscall(<... resuming interrupted nanosleep ...>) = ? ERESTART_RESTARTBLOCK (Interrupted by signal)
+--- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=0, si_uid=0} ---
+restart_syscall(<... resuming interrupted restart_syscall ...>
+) = ? ERESTART_RESTARTBLOCK (Interrupted by signal)
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_USER, si_pid=0, si_uid=0} ---
+restart_syscall(<... resuming interrupted restart_syscall ...>
+) = ? ERESTART_RESTARTBLOCK (Interrupted by signal)
++++ killed by SIGKILL +++
+
+我有点迷惑，老师能解释一下为什么在宿主机或者用docker不能用sigterm来杀死容器的进程吗？
+作者回复: @po,
+对于第二个问题，我假设sleep进程在宿主机上的pid是2207， 你还是可以先查看"cat /proc/2207/status | grep SigCgt"， 我的理解是SIGTERM handler应该还是没有注册，那么即使从宿主机上发送SIGTERM给这个容器里的1号进程，那么也是不能杀死的。
+
+"docker stop"在停止容器的时候，先给容器里的1号进程发送SIGTERM, 如果不起作用，那么等待30秒后会发送SIGKILL。我想这个是你看到的现象了。
+
+至于为什么即使在宿主机机上向容器1号进程发送SIGTERM，在1号进程没有注册handler的情况下，不能被杀死的问题 （思考题）， 原因是这样的：
+
+开始要看内核里的那段代码，“ !(force && sig_kernel_only(sig))”，
+虽然由不同的namespace发送信号， 虽然force是1了，但是sig_kernel_only(sig)对于SIGTERM来说还是0， 这里是个&&, 那么 !(1 && 0) = 1。
+
+#define sig_kernel_only(sig) siginmask(sig, SIG_KERNEL_ONLY_MASK)
+#define SIG_KERNEL_ONLY_MASK (\
+        rt_sigmask(SIGKILL) | rt_sigmask(SIGSTOP))
+
+
+3.
+CY , 能帮忙解释一下我们公司生产环境在容器image patching 过程中应用程序受影响的事情吗。
+
+1. 我们的胖容器肯定是多进程的，那当容器收到kill 命令的时候，我们现在也是子容器都被SIGKill 吗？还是我们其实都是配置了Init 进程，而init 进程其实都像文中说的转发了 SIGTERM 命令？
+
+2. 如果应用程序写的不够好，不相应SIGTERM 命令。所以我们才在一段时间容器还没有被杀死的情况下执行 Kill -9 吗？
+
+3. 我们大部分的应用程序都是web 程序，使用标准JVM , 比如 Tomcat 加 OpenJDK , 不大明白为什么不能正常响应SIGTERM 做graceful shutdown 。 Kubernetes 标准操作，当我们做OS patching的时候都是换image 的，这时候当前POD 会被干掉，我们是那个POD 因为不能响应SIGTERM 而始终处于terminating 吗？
+作者回复: @JianXu,
+你说的情况是这样的，
+胖容器的init进程其实是一个bash脚本run.sh, 由它来启动jvm的程序。
+但是run.sh本身没有注册SIGTERM handler, 也不forward SIGTERM给子进程jvm。
+当stop容器的时候，run.sh先收到一个SIGTERM, run.sh没有注册SIGTERM, 所以呢对SIGTERM没有反应，contaienrd过30秒，会发SIGKILL给run.sh, 这样run.sh退出do_exit()，在退出的时候同样给子进程jvm程序发送了SIGKILL而不是SIGTERM。其实呢，jvm的程序是注册了SIGTERM handler的，但是没有机会调用handler了。
+
+
+4.
+老师，容器的最佳实践一般都是一个容器即一个进程，一般如果按照这种做法，就只需要在应用程序进程中对sigterm信号做捕获并处理就行了吧，无需转发吧
+作者回复: 是的！
+
+5.
+老师，这里的逻辑我还没有理顺。
+
+1. 你说的容器init 进程，是不是就是容器的第一个进程？还有是不是如果我使用docker , 容器的第一个进程一定不是我自己的进程，而是tini 进程？
+
+2. 上文所SIGTerm 发送后，触发do exit 函数，SIGkill 其实是在内核往容器内的其他子进程发送的。那当我在init 进程配置了Sig term handler 截取信号转发sigterm 以后，do exit 函数还会被调用吗？如果不被调用，do exit 里其他的退出逻辑怎么被执行呢？如果被调用，怎么就不执行sigkill 了呢？
+作者回复: > 1
+是的, init进程就是容器里的第一个进程。容器里的第一个进程大部分情况应该是我们自己的进程，除非有容器用户有意识的去使用tini进程作为init进程。
+
+> 2
+很好的问题。
+init 进程自己退出，还是会调用do_exit()的。所以呢，为了保证子进程先收到转发的SIGTERM, 类似tini的做法是，自己在收到SIGTERM的时候不退出，转发SIGTERM给子进程，子进程收到SIGTERM退出之后会给父进程发送SIGCHILD， tini是收到SIGCHILD之后主动整个程序退出
+
+6.
+老师，我能提个建议吗？这几天学习容器进程和信号相关的知识点，有点乱，自己理出来也好像怪怪的，你能不能画个图，把进程的信号相关的给我们捋一遍呢？还有我们程序代码该如何更好的设计能给一点建议吗？感觉用tini这种方式改动有点大，之前我们一直都是应用程序作为PID1来运行的，好像也没啥问题。谢谢
+作者回复: @po,
+谢谢你这几天提的问题，看的出来，你做了很多的测试，也有很多的思考！我们可以一起来，先把你前面的问题逐个理清了。
+
+你说的画图来捋一遍信号概念的，这个我会考虑的 (目前我需要先完成课程后面章节的内容 :-), 你也可以给我一些更详细的建议，可能可以和你问的具体问题想结合。
+
+> 之前我们一直都是应用程序作为PID1来运行的，好像也没啥问题
+
+信号对容器中进程的影响的多少，也有多方面的原因，比如程序本身对错误的容忍度比较高， 容器建立删除的频率不高，那么也就看不出有什么影响。
+
+如果你的程序的容器化程度较高，几乎是一个容器一个进程的程度，那么不需要考虑用tini来做改动。
+
+我觉得容器里的init进程，应该是具备这些信号处理的能力：
+1. 至少转发SIGTERM给容器里其他的关键子进程。
+2. 能够接受到外部的SIGTERM信号而退出，（这里可以是通过注册SIGTERM handler, 也可以像tini一样先转发SIGTERM 给子进程，然后收到SIGCHILD后自己主动退出）
+3. 具有回收zombie进程的能力。
+
+7.
+想问下老师，那k8s里的优雅关闭选项是否就是做了这个操作
+作者回复: k8s在delete pod的时候，通过containerd先向容器发送SIGTERM.
+这个graceful shutdown是需要容器中的进程自己来处理SIGTERM
+
+8.
+老师，我有个疑问哈，tini没有注册SIGTERM，按照前面将的，内核是不会把这个信号发送给tini进程的，为啥它又能接收所有的信号(除了SIGHILD)并转发给子进程呢？我对这块的理解的不是很清晰，望指教。
+作者回复: 很好的问题！
+因为在tini里调用的sigtimedwait()系统调用，直接把发送给tini的信号先截了下来，这时候tini有没有SIGTERM的handler就没有关系了。
+
+9.
+我的容器的init进程是通过bash拉起的Linux守护进程，然后守护进程会创建子进程一个MySQL实例，为了优雅退出，我该如何改写init进程呢？
+作者回复: @小鱼，
+你这里的“Linux守护进程”指的是mysqld吗？如果是只是想mysqld graceful shutdown, 可以用tini来启动mysqld, 不过还需要看你的bash里有没有做其他的工作。
+
+10.
+老师，如果通过tini转发信号给子进程，那么子子进程是收到子进程的信号吧？那么子子进程收到的信号是sigkill还是sigterm呢？
+作者回复: @po 非常好的问题。
+我们可以从tini转发信号的代码看一下。如果 “kill_process_group” 没有设置， 为0时，这也是tini缺省的配置，那么SIGTERM只会转发给子进程，而子子进程就不会收到转发的SIGTERM。当子进程退出的时候，子子进程就会收到SIGKILL。
+
+而如果kill_process_group > 0的时候，同时子进程与子子进程在同一个process group的时候 (缺省fork出来的子进程会和父进程在同一个process group), 那么子子进程就会收到SIGTERM
+
+
+
+
+if (kill(kill_process_group ? -child_pid : child_pid, sig.si_signo))
+
+10.
+init进程收到 SIGTERM，是在 exit_notify 中回收子进程的 pid 资源吗？( 应该肯定也是在这儿发送推出信号给父进程的吧！ )
+作者回复: 是的，在exit_notify中会做一次wait()子进程。
+
+11.
+老师我有几个疑问：
+A：你说的进程被强制杀死，主要是指这个进程是init的子进程吧？如果我的应用不是多进程的应用，不会产生子进程，那就没有被强制杀死的问题了？
+
+B：在平常写代码子进程的时候，我没有注意过写sigterm15这个情况的处理，比如Java或者tomcat，Python启动的，如果没写这类的hander，那么收到sigterm信号，是不是也不会处理，最后被强制杀死？
+作者回复: > A,
+是的，但进程的容器，在容器停止的时候，不会有这个问题。
+
+> B,
+如果用python启动，但是没有转发信号，那么容器结束的时候，子进程就会被强制杀死。
+
