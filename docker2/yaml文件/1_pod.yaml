@@ -1,0 +1,67 @@
+
+[root@master ~]# kubectl create namespace test
+//创建一个名为test的名称空间（不是必须的）
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+  namespace: test           //指定其所在的名称空间
+spec:
+  containers:
+  - name: test-app
+    image: 192.168.1.1:5000/httpd:v1
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: test-pod
+  namespace: test
+  labels:
+    name: test-web
+spec:
+  containers:
+  - name: test-app
+    image: 192.168.1.1:5000/httpd:v1
+    imagePullPolicy: IfNotPresent           //指定pod镜像的策略
+    ports:
+    - protocol: TCP
+      containerPort: 80     //只是一个声明，没有任何作用
+
+//创建一个service进行关联
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-svc
+  namespace: test
+spec:
+  selector:
+    name: test-web
+  ports:
+  - port: 80
+    targetPort: 80                 //注意这个端口时生效的，即使是错误的
+
+[root@master ~]# vim cache.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: healcheck
+  name:  healcheck
+spec:
+  restartPolicy: OnFailure                //重启策略
+  containers:
+  - name:  healcheck
+    image: busybox:latest
+    args:                           //启动pod时执行的命令
+    - /bin/sh
+    - -c
+    - sleep 10; exit 1
+[root@master ~]# kubectl apply -f cache.yaml 
+//生成pod
+[root@master ~]# kubectl get pod -w | grep healcheck          
+//动态检测pod的状态
+healcheck   0/1     CrashLoopBackOff   1          35s
+healcheck   1/1     Running            2          36s
+healcheck   0/1     Error              2          46s
+//此时可以看出指定的重启策略已经生效

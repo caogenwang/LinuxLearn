@@ -1,0 +1,9 @@
+Pod的生命周期:
+    Status: 
+        Peinding：没有调度成功
+        Running:正在运行
+        Successed:运行一次任务
+        Failed：不正常退出
+        Unknown：未知状态
+        
+

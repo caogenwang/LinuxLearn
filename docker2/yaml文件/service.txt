@@ -1,0 +1,202 @@
+一个Service可以看作一组提供相同服务的Pods的对外访问接口，Service作用于哪些Pods是通过label selector来定义的，这些Pods能被Service访问，Pod之间的发现和路由（如应用中的前端和后端组件）由Kubernetes Service处理。
+Service有四种type: ClusterIP(默认）、NodePort、LoadBalancer、ExternalName. 其中NodePort和LoadBalancer两类型的Services可以对外提供服务
+使用yaml文件创建Service（NodePort）
+ 这里使用yaml文件来创建NodePort类型的Service，service.yaml文件内容如下：
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-node-service
+  labels:
+    name: kube-node-service
+spec:
+  type: NodePort      #这里代表是NodePort类型的
+  ports:
+  - port: 80          #这里的端口和clusterIP(10.97.114.36)对应，即10.97.114.36:80,供内部访问。
+    targetPort: 8081  #端口一定要和container暴露出来的端口对应，nodejs暴露出来的端口是8081，所以这里也应是8081
+    protocol: TCP
+    nodePort: 32143   # 所有的节点都会开放此端口，此端口供外部调用。
+  selector:
+    app: web          #这里选择器一定要选择容器的标签，之前写name:kube-node是错的。
+root@kube-master:/home/cong/Desktop/NodeDemo1# kubectl create -f service.yaml
+service/kube-node-service created
+ 
+root@kube-master:/home/cong/Desktop/NodeDemo1# kubectl get services
+NAME                TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kube-node-service   NodePort    10.97.114.36   <none>        80:32143/TCP   7s
+kubernetes          ClusterIP   10.96.0.1      <none>        443/TCP        7d
+
+我们来验证一下创建的service是否正确，执行如下命令
+
+root@kube-master:/home/cong/Desktop/NodeDemo1# curl localhost:32143
+Hello World!
+ 
+ 
+# 由于定义的port是80，所以直接访问clusterIP
+root@kube-master:/home/cong/Desktop/NodeDemo1# curl 10.97.114.36
+Hello World!
+
+可以看到以上这些端口都可以访问我们的应用程序，在每个节点查看端口执行netstat -ntlp，发现每个节点都开放出了端口32143，此端口主要是给外部分用户调用的。尝试访问两个slave节点试试，他们都可以显示出Hello World!，命令如下：
+
+#在master节点上查看slave node的ip
+root@kube-master:/home/cong/Desktop/NodeDemo1# kubectl get nodes -o wide
+NAME           STATUS    ROLES     AGE       VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+kube-master    Ready     master    7d        v1.11.1   192.168.29.138   <none>        Ubuntu 16.04.4 LTS   4.13.0-36-generic   docker://17.3.2
+kube-slave-1   Ready     <none>    1d        v1.11.1   192.168.29.141   <none>        Ubuntu 16.04.4 LTS   4.13.0-36-generic   docker://17.3.2
+kube-slave-3   Ready     <none>    7d        v1.11.1   192.168.29.139   <none>        Ubuntu 16.04.4 LTS   4.15.0-30-generic   docker://17.3.2
+ 
+#在master节点上,查看所有pods
+root@kube-master:/home/cong/Desktop/NodeDemo1# kubectl get pods -o wide
+NAME                            READY     STATUS    RESTARTS   AGE       IP            NODE
+kube-node-64f4f68d4b-sttz2      1/1       Running   0          15m       10.244.1.71   kube-slave-3
+kube-node-64f4f68d4b-vwwt2      1/1       Running   0          1d        10.244.1.69   kube-slave-3
+ 
+#在master节点上,访问两个pods,端口都是8081
+root@kube-master:/home/cong/Desktop/NodeDemo1# curl 10.244.1.71:8081
+Hello World!
+root@kube-master:/home/cong/Desktop/NodeDemo1# curl 10.244.1.69:8081-----虚拟地址的端口
+Hello World!
+ 
+80是整个集群的端口
+
+#在slave节点kube-slave-1上访问32143端口
+root@kube-slave-1:/home/cong# curl 192.168.29.141:32143
+Hello World!
+ 
+ 
+#在slave节点kube-slave-3上访问32143端口
+root@kube-slave-3:/home/cong# curl 192.168.29.139:32143--------配置宿主机的端口
+Hello World!
+
+
+
+
+注意上图里面的IP和端口和笔者用的端口不一致，但此图大致描述了上面三个端口之间的关系。首先外部使用load balancer访问我们的两个slave节点(192.168.29.141:32143) 和 (192.168.29.139:32143)，接着它会访问Service，即ClusterIP(10.97.114.36:80), Service再通过load balancer访问到某一个pod（端口8081）里的container(端口8081）。 这里第二个load balancer是由kube-proxy来负责的，官方的描述是：kube-proxy负责为service提供cluster内部的服务发现和负载均衡。
+
+ 实际上，我们还另一种创建service的方式，更快更便捷，即使用expose命令来创建service，如下：
+
+root@kube-master:/home/cong# kubectl expose deployment kube-node --type=NodePort
+service/kube-node exposed
+ 
+root@kube-master:/home/cong# kubectl get services
+NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kube-node           NodePort    10.107.247.158   <none>        8081:31195/TCP   10s
+kube-node-service   NodePort    10.97.114.36     <none>        80:32143/TCP     1d
+kubernetes          ClusterIP   10.96.0.1        <none>        443/TCP          8d
+nginx               NodePort    10.99.22.64      <none>        80:32322/TCP     2d
+ 
+root@kube-master:/home/cong# curl localhost:31195
+Hello World!
+ 
+root@kube-master:/home/cong# curl 10.107.247.158:8081
+Hello World!
+ 
+root@kube-master:/home/cong# kubectl describe services/kube-node
+Name:                     kube-node
+Namespace:                default
+Labels:                   app=web
+Annotations:              <none>
+Selector:                 app=web
+Type:                     NodePort
+IP:                       10.107.247.158
+Port:                     <unset>  8081/TCP
+TargetPort:               8081/TCP
+NodePort:                 <unset>  31195/TCP
+Endpoints:                10.244.1.71:8081,10.244.2.81:8081  #这里podIp+端口号就是endpoint
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+ 
+root@kube-master:/home/cong# kubectl describe services/kube-node-service
+Name:                     kube-node-service
+Namespace:                default
+Labels:                   name=kube-node-service
+Annotations:              <none>
+Selector:                 app=web
+Type:                     NodePort
+IP:                       10.97.114.36
+Port:                     <unset>  80/TCP
+TargetPort:               8081/TCP
+NodePort:                 <unset>  32143/TCP
+Endpoints:                10.244.1.71:8081,10.244.2.81:8081 #虽然暴露了两个service，但endpoint是一样滴。
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+
+可以看出，expose命令这里并没有指定clusterIP，说明它是K8S系统中的虚拟IP地址，由系统动态分配。Pod的IP地址是由flannel插件来分配的，而不再由Docker Daemon根据docker0网桥的IP地址进行分配。可以在任意节点上输入ifconfig可以看到。
+
+用yaml文件创建Service（LoadBalancer）
+ 这里我们继续expose命令创建loadBalancer类型的service，命令如下：
+
+ service "kube-node" deleted
+root@kube-master:/home/cong# kubectl expose deployment kube-node --type=LoadBalancer
+service/kube-node exposed
+ 
+root@kube-master:/home/cong# kubectl get services
+NAME                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kube-node           LoadBalancer   10.99.201.195   <pending>     8081:31585/TCP   10s
+kube-node-service   NodePort       10.97.114.36    <none>        80:32143/TCP     1d
+kubernetes          ClusterIP      10.96.0.1       <none>        443/TCP          8d
+nginx               NodePort       10.99.22.64     <none>        80:32322/TCP     2d
+ 
+root@kube-master:/home/cong# curl localhost:31585
+Hello World!
+ 
+root@kube-master:/home/cong# curl 10.99.201.195:8081
+Hello World!
+root@kube-master:/home/cong# kubectl describe services/kube-node
+Name:                     kube-node
+Namespace:                default
+Labels:                   app=web
+Annotations:              <none>
+Selector:                 app=web
+Type:                     LoadBalancer
+IP:                       10.99.201.195
+Port:                     <unset>  8081/TCP
+TargetPort:               8081/TCP
+NodePort:                 <unset>  31585/TCP
+Endpoints:                10.244.1.71:8081,10.244.2.81:8081
+Session Affinity:         None
+External Traffic Policy:  Cluster
+
+
+当然我们也可以使用yaml文件来创建，service-lb.yaml文件如下：
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-node-service-lb
+  labels:
+    name: kube-node-service-lb
+spec:
+  type: LoadBalancer
+  clusterIP: 10.99.201.198
+  ports:
+  - port: 80
+    targetPort: 8081
+    protocol: TCP
+    nodePort: 32145
+  selector:
+    app: web
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.174.127    #这里是云服务商提供的负载匀衡器的IP地址
+
+root@kube-master:/home/cong/Desktop/NodeDemo1# kubectl create -f service-lb.yaml
+service/kube-node-service-lb created
+ 
+root@kube-master:/home/cong/Desktop/NodeDemo1# kubectl get services
+NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kube-node              LoadBalancer   10.99.201.195   <pending>     8081:31585/TCP   21m
+kube-node-service      NodePort       10.97.114.36    <none>        80:32143/TCP     1d
+kube-node-service-lb   LoadBalancer   10.99.201.198   <pending>     80:32145/TCP     9s
+kubernetes             ClusterIP      10.96.0.1       <none>        443/TCP          8d
+nginx                  NodePort       10.99.22.64     <none>        80:32322/TCP     2d
+ 
+root@kube-master:/home/cong/Desktop/NodeDemo1# curl 10.99.201.195:8081
+Hello World!
+ 
+root@kube-slave-3:/home/cong# curl localhost:31585
+Hello World!

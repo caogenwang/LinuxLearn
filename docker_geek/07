@@ -72,3 +72,105 @@ https://github.com/chengyli/training/blob/main/cpu/load_average/uninterruptable/
 对于1，2，3点，我的理解和你一样。
 
 不过还是要说一下，I/O高的应用不一定是D进程，而只有D状态才是处于等待资源，才会引起load average增高。
+
+
+
+
+1.
+    就是无法通过 CPU Cgroup 来控制 Load Average 的平均负载。而没有这个限制，
+就会影响我们系统资源的合理调度，很可能导致我们的系统变得很慢.
+
+2.出现的问题：
+在 Linux 的系统维护中，我们需要经常查看 CPU 使用情况，再根据这个情况分析系统整体的运行状态。
+有时候你可能会发现，明明容器里所有进程的 CPU 使用率都很低，甚至整个宿主机的 CPU 使用率都很低，
+而机器的 Load Average 里的值却很高，容器里进程运行得也很慢。”
+
+3.
+    1). Load Average 到底是什么，CPU Usage 和 Load Average 有什么差别？
+    2). 如果 Load Average 值升高，应用的性能下降了，这背后的原因是什么呢？
+
+4.
+TASK_UNINTERRUPTIBLE 是 Linux 进程状态的一种，是进程为等待某个系统资源而进入了睡眠的状态，并且这种睡眠的状态是不能被信号打断的。
+
+5.
+第一种是 Linux 进程调度器中可运行队列（Running Queue）一段时间（1 分钟，5 分钟，15 分钟）的进程平均数。
+第二种是 Linux 进程调度器中休眠队列（Sleeping Queue）里的一段时间的 TASK_UNINTERRUPTIBLE 状态下的进程平均数。
+最后的公式就是：Load Average= 可运行队列进程平均数 + 休眠队列中不可打断的进程平均数
+
+6.现象解释：为什么 Load Average 会升高？
+Linux 下的 Load Averge 不仅仅计算了 CPU Usage 的部分，它还计算了系统中 TASK_UNINTERRUPTIBLE 状态的进程数目.
+
+7.那么现在我们再看第二个问题：如果 Load Average 值升高，应用的性能已经下降了，真正的原因是什么？
+  问题就出在 TASK_UNINTERRUPTIBLE 状态的进程上了.我们简称为 D 状态进程.
+  在 Linux 内核中有数百处调用点，它们会把进程设置为 D 状态，主要集中在 disk I/O 的访问和信号量（Semaphore）锁的访问上，
+  因此 D 状态的进程在 Linux 里是很常见的
+
+8.无论是对 disk I/O 的访问还是对信号量的访问，都是对 Linux 系统里的资源的一种竞争.
+    我们肯定是想方设法去做调试的。但目前 D 状态进程引起的容器中进程性能下降问题，Cgroups 还不能解决，
+    这也就是为什么我们用 Cgroups 做了配置，即使保证了容器的 CPU 资源， 容器中的进程还是运行很慢的根本原因.
+
+9.所以我们可以做的是，在生产环境中监控容器的宿主机节点里 D 状态的进程数量，然后对 D 状态进程数目异常的节点进行分析，
+    比如磁盘硬件出现问题引起 D 状态进程数目增加，这时就需要更换硬.
+
+
+10.
+请问老师，引入为 TASK_UNINTERRUPTIBLE 状态的进程的案例，top 输出中为什么wa使用率这一项没有增长？
+作者回复: TASK_UNINTERRUPTIBLE 状态的进程不一定是做I/O, 比如等待信号量的进程也会进入到这个状态。
+
+11.
+推荐 stress 压测工具：stress -c 1 -t 600
+平均负载计算公式（nr_active 表示单位时间内平均活跃进程个数，每个 CPU 对应一个 运行队列 rq，rq->nr_running、rq->nr_uninterruptible 分别表示该运行队列上可运行进程、不可中断进程的个数。累积的 nr_active 再进行指数衰减平均得到最终的平均负载）
+/*
+* The global load average is an exponentially decaying average of nr_running +
+ * nr_uninterruptible.
+ */
+nr_active = 0;
+for_each_possible_cpu(cpu)
+    nr_active += cpu_of(cpu)->nr_running + cpu_of(cpu)->nr_uninterruptible;
+作者回复: @莫名，
+是的，stress是很好的负载模拟工具！
+kernel/sched/loadavg.c 里有完整的load average代码
+
+12.
+首先很感谢老师，然后我还是有一些些不太明白，第一个: 处于task_interruptible的进程，虽然它在等信号量和等待io上，但是我理解这个时候其实cpu是空闲的，为什么不把cpu资源让出来，等io完成或者有信号量时再把它放入可运行的队列中去等待调用呢，类似于回调函数那样的思想。第二个: 如果是我的机器长期平均负载过高，是不是一定是D状态的进程或线程引起的。 第三个: 我有四个cpu的机器，现有五个进程，有四个在cpu中运行，其中三个是处于运行状态，另一个是处于task_interruptable状态，也就是D状态，还有一个在排队，那这个时候的负载是不是就是5？如果除了刚刚的D状态的进程其他的进程都运行完了，负载是不是又变成1了。 第四个: 根据老师的定义和公式，平均负载是...的平均进程数，我感觉平均进程数是一个整数，为什么我们看到的平均负载都是带小数的。希望老师帮忙解答一下，帮我解除疑惑。万分感谢
+作者回复: > 第一个
+这时候cpu仍然是空闲的，cpu也可以用来调度别的进程，只是需要竞争信号量的几个进程间相互在等待中。
+
+> 第二个
+这个就是我在文章中讲的，引起load average增高就是两个原因一个running 队列里的进程，一个是D进程。
+
+> 第三个
+如果在较长的一段时间里，都是处于这种状态，那么load average是5。只是处于D状态的进程，其实是不用cpu的，因此其他的四个进程应该都在运行。当其他的四个进程都退出了，只剩D进程，那么等待相当长的一段时间后，load average变成1.
+
+> 第四个
+因为load average是过去1分钟/5分钟/15分钟的一个平均值
+
+
+13.
+有事，好几天没来留言了，我有个确认点：
+1. 如果一台2个cpu的机器，跑了8个进程，每个进程使用一个cpu的10%，那么load average应该是0.8吧？
+2. 平常说的物理机CPU，比如2核4线程，这个在Linux里面看是几个cpu呢？
+作者回复: @po,
+>1, 是的
+>2, 对于处理器里的hyper-threading, 从Linux角度看到的也是1个cpu。2核4线程(hyper-threading), 看到的是4个cpu.
+你可以 sys/, proc/下看到cpu信息。
+/sys/devices/system/cpu/online
+/proc/cpuinfo
+
+14.文中的第二个实验，四个cpu的系统，运行六个进程。理论上六个进程同一时刻不可能都处于R状态吧？一个cpu同一时刻不是只能处理一个进程吗？我的理解top输出应该是四个R状态两个S状态
+作者回复: R状态的进程不是单指正在运行的进程，还指在runqueue上可以随时得到调度时间片而可以运行的进程。
+
+15.
+老师好，一个CPU只能同时处理一个进程，为什么还能把CPU分为0.5C的单位呢，这个cpu的单位是怎么理解的呢
+作者回复: CPU是分时处理进程的。有两个进程A，B在一个CPU的机器上运行， 每一秒时间里，A可以运行0.5秒，B可以运行0.5秒，那么A拿到的CPU资源就是0.5 cpu
+
+16.
+ 假设系统4CPU，平均负载很高为8，每个任务使用100% CPU可发挥最高性能
+        1. 如果都是CPU密集型负载，那么CPU使用率不超过50%，应用性能肯定下降
+        2. 如果全部是IO密集型负载，那么都在竞争IO资源，应用性能肯定下降
+        3. 假设有小于4个的CPU密集型负载，其他都是IO密集型负载，那么CPU密集型负载的性能应该不受影响。
+作者回复: @Geek2014,
+对于1，2，3点，我的理解和你一样。
+
+不过还是要说一下，I/O高的应用不一定是D进程，而只有D状态才是处于等待资源，才会引起load average增高。
+

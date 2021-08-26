@@ -1,0 +1,33 @@
+1. 
+
+Kubernete的核心组建有：API Server（API服务）、Scheduler（调度）、Controller Manager（容器编排）、
+Etcd（集群的持久化数据）、Kubelet（计算节点最核心的组件）。
+计算节点上的Kubelet通过CRI与容器交互，通过CSI与存储交互，通过CNI与网络交互，通过grpc与Devcie Plugin交互。
+Kubernetes与之前的Yarn、Mesos之间最大的区别在于：Yarn、Mesos更多的是完成“调度”的功能，而Kubernetes更擅
+长处理容器之间的关系，提供的是“编排”的功能.
+
+2. 
+    从微服务架构来讲，多个独立功能内聚的服务带来了整体的灵活性，但是同时也带来了部署运维的复杂度提升，
+    这时Docker配合Devops带来了不少的便利(轻量、隔离、一致性、CI、CD等)解决了不少问题，再配合compose，
+    起来一切都很美了，为什么还需要K8s？可以试着这样理解么？把微服务理解为人，那么服务治理其实就是人之间的沟通而已，
+    人太多了就需要生存空间和沟通方式的优化，这就需要集群和编排了。Docker Compose，swarm，可以解决少数人之间的关系，
+    比如把手机号给你，你就可以方便的找到我，但是如果手机号变更的时候就会麻烦，人多了也会麻烦。而k8s是站在上帝视角俯视芸芸
+    众生后的高度抽象，他看到了大概有哪些类人(组织）以及不同组织有什么样的特点（Job、CornJob、Autoscaler、StatefulSet、
+    DaemonSet...），不同组织之间交流可能需要什么（ConfigMap,Secret...）,这样比价紧密的人们在相同pod中，
+    通过Service-不会变更的手机号，来和不同的组织进行沟通，Deployment、RC则可以帮组人们快速构建组织。
+    Dokcer 后出的swarm mode，有类似的视角抽象（比如Service），不过相对来说并不完善。以上，是否可以这样理解？
+
+3.
+感谢作者的输出，逻辑很清晰，讲的也很透彻。有状态的应用弹性扩缩容也好，迁移也罢目前貌似都没有太好的解法，
+因此我们一般会要求尽量把状态不要放在web层，尽量下移，把“状态”信息存放到缓存或者消息中。我理解的有状态的应用阻止
+“迁移”的原因主要是将关键信息存放在了内存中，所以不能直接做“迁移”。有一些存放在硬盘上的，或者单独跑定时任务的一
+些算法类的应用可以通过volume等方式解决，但毕竟不是正道。
+
+4.
+Kubernete的核心组建有：API Server（API服务）、Scheduler（调度）、Controller Manager（容器编排）、Etcd（集群的持久化数据）、Kubelet（计算节点最核心的组件）。
+计算节点上的Kubelet通过CRI与容器交互，通过CSI与存储交互，通过CNI与网络交互，通过grpc与Devcie Plugin交互。
+Kubernetes与之前的Yarn、Mesos之间最大的区别在于：Yarn、Mesos更多的是完成“调度”的功能，而Kubernetes更擅长处理容器之间的关系，提供的是“编排”的功能
+
+5.
+
+

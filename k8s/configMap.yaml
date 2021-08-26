@@ -1,0 +1,12 @@
+#kubectl create configmap ui-config --from-file=example/ui.properties
+
+#kubectl get configmaps ui-config -o yaml
+
+appVersion: v1
+data:
+  ui.properties: |
+    color.good=purple
+    color.bad=yellow
+kind: ConfigMap
+metadata:
+  name: ui-config

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-downwardapi-volume
+  labels:
+  zone: us-est-coast
+  cluster: test-cluster1
+  rack: rack-22
+spec:
+  containers:
+  - name: client-container
+  image: k8s.gcr.io/busybox
+  command:  ["sh","-c"]
+  args:
+  - while true; do #这个容器的作用就是一直打印label中的值，而label中的值是映射POD中的，把metadata.label映射过来的
+            if[[-e /etc/podinfo/labels]];then
+              echo -en '\n\n';
+              cat /etc/podinfo/labels; fi;
+            sleep 5;
+          done
+  volumeMounts:
+  - name: podinfo #这个容器挂载了一个name叫做podinfo的volume,g挂载地址为/etc/podinfo
+  mountPath: /etc/podinfo
+  readOnly: false
+  volumes:  #定义的volume
+  - name: podinfo
+  projected: #volume定义的类型
+  sources: #来源
+  - downwardAPI: #很多中类型，eg:secret，
+  item:
+  - path: "labels"
+  fileRef:
+  filePath: metadata.labels
+
+#Pod的labels字段值，就会被kubenetes自动挂载成为容器里的/etd/podinfo/labels文件
+#把Pod看做一个虚拟机，container则只是一个进程
+
+#把自己的POD信息暴露给容器
+

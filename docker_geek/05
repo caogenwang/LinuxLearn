@@ -1,3 +1,14 @@
+
+三个重要的参数：
+
+cpu.cfs_period_us 100000 它是 CFS 算法的一个调度周期，一般它的值是 100000，以 microseconds 为单位，也就 100ms
+cpu.cfs_quota_us  -1  它“表示 CFS 算法中，在一个调度周期里这个控制组被允许的运行时间，比如这个值为 50000 时，就是 50ms
+cpu.shares 占用cpu的比例
+
+kubenetes的设置
+Limit CPU 就是容器所在 Cgroup 控制组中的 CPU 上限值，Request CPU 的值就是控制组中的 cpu.shares 的值。
+
+
 1.
 请问下关于wa和hi/si的问题：
 1. 例子中，wa是等待磁盘IO的状态，那等待网络IO时，是不是wa呢？
@@ -33,7 +44,7 @@ CPU的使用率在linux里面是树状结构，CPU的share是针对同等深度�
 group1 ：request 2 cpu，limit 3 cpu
 group2 ：request 2 cpu，limit 3 cpu
 
-由于申请总量大于总量，那么按照K8S的调度原则，是没法启动全部容器的。上面的假设情况，按道理是不存在的，对吧。
+*****由于申请总量大于总量，那么按照K8S的调度原则，是没法启动全部容器的。上面的假设情况，按道理是不存在的，对吧。********
 作者回复: 是的，上面的情况不存在。
 假如第一个pod (group1)已经被调度上了，那么第二个pod(group2)是调度不到同一个node上的。
 

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: ngx-test
+  labels:
+    name: ngx
+spec:
+replicas: 1
+  selector:
+    matchLabels:
+      app: ngx
+  template:
+    metadata:
+      labels:
+        app: ngx
+    spec:
+      containers:
+      - name: ngx-test
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports: 
+        - containerPort: 8000

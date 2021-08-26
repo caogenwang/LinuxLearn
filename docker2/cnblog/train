@@ -1,0 +1,37 @@
+#查看污点策略，显示三个master节点都是NoSchedule
+[root@master1 ~]# kubectl get no -o yaml | grep taint -A 5
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+  status:
+    addresses:
+    - address: master1的IP
+--
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+  status:
+    addresses:
+    - address: master2的IP
+--
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+  status:
+    addresses:
+    - address: master3的IP
+ 
+ 
+#去除污点，允许master节点部署pod
+[root@master1 ~]# kubectl taint nodes --all node-role.kubernetes.io/master-
+node/master1 untainted
+node/master2 untainted
+node/master3 untainted
+error: taint "node-role.kubernetes.io/master" not found
+ 
+#再次查看，无显示，说明污点去除成功
+[root@master1 ~]# kubectl get no -o yaml | grep taint -A 5
+[root@master1 ~]# kubectl get no -o yaml | grep taint -A 5
+
+kubectl taint node qcb52 node-role.kubernetes.io/master:NoSchedule
+设置污点

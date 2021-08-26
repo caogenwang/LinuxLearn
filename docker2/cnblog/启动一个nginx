@@ -1,0 +1,259 @@
+1. Pod和Svc的yaml文件
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 80       --------------pod暴露的端口
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 80
+[huangke@qcb52 k8s]$ cat nginx_svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    name: nginx
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 10008         -----------------虚拟ip:port
+      targetPort: 80      -----------------pod暴露的端口
+      nodePort: 30008      ---------------node:potr--------访问service
+
+
+注意，service中的selector中的配置要与pod中的labels保持一致。
+
+2. svc的获取
+[huangke@qcb52 k8s]$ kubectl get svc -o wide
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE     SELECTOR
+kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP           4d22h   <none>
+nginx        NodePort    10.98.75.236   <none>        10008:30008/TCP   12m     name=nginx
+
+3.访问虚拟的ip
+[huangke@qcb52 k8s]$ curl 10.98.75.236:10008
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+4.访问pod
+[huangke@qcb52 k8s]$ curl 10.244.0.8:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+4.访问节点的ip
+[huangke@qcb52 k8s]$ curl 192.168.4.52:30008
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+6. Pod的信息
+[huangke@qcb52 k8s]$ kubectl describe pod nginx
+Name:         nginx
+Namespace:    default
+Priority:     0
+Node:         qcb52/192.168.4.52
+Start Time:   Wed, 25 Aug 2021 14:21:40 +0800
+Labels:       name=nginx
+Annotations:  <none>
+Status:       Running
+IP:           10.244.0.8
+IPs:
+  IP:  10.244.0.8
+Containers:
+  nginx:
+    Container ID:   docker://ff174faa32bb6ac1715b709b27aecb70cbe78d9ac8e5e81a2b605f0668883bc8
+    Image:          nginx:latest
+    Image ID:       docker-pullable://nginx@sha256:4d4d96ac750af48c6a551d757c1cbfc071692309b491b70b2b8976e102dd3fef
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 25 Aug 2021 14:21:41 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-spdkr (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-spdkr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  22m   default-scheduler  Successfully assigned default/nginx to qcb52
+  Normal  Pulled     22m   kubelet            Container image "nginx:latest" already present on machine
+  Normal  Created    22m   kubelet            Created container nginx
+  Normal  Started    22m   kubelet            Started container nginx
+
+7.
+[huangke@qcb52 k8s]$ kubectl describe pod nginx
+Name:         nginx
+Namespace:    default
+Priority:     0
+Node:         qcb52/192.168.4.52
+Start Time:   Wed, 25 Aug 2021 14:21:40 +0800
+Labels:       name=nginx
+Annotations:  <none>
+Status:       Running
+IP:           10.244.0.8
+IPs:
+  IP:  10.244.0.8
+Containers:
+  nginx:
+    Container ID:   docker://ff174faa32bb6ac1715b709b27aecb70cbe78d9ac8e5e81a2b605f0668883bc8
+    Image:          nginx:latest
+    Image ID:       docker-pullable://nginx@sha256:4d4d96ac750af48c6a551d757c1cbfc071692309b491b70b2b8976e102dd3fef
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 25 Aug 2021 14:21:41 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-spdkr (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  kube-api-access-spdkr:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  22m   default-scheduler  Successfully assigned default/nginx to qcb52
+  Normal  Pulled     22m   kubelet            Container image "nginx:latest" already present on machine
+  Normal  Created    22m   kubelet            Created container nginx
+  Normal  Started    22m   kubelet            Started container nginx
+7.
+[huangke@qcb52 k8s]$ kubectl describe svc nginx
+Name:                     nginx
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 name=nginx
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.98.75.236
+IPs:                      10.98.75.236
+Port:                     <unset>  10008/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  30008/TCP
+Endpoints:                10.244.0.8:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
