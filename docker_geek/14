@@ -1,0 +1,41 @@
+1.问题：当使用 Buffered I/O 的应用程序从虚拟机迁移到容器，这时我们就会发现多了 Memory Cgroup 的限制之后，write() 写相同大小的数据块花费的时间，延时波动会比较大
+
+
+2.
+dirty_background_ratio:
+因为 dirty pages 的数量很多，已经达到了第三个参数 dirty_ratio 的值。这时执行写文件功能的进程就会被暂停，直到写文件的操作将数据页面写入磁盘，写文件的进程才能继续运行
+
+执行磁盘flush过程中，会影响正常的读写请求
+那么如果容器在做内存限制的时候，Cgroup 中 memory.limit_in_bytes 设置得比较小，而容器中的进程又有很大量的 I/O，这样申请新的 Page Cache 内存的时候，又会不断释放老的内存页面，这些操作就会带来额外的系统开销了
+
+设置内存太小了，内存不够用了，就需要释放内存页面，影响性能
+
+3.
+当 dirty pages 数量超过 dirty_background_ratio 对应的内存量的时候，
+内核 flush 线程就会开始把 dirty pages 写入磁盘 ; 
+
+当 dirty pages 数量超过 dirty_ratio 对应的内存量，这时候程序写文件的函数调用 
+write() 就会被阻塞住，直到这次调用的 dirty pages 全部写入到磁盘。
+
+4.
+根据 ftrace 的结果，我们发现写数据到 Page Cache 的时候，需要不断地去释放原有的页面，
+这个时间开销是最大的。造成容器中 Buffered I/O write() 不稳定的原因，正是容器在限制内存之后，
+Page Cache 的数量较小并且不断申请释放
+
+
+5.
+dirty_background_ratio/dirty_background_bytes:
+当dirty pages超过设置值时，系统才主动开始将脏页刷到磁盘。
+dirty_ratio/dirty_bytes:
+当dirty pages超过该设置值时，系统会将当前所有dirty pages 全部写入到磁盘，这个过程会阻塞write()调用。
+
+请问老师:
+关于dirty_background_ratio/dirty_background_bytes，在刷脏页到磁盘的过程中，是否也会阻塞当前的write()调用呢？还是由另一个后台线程执行刷盘的工作？是每隔一段时间刷一次吗？还是一直刷到dirty pages小于dirty_background_ratio/dirty_background_bytes了才停止？
+
+课后思考题:
+因为开启了"-direct=1"，采用非 buffered I/O 文件读写的方式，所以过程中不会产生脏页，但是I/O的性能会下降。
+作者回复: @姜姜
+好问题！
+如果dirty page的数目超过dirty_background_ratio/dirty_background_bytes对应的页面数，会有一个kernel thread把dirty page写入磁盘，这样不会阻塞当前的write()。这个kernel thread会一直刷到dirty pages小于dirty_background_ratio/dirty_background_bytes对应的页面才停止工作。
+
+

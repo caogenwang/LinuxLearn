@@ -7,3 +7,35 @@ cgroup v2在buffered IO模式下能限制，是不是可以理解为：写入的
 作者回复: 如果一个容器用到多个磁盘（volume），并且都要做io限制，那么都要设置一遍。
 
 3.
+我们是不是也可以用 Cgroups 来保证每个容器的磁盘读写性能
+在 Cgroup v1 中有 blkio 子系统，它可以来限制磁盘的 I/O。不过 blkio 子系统对于磁盘 I/O 的限制，并不像 CPU，Memory 那么直接，下面我会详细讲解
+
+
+4.
+IOPS 和吞吐量之间是有关联的，在 IOPS 固定的情况下，如果读写的每一个数据块越大，那么吞吐量也越大，
+它们的关系大概是这样的：吞吐量 = 数据块大小 *IOPS
+
+5.
+blkio.throttle.read_iops_device 磁盘读取 IOPS 限制
+blkio.throttle.read_bps_device 磁盘读取吞吐量限制
+blkio.throttle.write_iops_device 磁盘写入 IOPS 限制
+blkio.throttle.write_bps_device 磁盘写入吞吐量限制
+6.
+echo "252:16 10485760" > $CGROUP_CONTAINER_PATH/blkio.throttle.write_bps_device
+    在这个命令中，"252:16"是 /dev/vdb 的主次设备号，你可以通过 ls -l /dev/vdb 看到这两个值，而后面的"10485760"就是 10MB 的每秒钟带宽限制。
+
+7.
+你先别急，我们可以再做个试验，把前面脚本里 fio 命令中的 “-direct=1” 给去掉，也就是不让 fio 运行在 Direct I/O 模式了，而是用 Buffered I/O 模式再运行一次，看看 fio 执行的输出
+在有buffer/cache情况下，这种限制不起作用。
+
+8.
+Direct I/O 和 Buffered I/O
+
+9。Cgroup V2
+解决了buffer IO和内存限制不能协调的问题
+Cgroup v2 相比 Cgroup v1 做的最大的变动就是一个进程属于一个控制组，而每个控制组里可以定义自己需要的多个子系统。
+
+10.
+打开方法就是配置一个 kernel 参数"cgroup_no_v1=blkio,memory"，这表示把 Cgroup v1 的 blkio 和 Memory 两个子系统给禁止，这样 Cgroup v2 的 io 和 Memory 这两个子系统就打开了
+
+11.

@@ -38,5 +38,43 @@ https://www.infoq.cn/article/odslclsjvo8bnx*mbrbk
 Quota主要来限制容器的rootfs, 这个rootfs一般是在host的磁盘会和别的容器共享，所以需要对它做限制。
 
 
+4.
+老师，我觉得可以补充下 现在k8s 1.14 开始，默认开启 LocalStorageCapacityIsolation， 可以通过限制resources.limits.ephemeral-storage 和resources.requests.ephemeral-storage 来保护宿主机 rootfs了。
+作者回复: @Sun, 谢谢，很好的补充。
+k8s 通过du来检查ephemeral-storage相关volume/目录的大小，然后如果超出limit就evict pod。
+du的开销会比较大，evict pod比较适合stateless pod。不过最新的k8s应该在用filesystem quota来限制emptyDir的大小了。
+
+5.
+可以通过xfs_quota -x -c "report -pbih " 目录名称查询projectid
+
+6.
+老师能说下你们应用容器Quota的场景么。对于无状态服务一般就是日志会写文件了，离线任务比如机器学习的模型也不敢给人家限制呀😂
+作者回复: 如果用户需要使用大容量的磁盘空间，需要使用volume.
+Quota主要来限制容器的rootfs, 这个rootfs一般是在host的磁盘会和别的容器共享，所以需要对它做限制。
+
+7.
+老师，CGroup子系统中没有对硬盘使用量进行限制的功能模块吗？除了通过文件系统的quota去限制还有其他的方法吗？
+作者回复: cgroup里没有对磁盘容量使用限制的模块。
+
+8.
+[root@localhost ~]# xfs_quota -x -c 'report -h /tmp/xfs_prjquota'
+Project quota on / (/dev/mapper/centos-root)
+                        Blocks
+Project ID Used Soft Hard Warn/Grace
+---------- ---------------------------------
+#0 3.2G 0 0 00 [------]
+#2 8K 100M 100M 00 [------]
+#3 100M 100M 100M 00 [------]
+#101 10M 0 10M 00 [------]
+
+
+10.
+我们已经验证了在容器中对于 OverlayFS 中写入数据，其实就是往宿主机的一个目录（upperdir）里写数据
+
+11.
+加上一个参数 --storage-opt size= ，就能限制住容器 OverlayFS 文件系统可写入的最大数据量了
+
+
+
 
 
