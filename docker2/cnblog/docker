@@ -1,0 +1,30 @@
+1.
+Docker利用Linux中的核心分离机制，例如Cgroups，以及Linux的核心Namespace（名字空间）
+来创建独立的容器。一句话概括起来Docker就是利用Namespace做资源隔离，用Cgroup做资源限制，
+利用Union FS做容器文件系统的轻量级虚拟化技术。Docker容器的本质还是一个直接运行在宿主机上面的特殊进程，
+看到的文件系统是隔离后的，但是操作系统内核是共享宿主机OS，所以说Docker是轻量级的虚拟化技术。
+
+2.
+Namespace
+Linux Namespace 是Linux 提供的一种内核级别环境隔离的方法，使其中的进程好像拥有独立的操作系统环境。
+Linux Namespace 有 Mount Namespace，UTS Namespace, IPC Namespace, PID Namespace, 
+Network Namespace, User Namespace, Cgroup Namespace
+
+3.
+上面已经讲过Docker 容器运行起来是一个直接运行在宿主机上面的进程，那么如果限定每个容器最多消耗多少
+CPU资源呢？如果一个容器疯狂的消耗资源岂不是会影响同一宿主机上面其他的容器？所以Docker就需要一个
+限制容器能够使用资源上限的机制，那就是Linux Cgroup技术。Linux Cgroup 全称是Linux Control Group。
+它最主要的作用是限制一个进程组能够使用的资源上限，包括CPU，MEM，DISK，NET等等。
+
+4.
+Union FS
+每个容器运行起来后都有一个独立的文件系统，例如Ubuntu镜像的容器能够看到Ubuntu的文件系统，
+Centos能够看到Centos的文件系统， 不是说容器是运行在宿主机上面的进程吗，
+为什么能够看到和宿主机不一样的文件系统呢？那就要归功于Union FS，全称是Union File System，
+联合文件系统。将多个不同位置的目录联合挂载到同一个目录，将相同的部分合并。Docker利用这种联合挂载能力，
+将容器镜像里面的多层内容呈现为统一的rootfs(根文件系统)，即root用户能够看到的根目录底下所有的目录文件。
+rootfs打包了整个操作系统的文件和目录，是应用运行时所需要的最完整的“依赖库”，也就是我们说的“镜像”。
+镜像分为基础镜像只读层，和Init层，和读写层。
+Init 层存放的是/etc/hostname,/etc/resolv.conf 等， docker commit的时候不提交。
+读写层一开始的时候为空，用户如果修改了文件系统，比如说增删改了文件，
+docker commit的时候就会提交这一层信息
