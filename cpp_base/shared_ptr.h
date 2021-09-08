@@ -109,7 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  @throw  std::bad_alloc, in which case @c delete @a __p is called.
        */
       template<typename _Tp1>
-	    explicit shared_ptr(_Tp1* __p): __shared_ptr<_Tp>(__p) { }//带参数的构造函数
+	    explicit shared_ptr(_Tp1* __p): __shared_ptr<_Tp>(__p) { }//原始指针，带参数的构造函数
 
       /**
        *  @brief  Construct a %shared_ptr that owns the pointer @a __p

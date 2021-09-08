@@ -932,7 +932,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /*赋值构造和赋值函数都是浅拷贝*/
       __shared_ptr(const __shared_ptr&) noexcept = default;
       __shared_ptr& operator=(const __shared_ptr&) noexcept = default;
-      ~__shared_ptr() = default;
+      ~__shared_ptr() = default;//析构函数
 
 
     /*赋值构造*/
