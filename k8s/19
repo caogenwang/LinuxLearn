@@ -1,0 +1,32 @@
+1. 深入理解statefulset的存储状态
+    这个机制主要使用一个叫做Persistent Volume Claim的功能。
+2. 
+1)定义PVC
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+        name: pv-claim
+    spec:
+        accessModes:
+        - ReadWriteOnce
+        resource:
+            requests:
+                storage: 1Gi
+2)在Pod中声明使用PVC
+    apiVision: v1
+    kind: Pod
+    metadata:
+        name: pv-pod
+    spec:
+        containers:
+        - name: pv-container
+            image: nginx
+            ports:
+                - containerPort: 80
+                   name: "http-server"
+            VolumeMounts:
+                - mountPath: "/usr/share/nginx/html"
+        volume:
+            - name: pv-storage
+                persistentVolumeClaim:
+                    claimName: pv-claim

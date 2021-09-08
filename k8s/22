@@ -1,0 +1,90 @@
+1.job
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: resouer/ubuntu-bc
+        command: ["sh","-c","echo 'scale=10000;4*a(1)' | bc -l"]
+      restartPolicy: Never
+  backoffLimit: 4
+
+  [huangke@qcb52 job]$ kubectl describe job
+Name:             pi
+Namespace:        default
+Selector:         controller-uid=c6d36643-fa12-47dd-bdd0-09ba887acf1c
+Labels:           controller-uid=c6d36643-fa12-47dd-bdd0-09ba887acf1c
+                  job-name=pi
+Annotations:      <none>
+Parallelism:      1
+Completions:      1
+Completion Mode:  NonIndexed
+Start Time:       Mon, 30 Aug 2021 15:33:45 +0800
+Pods Statuses:    1 Running / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  controller-uid=c6d36643-fa12-47dd-bdd0-09ba887acf1c
+           job-name=pi
+  Containers:
+   pi:
+    Image:      resouer/ubuntu-bc
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sh
+      -c
+      echo 'scale=10000;4*a(1)' | bc -l
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Events:
+  Type    Reason            Age   From            Message
+  ----    ------            ----  ----            -------
+  Normal  SuccessfulCreate  16s   job-controller  Created pod: pi--1-hz9d6
+
+
+  NAME          READY   STATUS              RESTARTS   AGE     IP       NODE    NOMINATED NODE   READINESS GATES
+pi--1-hz9d6   0/1     ContainerCreating   0          2m17s   <none>   qcb52   <none>           <none>
+
+[huangke@qcb52 job]$ kubectl get pod -o wide
+NAME          READY   STATUS    RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES
+pi--1-hz9d6   1/1     Running   0          2m51s   10.244.0.13   qcb52   <none>           <none>
+
+执行完了
+[huangke@qcb52 job]$ kubectl get pod -o wide
+NAME          READY   STATUS      RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES
+pi--1-hz9d6   0/1     Completed   0          4m46s   10.244.0.13   qcb52   <none>           <none>
+
+2. job控制器的对象就是Pod
+   job控制器在控制循环中进行调谐
+
+3.Job controller对并行作业的控制
+   spec.parallelism: 一个Job在任意时间可以启动多少个Pod同时运行
+   spec.completions: Job至少要完成Pod的数目
+
+4. 
+    1）外部管理器+job模板
+        apiVersion: batch/v1
+        kind: Job
+        metadata:
+          name: process-item-$item
+          labels:
+            jobgroup: jobexample
+        spec:
+          template:
+            metadata:
+              name: jobexample
+            spec:
+            containers:
+            - name: c
+                image: busybox
+                command: ["sh","-c","echo processing item $item && sleep 5"]
+            restartPolicy: Never
+
+    2）任务固定总数
+
+    3）

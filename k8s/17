@@ -1,0 +1,35 @@
+1. 容器的编排
+    实现水平扩展和滚动更新
+kubectl scale deployment nginx-deployment --replicas=4
+
+查看deployment的状态
+kubectl rollout status $NAME
+
+直接编辑Etcd中的模板
+kubectl edit $NAME
+
+2. 修改Pod的镜像
+    kubectl set image $NAME nginx=nginx:1.8.0//修改nginx的版本
+
+3. 执行回滚
+    kubectl rollout undo $NAME
+    kubectl rollout undo $NAME --to-revision=2//回滚到具体版本
+
+4. 查看历史信息
+   kubectl rollout history  deployment -n kube-system --revision=1
+
+5. kubectl rollout pause $NAME
+    让这个deployment暂停
+ 
+    kubectl rollout resume $NAME
+    恢复
+
+6. ReplicaSet的数量控制
+   spec.revisionHistoryLimit
+
+7.总结
+    以上就是容器的各种编排动作，deployment实际上是一个两层控制器；
+    通过ReplicaSet的个数描述应用的版本；然后通过属性保证Pod的副本数量；
+
+    自定义控制器实现编排
+

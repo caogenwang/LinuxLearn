@@ -1,0 +1,74 @@
+1. RC、Deployment、DaemonSet都是面向无状态的服务，它们所管理的Pod的IP、名字，启停顺序等都是随机的，
+   而StatefulSet是什么？顾名思义，有状态的集合，管理所有有状态的服务，比如MySQL、MongoDB集群等.
+
+2. StatefulSet本质上是Deployment的一种变体,它所管理的Pod拥有固定的Pod名称，启停顺序，
+   在StatefulSet中，Pod名字称为网络标识(hostname)，还必须要用到共享存储.
+
+3. Stateful有状态的Pod
+    1). 拓扑状态
+    2). 存储状态
+    StatefulSet的核心功能，就是通过某种方式记录这些状态，然后再POD被重新创建时，能够为新POD恢复这些状态。
+4. 在Deployment中，与之对应的服务是service，而在StatefulSet中与之对应的headless service，
+    headless service，即无头服务，与service的区别就是它没有Cluster IP，解析它的名称时将返回该
+    Headless Service对应的全部Pod的Endpoint列表.
+
+5.Headless Service不需要分配一个VIP，而是可以直接以DNS记录的方式解析出被代理Pod的IP地址
+    在Normal Service中，需要给Service分配一个VIP，DNS解析也是虚拟IP，然后再转到代理的POD
+
+7. 对于有状态的应用的实例访问，必须使用dns记录或者hostname的方式，而绝不应该直接访问这些Pod的
+   ip地址。
+   
+6.定义
+    apiVision: v1
+    kind: Service
+    metadata:
+        name: nginx
+        labels:
+            app: nginx
+    spec:
+        ports:
+        - port: 80 //本service监听的端口，对应的VIP
+          name: web
+        clusterIP: None //VIP不要了
+        selector:
+            app: nginx
+        
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  serviceName: "nginx"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+          name: web
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+
+    

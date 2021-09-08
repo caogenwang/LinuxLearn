@@ -1,0 +1,3 @@
+声明式API
+kubectl apply -f xxx.yaml
+

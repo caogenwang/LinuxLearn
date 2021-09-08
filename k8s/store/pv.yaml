@@ -1,0 +1,15 @@
+apiversion: v1
+kind: PersistentVolume
+metadate: 
+  name: pv-flex-nfs
+spec: 
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  flexVolume:
+    driver: "k8s/nfs"
+    fsType: "nfs"
+    options:
+      server: "10.10.0.25"
+      share: "export"
