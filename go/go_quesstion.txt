@@ -117,3 +117,137 @@
         需要注意的是虽然一个package中可以写任意多个init,但是无论是从可读性还是可维护性来说，都是不推荐的； 
     其次，这两个函数定义时都不能有任何的参数和返回值， 
     最后，个人理解，init函数为初始化操作，main函数为程序入口。
+
+    13. 程序输出
+    func main(){
+        /*
+        先defer的后执行
+        recover后输出panic中的信息
+        */
+        defer func(){
+            If err:=recover();err!=nil{
+                fmt.Print(err)
+            } else {
+                fmt.Print("no")
+            }
+        }()
+        defer func(){
+            panic("1111111111111")
+        }()
+        panic("22222222222")
+    }
+    答案：不会报错，而是被recover捕捉，打印出1111111111111
+
+13.代码的输出？
+    var c1=make(chan int)
+    var c2=make(chan int)
+    func main(){
+        go func(){
+            fmt.Println("111111")
+            c1 <-<- c2//读取c2的元素放入到c1
+        }()
+        go func(){
+            c1 <-<- c2
+            fmt.Println("222222")
+        }()
+        <- c1
+    }
+    两个协程都是读取c2中的元素，然后塞入c1, 然而c2又是无缓冲且没有任何协程在往c2中写数据，
+    所以第一个协程读c2的时候就导致死锁，因为c2永远读不出数据。 如何改能让程序不报错？在第一个协程前加一个协程：
+
+    gofunc(){ 
+        c2<-1 
+    }()
+
+14.简述channel和mutex锁机制的原理异同与使用场景
+    channel原理: 当channel能存放的元素数量为0时表示为阻塞型channel。
+                当管道无数据时，需要从管道取数据的协程会被阻塞，不会向下执行。 
+                所以可以通过多个协程应用同一个channel，从而实现协程间的同步。
+                channel使用场景： 1. 需要协程通信时     2. 需要管道传输数据时。
+    Mutex原理：互斥锁用来防止资源竞争，多个协程使用同一把排它锁时，原来是并发运行的话将变为
+              线性运行。
+
+              排它锁针对任意操作都是排它的，没有读写区分。 若一个goroutine获得锁，则其他goroutine会一直阻塞到他释放锁后才能获得锁。
+
+mutex使用场景： 解决协程并发时对同一资源的竞争问题
+
+15. sync.WaitGroup的使用场景？
+    程序中需要并发，需要创建多个goroutine，并且一定要等这些并发全部完成后才继续接下来的程序执行．
+    WaitGroup的特点是Wait()可以用来阻塞直到队列中的所有任务都完成时才解除阻塞，而不需要sleep一个固定的时间来等待．
+    但是其缺点是无法指定固定的goroutine数目（也就是协程池功能)
+
+16. 写一段闭包代码，阐述其作用
+    package main
+    import "fmt"
+    type logClosure func(format string,v...interface{})
+
+    func LoggerWrapper(logType string)logClosure{
+        return func(format string,v...interface{}){//返回一个打印的函数，打印log
+            fmt.Println(fmt.Sprintf("[%s] %s",logType,format),v...,)
+            fmt.Println()
+        }
+    }
+    func main(){
+        info_logger := LoggerWrapper("INFO")
+        waring_logger := LoggerWrapper("WARNING")
+        info_logger("this is a %s log","info")
+        waring_logger("this is a %s log","waring")
+    }
+
+17. 执行这段代码会发生什么？
+        type ConfigOne struct {
+	        Daemon string
+        }
+        
+        func (c *ConfigOne) String() string {
+            return fmt.Sprintf("print: %v", c)
+        }
+        c := &ConfigOne{}
+        _ = c.String()
+
+18.单例实现
+    var once sync.Once
+
+    type manager struct{
+        name string
+    }
+
+    var single *manager
+
+    func Singleton() *manager{
+        once.Do(func(){
+            single = &manager{"a"}
+        })
+        return single
+    }
+    注意一个once实例只能用一次。
+
+19. 这段代码输出什么？
+    fmt.Println(len("你好bj!")) 
+    答案：是9， len方法返回字符串的字节长度
+
+20.这段代码可以编译过吗，如果会错是在哪一行？
+    type Test struct{
+        Name string
+    }
+
+    var list map[string]Test
+
+    func main(){
+        list = make(map[string]Test)
+        name := Test{"xiaoming"}
+        list["name"] = name
+
+        fmt.Println(list["name"].Name)
+        list["name"].Name = "Hello"
+        fmt.Println(list["name"])
+    }
+    不能！倒数第三行报错： cannot assign to struct field list["name"].Name in map
+    因为map的value不是指针。首先，map本来存储的就是value的“初始指针值”，可以打印list["name"].Name,
+    但不能通过取值的方式来修改。 因为当map扩容时，内部元素会在内存中移动， 移动之后list["name"].Name
+    获取到的值依然有效，但获取到的指针是无效的，如果允许这样赋值，那之后再打印list["name"].Name 
+    是获取不到修改后的值的。 而当value是指针时，也就是说list["name"]是指针，list["name"].Name
+    就是指针内部的指针，值改变后，list["name"]仍然获取到的是原始数据指针，也就仍然可以获取到
+    list["name"].Name。
+21. 
+
