@@ -9,6 +9,7 @@
 10.线程同步的方法
 11. cpu利用率和平均负载的区别
     load average:包括正在运行的(cpu密集型)和不可中断的(io密集型)
-    所以，当load average包含io线程的时候，和cpu使用率就不相等了
+    所以，当load average包含io线程的时候，和cpu使用率就不相等了.unix系统一般只
+    统计cpu部分，但是Linux增加了不可中断部分
 
 12. 分析coredump文件
