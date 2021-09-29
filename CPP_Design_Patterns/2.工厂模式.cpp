@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Car{
+class Car{//具体对象的抽象类
     public:
         virtual void run() = 0;
         virtual ~Car(){}
@@ -31,7 +31,7 @@ class BWMCar:public Car{
 
 class CarFactory{
     public:
-    virtual Car *CreateCar() = 0;
+    virtual Car *CreateCar() = 0;//基类的car作为返回值，可以指向具体的car
     virtual ~CarFactory(){}
 
 };
@@ -76,7 +76,7 @@ int main()
     // BenzCarFactory Factory;
     // AudiCarFactory Factory;
     BWMCarFactory Factory;
-    MainForm *mainform = new MainForm(&Factory);//使用什么类型的工厂产生什么car
+    MainForm *mainform = new MainForm(&Factory);//使用什么类型的工厂产生什么car，开始声场BMW
     Car *car = mainform->getACar();
     car->run();
     delete mainform;
