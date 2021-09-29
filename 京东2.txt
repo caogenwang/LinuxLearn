@@ -7,4 +7,8 @@
 7. 如何实现的多态
 8. 函数后边加const代表什么含义?
 10.线程同步的方法
-4.close wait状态:
+11. cpu利用率和平均负载的区别
+    load average:包括正在运行的(cpu密集型)和不可中断的(io密集型)
+    所以，当load average包含io线程的时候，和cpu使用率就不相等了
+
+12. 分析coredump文件
