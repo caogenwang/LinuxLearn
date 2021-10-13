@@ -72,6 +72,9 @@
         "future": "cpp",
         "queue": "cpp",
         "random": "cpp",
-        "forward_list": "cpp"
+        "forward_list": "cpp",
+        "__errc": "cpp",
+        "__node_handle": "cpp",
+        "optional": "cpp"
     }
 }
