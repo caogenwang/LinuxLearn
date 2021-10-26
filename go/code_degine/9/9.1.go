@@ -1,56 +1,56 @@
 package main
 
-import(
-	"encoding/json" 
-	"encoding/xml" 
-	"fmt"
-)
+// import(
+// 	"encoding/json" 
+// 	"encoding/xml" 
+// 	"fmt"
+// )
 
-type Shape interface{
-	accept(Visitor)
-}
+// type Shape interface{
+// 	accept(Visitor)
+// }
 
-type Visitor func(shape Shape)
+// type Visitor func(shape Shape)
 
-type Circle struct{
-	Radius int
-}
+// type Circle struct{
+// 	Radius int
+// }
 
-func (c Circle) accept(v Visitor){
-	v(c)
-}
+// func (c Circle) accept(v Visitor){
+// 	v(c)
+// }
 
-type Rectangle struct{
-	Width,Height int
-}
+// type Rectangle struct{
+// 	Width,Height int
+// }
 
-func (r Rectangle)accept(v Visitor)  {
-	v(r)
-}
+// func (r Rectangle)accept(v Visitor)  {
+// 	v(r)
+// }
 
-func JsonVisitor(shape Shape){
-	bytes ,err := json.Marshal(shape)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(bytes))
-}
+// func JsonVisitor(shape Shape){
+// 	bytes ,err := json.Marshal(shape)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Println(string(bytes))
+// }
 
-func XmlVisitor(shape Shape)  {
-	bytes, err := xml.Marshal(shape)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(bytes))
-}
+// func XmlVisitor(shape Shape)  {
+// 	bytes, err := xml.Marshal(shape)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Println(string(bytes))
+// }
 
-func main(){
-	c := Circle{10}
-	r := Rectangle{100, 200}
-	shapes := []Shape{c, r}
+// func main(){
+// 	c := Circle{10}
+// 	r := Rectangle{100, 200}
+// 	shapes := []Shape{c, r}
 
-	for _, s := range shapes { 
-		s.accept(JsonVisitor) 
-		s.accept(XmlVisitor) 
-	}
-}
+// 	for _, s := range shapes { 
+// 		s.accept(JsonVisitor) 
+// 		s.accept(XmlVisitor) 
+// 	}
+// }

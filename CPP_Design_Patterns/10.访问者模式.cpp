@@ -62,7 +62,7 @@ class VacationVisitor : public Visitor//不同的visitor
 public :
     void Visit( Element *element )
     {
-        Employee *employee = ((Employee*)element);
+        Employee *employee = ((Employee*)element);//做了具体类型的强转了
         // Provide 3 extra vacation days
         employee->vacationDays += 3;        
         cout<<employee->name<<" 's new vacation days: " <<employee->income<<endl;
